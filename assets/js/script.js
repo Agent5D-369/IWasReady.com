@@ -51,6 +51,13 @@ const helloAudioUrl = config.helloAudioUrl || '#';
 const formEndpoint = config.formEndpoint || 'https://formspree.io/f/mnjodqre';
 
 const form = document.getElementById('leadership-quiz');
+const quizQuestions = Array.from(form?.querySelectorAll('.quiz-question') || []);
+const quizPrev = document.getElementById('quiz-prev');
+const quizNext = document.getElementById('quiz-next');
+const quizSubmit = document.getElementById('quiz-submit');
+const quizHelper = document.getElementById('quiz-helper');
+const quizCurrentStep = document.getElementById('quiz-current-step');
+const quizProgressBar = document.getElementById('quiz-progress-bar');
 const resultPanel = document.getElementById('result-panel');
 const resultTitle = document.getElementById('result-title');
 const resultSecondary = document.getElementById('result-secondary');
@@ -62,7 +69,10 @@ const resultCtaTitle = document.getElementById('result-cta-title');
 const resultCtaCopy = document.getElementById('result-cta-copy');
 const resultCtaLink = document.getElementById('result-cta-link');
 const copyButton = document.getElementById('copy-result');
+const nativeShareButton = document.getElementById('native-share');
+const copyLinkButton = document.getElementById('copy-link');
 const shareCopy = document.getElementById('share-copy');
+const shareStatus = document.getElementById('share-status');
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
 const waitlistForm = document.getElementById('waitlist-form');
@@ -73,6 +83,7 @@ const purchaseButton = document.getElementById('purchase-button');
 const stickyCtaLink = document.getElementById('sticky-cta-link');
 
 let latestResult = null;
+let currentStepIndex = 0;
 
 if (purchaseButton && helloAudioUrl && helloAudioUrl !== '#') {
   purchaseButton.href = helloAudioUrl;
@@ -131,19 +142,86 @@ function updateStickyCta(afterResult = false) {
   }
 }
 
-form?.addEventListener('submit', (event) => {
-  event.preventDefault();
+function setShareStatus(message, isError = false) {
+  if (!shareStatus) return;
+  shareStatus.textContent = message;
+  shareStatus.style.color = isError ? '#ffb1b1' : '#81f0c0';
+}
 
-  if (!form.reportValidity()) {
-    return;
+function updateSelectedLabels() {
+  quizQuestions.forEach((question) => {
+    question.querySelectorAll('label').forEach((label) => {
+      const input = label.querySelector('input');
+      label.classList.toggle('is-selected', Boolean(input?.checked));
+    });
+  });
+}
+
+function setQuizHelper(message) {
+  if (!quizHelper) return;
+  quizHelper.textContent = message;
+}
+
+function setQuestionVisibility(index) {
+  if (!quizQuestions.length) return;
+  currentStepIndex = Math.max(0, Math.min(index, quizQuestions.length - 1));
+
+  quizQuestions.forEach((question, questionIndex) => {
+    question.hidden = questionIndex !== currentStepIndex;
+  });
+
+  if (quizCurrentStep) {
+    quizCurrentStep.textContent = String(currentStepIndex + 1);
   }
 
-  const formData = new FormData(form);
-  const scores = computeScores(formData);
-  const sortedRoles = getSortedRoles(scores);
-  const [topRole, topScore] = sortedRoles[0];
-  const [secondRole, secondScore] = sortedRoles[1];
-  const content = roleContent[topRole];
+  if (quizProgressBar) {
+    const percent = ((currentStepIndex + 1) / quizQuestions.length) * 100;
+    quizProgressBar.style.width = `${percent}%`;
+  }
+
+  if (quizPrev) {
+    quizPrev.disabled = currentStepIndex === 0;
+  }
+
+  if (quizNext && quizSubmit) {
+    const onLastStep = currentStepIndex === quizQuestions.length - 1;
+    quizNext.hidden = onLastStep;
+    quizSubmit.hidden = !onLastStep;
+  }
+
+  setQuizHelper('Choose the answer that feels most true right now.');
+  updateSelectedLabels();
+}
+
+function currentQuestionIsAnswered() {
+  const currentQuestion = quizQuestions[currentStepIndex];
+  return Boolean(currentQuestion?.querySelector('input:checked'));
+}
+
+function buildShareState(primaryKey, secondaryKey = '') {
+  const primary = roleContent[primaryKey];
+  const secondary = secondaryKey ? roleContent[secondaryKey] : null;
+  const url = new URL(window.location.href);
+  url.searchParams.set('result', primaryKey);
+  if (secondaryKey) {
+    url.searchParams.set('secondary', secondaryKey);
+  } else {
+    url.searchParams.delete('secondary');
+  }
+  url.hash = 'result-panel';
+
+  const text = `My current leadership signal is ${primary.title}${secondary ? `, with ${secondary.title} also active` : ''}. Take the quiz and compare your result.`;
+  return {
+    primaryKey,
+    secondaryKey,
+    url: url.toString(),
+    text
+  };
+}
+
+function renderResult(primaryKey, secondaryKey = '', topScore = null, shouldUpdateUrl = true) {
+  const content = roleContent[primaryKey];
+  if (!content) return;
 
   resultTitle.textContent = content.title;
   resultSummary.textContent = content.summary;
@@ -153,41 +231,120 @@ form?.addEventListener('submit', (event) => {
   resultCtaTitle.textContent = content.ctaTitle;
   resultCtaCopy.textContent = content.ctaCopy;
 
-  if (secondScore > 0) {
-    resultSecondary.textContent = `${roleContent[secondRole].title} is also active in your field right now.`;
+  if (secondaryKey && roleContent[secondaryKey]) {
+    resultSecondary.textContent = `${roleContent[secondaryKey].title} is also active in your field right now.`;
   } else {
     resultSecondary.textContent = '';
   }
 
-  shareCopy.textContent = `My current leadership signal is ${content.title}. ${resultSecondary.textContent} Forward this to the person carrying the field with you and ask: Which role do you think is most needed in our life or project right now?`;
+  shareCopy.textContent = `My current leadership signal is ${content.title}${secondaryKey && roleContent[secondaryKey] ? `, with ${roleContent[secondaryKey].title} also active.` : '.'} Forward this to the person carrying the field with you and ask: Which role do you think is most needed in our life or project right now?`;
 
   if (waitlistResult) waitlistResult.value = content.title;
-  if (waitlistSecondary) waitlistSecondary.value = secondScore > 0 ? roleContent[secondRole].title : '';
+  if (waitlistSecondary) waitlistSecondary.value = secondaryKey && roleContent[secondaryKey] ? roleContent[secondaryKey].title : '';
 
+  const shareState = buildShareState(primaryKey, secondaryKey);
   latestResult = {
     primary: content.title,
-    secondary: secondScore > 0 ? roleContent[secondRole].title : '',
-    score: topScore
+    primaryKey,
+    secondary: secondaryKey && roleContent[secondaryKey] ? roleContent[secondaryKey].title : '',
+    secondaryKey,
+    score: topScore,
+    shareUrl: shareState.url,
+    shareText: shareState.text
   };
+
+  if (shouldUpdateUrl) {
+    window.history.replaceState({}, '', shareState.url);
+  }
 
   resultPanel.hidden = false;
   updateStickyCta(true);
+}
+
+function evaluateResults() {
+  const formData = new FormData(form);
+  const scores = computeScores(formData);
+  const sortedRoles = getSortedRoles(scores);
+  const [topRole, topScore] = sortedRoles[0];
+  const [secondRole, secondScore] = sortedRoles[1];
+  const secondaryKey = secondScore > 0 ? secondRole : '';
+
+  renderResult(topRole, secondaryKey, topScore, true);
   resultPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+quizNext?.addEventListener('click', () => {
+  if (!currentQuestionIsAnswered()) {
+    setQuizHelper('Choose one answer before moving to the next question.');
+    return;
+  }
+  setQuestionVisibility(currentStepIndex + 1);
+});
+
+quizPrev?.addEventListener('click', () => {
+  setQuestionVisibility(currentStepIndex - 1);
+});
+
+form?.addEventListener('change', () => {
+  updateSelectedLabels();
+  setQuizHelper('Choose the answer that feels most true right now.');
+});
+
+form?.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  if (!form.reportValidity()) {
+    return;
+  }
+
+  evaluateResults();
+});
+
+nativeShareButton?.addEventListener('click', async () => {
+  if (!latestResult) return;
+  const shareData = {
+    title: `${latestResult.primary} | Bridging Earth and Kanaria`,
+    text: latestResult.shareText,
+    url: latestResult.shareUrl
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      setShareStatus('Shared.');
+    } catch (error) {
+      if (error?.name !== 'AbortError') {
+        setShareStatus('Share did not complete. Try copying the link instead.', true);
+      }
+    }
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(latestResult.shareUrl);
+    setShareStatus('Share not supported here. Link copied instead.');
+  } catch (error) {
+    setShareStatus('Share is not supported here. Copy the link instead.', true);
+  }
+});
+
+copyLinkButton?.addEventListener('click', async () => {
+  if (!latestResult?.shareUrl) return;
+  try {
+    await navigator.clipboard.writeText(latestResult.shareUrl);
+    setShareStatus('Share link copied.');
+  } catch (error) {
+    setShareStatus('Could not copy the share link.', true);
+  }
 });
 
 copyButton?.addEventListener('click', async () => {
-  const text = `${resultTitle.textContent}\n\n${resultSummary.textContent}\n\n${shareCopy.textContent}`;
+  const text = `${resultTitle.textContent}\n\n${resultSummary.textContent}\n\n${shareCopy.textContent}\n\n${latestResult?.shareUrl || window.location.href}`;
   try {
     await navigator.clipboard.writeText(text);
-    copyButton.textContent = 'Copied';
-    setTimeout(() => {
-      copyButton.textContent = 'Copy result';
-    }, 1800);
+    setShareStatus('Result text copied.');
   } catch (error) {
-    copyButton.textContent = 'Copy failed';
-    setTimeout(() => {
-      copyButton.textContent = 'Copy result';
-    }, 1800);
+    setShareStatus('Could not copy the result text.', true);
   }
 });
 
@@ -223,4 +380,14 @@ waitlistForm?.addEventListener('submit', async (event) => {
   }
 });
 
+function hydrateResultFromUrl() {
+  const url = new URL(window.location.href);
+  const primaryKey = url.searchParams.get('result') || '';
+  const secondaryKey = url.searchParams.get('secondary') || '';
+  if (!roleContent[primaryKey]) return;
+  renderResult(primaryKey, roleContent[secondaryKey] ? secondaryKey : '', null, false);
+}
+
+setQuestionVisibility(0);
 updateStickyCta(false);
+hydrateResultFromUrl();

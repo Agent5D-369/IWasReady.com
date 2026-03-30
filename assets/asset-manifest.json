@@ -11,6 +11,22 @@
     {
       "path": "assets/images/",
       "type": "directory"
+    },
+    {
+      "path": "assets/images/bek-hero-desktop.webp",
+      "type": "image"
+    },
+    {
+      "path": "assets/images/bek-hero-mobile.webp",
+      "type": "image"
+    },
+    {
+      "path": "assets/images/bek-og-image.webp",
+      "type": "image"
+    },
+    {
+      "path": "assets/images/bek-book-cover.webp",
+      "type": "image"
     }
   ]
 }
