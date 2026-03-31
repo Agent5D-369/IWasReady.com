@@ -853,3 +853,16 @@ button, input, label, summary, audio { font: inherit; }
     box-shadow: 0 18px 60px rgba(0,0,0,0.35);
   }
 }
+
+
+.quiz-teaser { display: grid; gap: 1.5rem; }
+.hero-meta-immersive { color: var(--muted); font-size: 0.95rem; margin: 0.8rem 0 0; }
+.hero-trailer-link { margin: 0.5rem 0 0; }
+.hero-trailer-link a { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 0.18em; }
+.hero-immersive .hero-copy h1 { max-width: 9ch; }
+.section-intro h2:only-child { margin-top: 0; }
+.faq-wrap .section-intro, .section-intro.center { margin-bottom: 1rem; }
+@media (max-width: 720px) {
+  .hero-meta-immersive { font-size: 0.9rem; }
+  .hero-immersive .hero-copy h1 { max-width: 11ch; }
+}

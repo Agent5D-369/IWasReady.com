@@ -49,6 +49,7 @@ const roleContent = {
 const config = window.__BEK_CONFIG || {};
 const helloAudioUrl = config.helloAudioUrl || '#';
 const formEndpoint = config.formEndpoint || 'https://formspree.io/f/mnjodqre';
+const quizUrl = config.quizUrl || 'quiz.html';
 
 const form = document.getElementById('leadership-quiz');
 const quizQuestions = Array.from(form?.querySelectorAll('.quiz-question') || []);
@@ -137,7 +138,7 @@ function updateStickyCta(afterResult = false) {
     stickyCtaLink.href = '#purchase';
     stickyCtaLink.textContent = 'See the $33 audiobook offer';
   } else {
-    stickyCtaLink.href = '#quiz';
+    stickyCtaLink.href = quizUrl;
     stickyCtaLink.textContent = 'Take the free quiz';
   }
 }
