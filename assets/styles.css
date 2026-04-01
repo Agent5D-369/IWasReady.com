@@ -84,7 +84,7 @@ body {
   background-color: var(--space-black);
   color: var(--text-primary);
   line-height: 1.7;
-  font-size: 17px;
+  font-size: 18px;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -193,7 +193,7 @@ ul, ol { list-style: none; }
 
 .nav-logo-title {
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.08em;
   color: var(--gold);
@@ -216,7 +216,7 @@ ul, ol { list-style: none; }
 }
 
 .nav-link {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.06em;
   color: var(--text-secondary);
@@ -229,7 +229,7 @@ ul, ol { list-style: none; }
 
 .nav-cta {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -360,7 +360,7 @@ ul, ol { list-style: none; }
 
 .hero-subhead {
   font-family: var(--font-serif);
-  font-size: clamp(18px, 2.5vw, 24px);
+  font-size: clamp(20px, 2.5vw, 26px);
   font-weight: 400;
   line-height: 1.6;
   color: var(--text-secondary);
@@ -419,7 +419,7 @@ ul, ol { list-style: none; }
 .btn:hover::after { opacity: 1; }
 
 .btn-primary {
-  font-size: 15px;
+  font-size: 16px;
   padding: 18px 40px;
   color: var(--space-black);
   background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 100%);
@@ -433,7 +433,7 @@ ul, ol { list-style: none; }
 }
 
 .btn-secondary {
-  font-size: 13px;
+  font-size: 14px;
   padding: 14px 28px;
   color: var(--gold);
   background: transparent;
@@ -448,7 +448,7 @@ ul, ol { list-style: none; }
 }
 
 .btn-ghost {
-  font-size: 13px;
+  font-size: 14px;
   padding: 12px 24px;
   color: var(--text-secondary);
   background: var(--glass-bg);
@@ -462,7 +462,7 @@ ul, ol { list-style: none; }
 }
 
 .btn-lg {
-  font-size: 16px;
+  font-size: 17px;
   padding: 20px 48px;
 }
 
@@ -535,7 +535,7 @@ ul, ol { list-style: none; }
 
 .section-body {
   font-family: var(--font-serif);
-  font-size: clamp(17px, 2vw, 21px);
+  font-size: clamp(19px, 2vw, 22px);
   line-height: 1.75;
   color: var(--text-secondary);
   max-width: 680px;
@@ -591,7 +591,7 @@ ul, ol { list-style: none; }
 
 .signal-name {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--gold);
@@ -600,8 +600,8 @@ ul, ol { list-style: none; }
 }
 
 .signal-desc {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.65;
   color: var(--text-secondary);
 }
 
@@ -721,7 +721,7 @@ ul, ol { list-style: none; }
 }
 
 .about-body {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.8;
   color: var(--text-secondary);
 }
@@ -741,6 +741,26 @@ ul, ol { list-style: none; }
   aspect-ratio: 4/5;
   background: var(--indigo-dark);
   border: 1px solid var(--glass-border);
+}
+
+/* Rick Broider portrait photo */
+.about-image-frame--portrait {
+  aspect-ratio: 2/3;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  box-shadow:
+    0 0 60px rgba(201, 168, 76, 0.08),
+    0 0 100px rgba(56, 80, 200, 0.15),
+    0 30px 80px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.about-image-frame--portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.95;
 }
 
 .about-image-frame img {
@@ -835,7 +855,7 @@ ul, ol { list-style: none; }
 
 .testimonial-text {
   font-family: var(--font-serif);
-  font-size: clamp(18px, 2.2vw, 22px);
+  font-size: clamp(20px, 2.5vw, 25px);
   font-style: italic;
   line-height: 1.75;
   color: var(--text-primary);
@@ -915,7 +935,7 @@ ul, ol { list-style: none; }
 
 .quiz-cta-body {
   font-family: var(--font-serif);
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: var(--space-xl);
@@ -1006,7 +1026,7 @@ ul, ol { list-style: none; }
 .faq-answer-inner {
   padding: 0 0 var(--space-lg);
   font-family: var(--font-serif);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.8;
   color: var(--text-secondary);
 }
@@ -1044,7 +1064,7 @@ ul, ol { list-style: none; }
 }
 
 .footer-link {
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -1095,7 +1115,7 @@ ul, ol { list-style: none; }
 
 .quiz-page-subtitle {
   font-family: var(--font-serif);
-  font-size: clamp(16px, 2vw, 19px);
+  font-size: clamp(19px, 2vw, 22px);
   line-height: 1.7;
   color: var(--text-secondary);
   max-width: 520px;
@@ -1194,7 +1214,7 @@ ul, ol { list-style: none; }
 
 .question-text {
   font-family: var(--font-display);
-  font-size: clamp(20px, 3vw, 28px);
+  font-size: clamp(22px, 3vw, 30px);
   font-weight: 600;
   line-height: 1.3;
   color: var(--text-primary);
@@ -1234,7 +1254,7 @@ ul, ol { list-style: none; }
   width: 100%;
   font-family: var(--font-body);
   color: var(--text-primary);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.55;
   min-height: 60px;
   position: relative;
@@ -1315,7 +1335,7 @@ ul, ol { list-style: none; }
 
 .completing-subtitle {
   font-family: var(--font-serif);
-  font-size: 18px;
+  font-size: 20px;
   font-style: italic;
   color: var(--text-secondary);
 }
@@ -1424,7 +1444,7 @@ ul, ol { list-style: none; }
 
 .result-section-text {
   font-family: var(--font-serif);
-  font-size: clamp(16px, 2vw, 19px);
+  font-size: clamp(18px, 2vw, 21px);
   line-height: 1.8;
   color: var(--text-primary);
 }
@@ -1496,7 +1516,7 @@ ul, ol { list-style: none; }
 }
 
 .next-step-desc {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -1542,7 +1562,7 @@ ul, ol { list-style: none; }
 
 .share-body {
   font-family: var(--font-serif);
-  font-size: 17px;
+  font-size: 19px;
   line-height: 1.65;
   color: var(--text-secondary);
   max-width: 520px;
