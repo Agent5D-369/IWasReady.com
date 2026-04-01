@@ -3,86 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leadership Signal Result — Bridging Earth & Kanaria</title>
-  <meta name="description" content="See a sample result page for the Leadership Signal Activation." />
+  <!-- Title and OG tags are updated dynamically by script.js once result type is known -->
+  <title>Your Starseed Leadership Signal — IWasReady.com</title>
+  <meta name="description" content="Your Starseed Leadership Signal result from the Bridging Earth and Kanaria activation by Rick Broider. Discover your archetype: Flamekeeper, Architect, Bridge Walker, or Signal Holder." />
+  <link rel="canonical" href="https://iwasready.com/result.html" />
+
+  <!-- Open Graph — updated dynamically by script.js -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://iwasready.com/result.html" />
+  <meta property="og:title" content="Your Starseed Leadership Signal — IWasReady.com" />
+  <meta property="og:description" content="Discover your starseed leadership archetype from Bridging Earth and Kanaria by Rick Broider." />
+  <meta property="og:image" content="https://iwasready.com/assets/desktop-hero.jpeg" />
+  <meta property="og:site_name" content="IWasReady.com" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Your Starseed Leadership Signal — IWasReady.com" />
+  <meta name="twitter:description" content="Discover your starseed leadership archetype." />
+  <meta name="twitter:image" content="https://iwasready.com/assets/desktop-hero.jpeg" />
+
+  <meta name="robots" content="noindex, follow" />
+  <meta name="author" content="Rick Broider" />
+  <meta name="theme-color" content="#04060f" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://iwasready.com/result.html",
+    "url": "https://iwasready.com/result.html",
+    "name": "Starseed Leadership Signal Result",
+    "description": "Your Starseed Leadership Signal result — one of four archetypes from the Bridging Earth and Kanaria ecosystem by Rick Broider.",
+    "isPartOf": {"@id": "https://iwasready.com/#website"},
+    "author": {"@id": "https://iwasready.com/#person"},
+    "inLanguage": "en",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://iwasready.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Signal Activation",
+          "item": "https://iwasready.com/quiz.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Your Result",
+          "item": "https://iwasready.com/result.html"
+        }
+      ]
+    }
+  }
+  </script>
+
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
-<body class="result-page">
-  <header class="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="brand" aria-label="Back to quiz home">
-        <span class="brand-mark">BEK</span>
-        <span>Bridging Earth and Kanaria</span>
-      </a>
-      <a class="cta nav-cta" href="index.html#quiz">Take the activation</a>
-    </div>
+<body data-page="result">
+
+  <!-- COSMIC BACKGROUND -->
+  <div class="cosmic-bg" aria-hidden="true"></div>
+  <div class="cosmic-texture" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header role="banner">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="https://iwasready.com" class="nav-logo" aria-label="Bridging Earth and Kanaria — home">
+          <span class="nav-logo-title">Bridging Earth &amp; Kanaria</span>
+          <span class="nav-logo-sub">by Rick Broider</span>
+        </a>
+        <div class="nav-actions">
+          <a href="quiz.html" class="nav-cta">Retake the Activation</a>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <main>
-    <section class="hero shell result-hero">
-      <div class="hero-panel result-panel">
-        <div class="eyebrow">Sample result • instant recognition</div>
-        <h1>You stabilize through <span class="accent-text">The Weaver</span>.</h1>
-        <p class="hero-copy">When the field starts fragmenting, your nervous system instinctively tracks disconnection and begins creating coherence between people, ideas, and moving parts.</p>
-        <div class="meta-row">
-          <span class="meta-pill">Shareable result</span>
-          <span class="meta-pill">Includes shadow pattern</span>
-          <span class="meta-pill">Points to next step</span>
-        </div>
-      </div>
-    </section>
+  <main id="main-content" class="result-page">
+    <!--
+      Result content is rendered entirely by script.js (initResult function).
+      The page reads the ?type= URL parameter and injects the correct archetype.
 
-    <section class="section shell">
-      <div class="grid-2">
-        <div class="panel">
-          <div class="mini-kicker">Recognition</div>
-          <h2 class="section-title small">Why this lands</h2>
-          <p class="section-copy">You are usually the one who senses where trust is breaking, where signal is getting lost, or where people are speaking past each other. You do not just like harmony. You instinctively build it.</p>
-          <ul class="clean-list">
-            <li>You notice relational fractures before others name them.</li>
-            <li>You translate tension into usable connection.</li>
-            <li>You help systems feel less scattered and more human.</li>
-          </ul>
-        </div>
+      Valid type values:
+        flamekeeper
+        architect
+        bridge-walker
+        signal-holder
 
-        <div class="panel">
-          <div class="mini-kicker">Under pressure</div>
-          <h2 class="section-title small">Shadow pattern</h2>
-          <p class="section-copy">When this function gets overextended, you can start over-holding the field for everyone else. That can turn into fatigue, self-abandonment, or trying to create coherence with people who are not actually available for it.</p>
-          <ul class="clean-list">
-            <li>Over-functioning to keep the system from wobbling.</li>
-            <li>Confusing your sensitivity with responsibility for everyone.</li>
-            <li>Burnout from carrying signal for an unready group.</li>
-          </ul>
+      If no valid type is found, defaults to flamekeeper.
+    -->
+    <div id="result-root" aria-live="polite">
+      <!-- Content injected by script.js -->
+      <noscript>
+        <div style="text-align:center; padding:120px 20px; color:var(--text-secondary);">
+          <p style="font-family:var(--font-serif); font-size:20px; margin-bottom:16px;">
+            JavaScript is required to view your result.
+          </p>
+          <p>Please enable JavaScript and <a href="quiz.html">retake the activation</a>.</p>
         </div>
-      </div>
-    </section>
-
-    <section class="section shell">
-      <div class="panel">
-        <div class="mini-kicker">If this hit</div>
-        <div class="result-bridge wide">
-          <div>
-            <h2 class="section-title small">This is not random. It is part of a larger system.</h2>
-            <p class="section-copy">If the result feels uncomfortably accurate, that is the bridge. The next move is not more abstraction. It is giving this recognition a larger frame so you can work with it instead of just naming it.</p>
-          </div>
-          <div class="stacked-actions">
-            <a class="cta" href="#">Listen to the audiobook</a>
-            <a class="ghost-cta" href="#">See the builder path</a>
-            <a class="ghost-cta" href="index.html#quiz">Retake the activation</a>
-          </div>
-        </div>
-      </div>
-    </section>
+      </noscript>
+    </div>
   </main>
 
-  <footer class="footer shell">
-    <div class="footer-grid">
-      <div>Sample result page for the Leadership Signal Activation.</div>
-      <div class="footer-links">
-        <a href="index.html">Back to quiz</a>
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="https://iwasready.com" class="footer-logo" aria-label="IWasReady.com — home">
+          Bridging Earth &amp; Kanaria
+        </a>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="quiz.html" class="footer-link">Retake the Activation</a>
+          <a href="index.html#trailer" class="footer-link">Trailer</a>
+          <a href="https://stopthecollapse.com" class="footer-link" target="_blank" rel="noopener">Builder's Path</a>
+          <a href="index.html" class="footer-link">Home</a>
+        </nav>
+        <p class="footer-copy">
+          &copy; <span id="footer-year"></span> Rick Broider &nbsp;·&nbsp; IWasReady.com<br />
+          All rights reserved.
+        </p>
       </div>
     </div>
   </footer>
+
+  <script src="assets/script.js"></script>
+  <script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
