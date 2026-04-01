@@ -935,7 +935,7 @@ ul, ol { list-style: none; }
 
 .quiz-cta-body {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 21px;
   line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: var(--space-xl);
@@ -981,7 +981,7 @@ ul, ol { list-style: none; }
   padding: var(--space-lg) 0;
   cursor: pointer;
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--text-primary);
   background: none;
@@ -1672,7 +1672,7 @@ ul, ol { list-style: none; }
     --space-4xl: 80px;
   }
 
-  body { font-size: 16px; }
+  body { font-size: 17px; }
 
   .nav-link { display: none; }
 
