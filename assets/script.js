@@ -51,55 +51,55 @@ const QUIZ_QUESTIONS = [
   {
     q: "When a system around you begins to break down, your first instinct is:",
     options: [
-      { text: "Hold the emotional field — keep people anchored and connected to what matters", type: 'F' },
-      { text: "Diagnose the structure — find exactly what's failing and architect the fix", type: 'A' },
-      { text: "Translate what's happening — help different parts of the system understand each other", type: 'B' },
-      { text: "Anchor the frequency — stay still and steady so others can stabilize around you", type: 'S' }
+      { text: "Hold the emotional field: keep people anchored and connected to what matters", type: 'F' },
+      { text: "Diagnose the structure: find exactly what's failing and architect the fix", type: 'A' },
+      { text: "Translate what's happening, help different parts of the system understand each other", type: 'B' },
+      { text: "Anchor the frequency: stay still and steady so others can stabilize around you", type: 'S' }
     ]
   },
   {
     q: "You feel most alive when:",
     options: [
-      { text: "You're carrying a vision so large it almost frightens you — but you can't put it down", type: 'F' },
+      { text: "You're carrying a vision so large it almost frightens you. But you can't put it down", type: 'F' },
       { text: "You're building something that didn't exist before and you can feel it locking into place", type: 'A' },
-      { text: "You're standing between two worlds — translating, bridging, making them finally meet", type: 'B' },
+      { text: "You're standing between two worlds: translating, bridging, making them finally meet", type: 'B' },
       { text: "You're holding ground when everything around you is uncertain and others need that stillness", type: 'S' }
     ]
   },
   {
     q: "When others in your field or mission lose hope, you:",
     options: [
-      { text: "Remind them of the vision — return them to why this matters and why they started", type: 'F' },
-      { text: "Shift into solution mode — there's always a next move and you find it fast", type: 'A' },
-      { text: "Help them see the situation from a completely different angle — reframe the whole thing", type: 'B' },
-      { text: "Become more still — your calm becomes contagious, your presence becomes the signal", type: 'S' }
+      { text: "Remind them of the vision, return them to why this matters and why they started", type: 'F' },
+      { text: "Shift into solution mode. There's always a next move and you find it fast", type: 'A' },
+      { text: "Help them see the situation from a completely different angle. Reframe the whole thing", type: 'B' },
+      { text: "Become more still. Your calm becomes contagious, your presence becomes the signal", type: 'S' }
     ]
   },
   {
     q: "Your natural relationship with structure is:",
     options: [
-      { text: "I create space for others — structure is secondary to inspiration and emotional coherence", type: 'F' },
-      { text: "I create structure — systems, frameworks, and architecture are how I think", type: 'A' },
-      { text: "I adapt to multiple structures — I can operate fluidly across different systems and languages", type: 'B' },
-      { text: "I transcend structure — my role is to hold coherence, not to build the container", type: 'S' }
+      { text: "I create space for others. Structure is secondary to inspiration and emotional coherence", type: 'F' },
+      { text: "I create structure: systems, frameworks, and architecture are how I think", type: 'A' },
+      { text: "I adapt to multiple structures. I can operate fluidly across different systems and languages", type: 'B' },
+      { text: "I transcend structure. My role is to hold coherence, not to build the container", type: 'S' }
     ]
   },
   {
     q: "The role you most naturally play when you're working at your best:",
     options: [
-      { text: "The hearth — the one who keeps people together, inspired, and connected to the mission", type: 'F' },
-      { text: "The architect — the one who designs, builds, and makes the system actually work", type: 'A' },
-      { text: "The translator — the one who helps very different voices finally understand each other", type: 'B' },
-      { text: "The anchor — the one whose presence stabilizes the whole field", type: 'S' }
+      { text: "The hearth: the one who keeps people together, inspired, and connected to the mission", type: 'F' },
+      { text: "The architect: the one who designs, builds, and makes the system actually work", type: 'A' },
+      { text: "The translator: the one who helps very different voices finally understand each other", type: 'B' },
+      { text: "The anchor: the one whose presence stabilizes the whole field", type: 'S' }
     ]
   },
   {
     q: "When you encounter information that challenges the current paradigm, you:",
     options: [
-      { text: "Feel it as a flame in your chest — this changes everything, and someone needs to say so", type: 'F' },
-      { text: "Start mapping it immediately — where does this fit, what does it break, what does it build", type: 'A' },
+      { text: "Feel it as a flame in your chest. This changes everything, and someone needs to say so", type: 'F' },
+      { text: "Start mapping it immediately: where does this fit, what does it break, what does it build", type: 'A' },
       { text: "Immediately think about who needs to hear this and how to explain it across different worlds", type: 'B' },
-      { text: "Hold it quietly — you already knew this at some level, and now it has a name", type: 'S' }
+      { text: "Hold it quietly. You already knew this at some level, and now it has a name", type: 'S' }
     ]
   },
   {
@@ -114,19 +114,19 @@ const QUIZ_QUESTIONS = [
   {
     q: "Under extreme pressure, you tend to go toward:",
     options: [
-      { text: "The heart — what actually matters here, and why are we doing this at all", type: 'F' },
-      { text: "The plan — what do we know, what's broken, what's the next right move", type: 'A' },
-      { text: "Connection — who can we reach, who needs to know, who can help bridge this", type: 'B' },
-      { text: "Stillness — dropping deeper, holding steadier, becoming the eye of the storm", type: 'S' }
+      { text: "The heart: what actually matters here, and why are we doing this at all", type: 'F' },
+      { text: "The plan: what do we know, what's broken, what's the next right move", type: 'A' },
+      { text: "Connection: who can we reach, who needs to know, who can help bridge this", type: 'B' },
+      { text: "Stillness: dropping deeper, holding steadier, becoming the eye of the storm", type: 'S' }
     ]
   },
   {
     q: "What people most often come to you for:",
     options: [
-      { text: "Permission to believe again — inspiration and a reason to keep going", type: 'F' },
-      { text: "Clarity and strategy — a real plan that actually works", type: 'A' },
-      { text: "Understanding and translation — help seeing across a divide they can't cross alone", type: 'B' },
-      { text: "Grounding and presence — the feeling that everything is going to be okay", type: 'S' }
+      { text: "Permission to believe again: inspiration and a reason to keep going", type: 'F' },
+      { text: "Clarity and strategy: a real plan that actually works", type: 'A' },
+      { text: "Understanding and translation: help seeing across a divide they can't cross alone", type: 'B' },
+      { text: "Grounding and presence: the feeling that everything is going to be okay", type: 'S' }
     ]
   },
   {
@@ -134,7 +134,7 @@ const QUIZ_QUESTIONS = [
     options: [
       { text: "A world where every soul is recognized, ignited, and given permission to live fully", type: 'F' },
       { text: "A world built on systems that actually align with truth, coherence, and soul", type: 'A' },
-      { text: "A world where what has been divided finally comes together — every bridge matters", type: 'B' },
+      { text: "A world where what has been divided finally comes together. Every bridge matters", type: 'B' },
       { text: "A world that holds its frequency through the full weight of the transition", type: 'S' }
     ]
   }
@@ -153,14 +153,14 @@ const ARCHETYPES = {
     icon: '🔥',
     recognition: `Your signal first became visible in the moments when you stayed when others left. When you held the vision on behalf of people who couldn't hold it for themselves. When you turned back toward the work, again and again, even when the work didn't thank you for it.
 
-You are not just an inspirer. You are an emotional architect — you build the interior field that makes collective motion possible. Others stay in motion because of your presence, often without knowing why.`,
-    gifts: `You hold the remembrance of why this matters when everyone else has forgotten. You can sustain belief under conditions that extinguish most — not through denial, but through a kind of sacred knowing that lives in your body before it arrives in your mind.
+You are not just an inspirer. You are an emotional architect. You build the interior field that makes collective motion possible. Others stay in motion because of your presence, often without knowing why.`,
+    gifts: `You hold the remembrance of why this matters when everyone else has forgotten. You can sustain belief under conditions that extinguish most, not through denial, but through a kind of sacred knowing that lives in your body before it arrives in your mind.
 
 You make futures feel possible. Not by overpromising. By being willing to feel them, loudly enough that others begin to feel them too. That is rarer than you know.`,
     shadow: `You may absorb the emotional field of those around you without realizing it. When the mission feels like it's failing, you may go quiet, pull back the signal, and leave the room colder without knowing you were the source of its warmth.
 
-The shadow of the Flamekeeper is extinction — not through failure, but through exhaustion. You give so much that you burn without fuel. And the people who most need your signal often don't think to ask how you are.`,
-    shareSnippet: `"You are an emotional architect — you build the interior field that makes collective motion possible."`
+The shadow of the Flamekeeper is extinction, not through failure, but through exhaustion. You give so much that you burn without fuel. And the people who most need your signal often don't think to ask how you are.`,
+    shareSnippet: `"You are an emotional architect. You build the interior field that makes collective motion possible."`
   },
   A: {
     slug: 'architect',
@@ -168,13 +168,13 @@ The shadow of the Flamekeeper is extinction — not through failure, but through
     tagline: 'You build what the new world actually needs to stand on.',
     badge: '⚙️ Signal: Architect',
     icon: '⚙️',
-    recognition: `You've been diagnosing systems since you were young. Buildings, relationships, organizations, economies — you've always seen the structure underneath the surface. You noticed when the foundation was wrong before anyone else admitted it.
+    recognition: `You've been diagnosing systems since you were young. Buildings, relationships, organizations, economies. You've always seen the structure underneath the surface. You noticed when the foundation was wrong before anyone else admitted it.
 
 And you've spent years building things, only to watch them get dismantled by people who didn't understand what they were standing on.`,
     gifts: `You see beneath the surface into the load-bearing structures that hold everything else up. You know intuitively what a system needs before it can scale, before it can survive contact with reality, before it can hold the weight of the people inside it.
 
 You build things that outlast you. Not because you're trying to leave a legacy, but because you build with precision. When you're working, the waste stops and the coherence begins.`,
-    shadow: `Under pressure, you may over-engineer. The plan becomes more real than the people inside it. You may rebuild in your mind what hasn't broken yet — architecture as a way of controlling what you can't control.
+    shadow: `Under pressure, you may over-engineer. The plan becomes more real than the people inside it. You may rebuild in your mind what hasn't broken yet, a way of controlling what you can't control.
 
 The shadow of the Architect is building something perfect that no one can enter. A system so refined it has no room for the human. The call is to stay inside the relationships, not just inside the blueprint.`,
     shareSnippet: `"When you're working, the waste stops and the coherence begins."`
@@ -182,15 +182,15 @@ The shadow of the Architect is building something perfect that no one can enter.
   B: {
     slug: 'bridge-walker',
     name: 'The Bridge Walker',
-    tagline: 'You were born to translate between worlds — and this moment needs you.',
+    tagline: 'You were born to translate between worlds. This moment needs you.',
     badge: '🌉 Signal: Bridge Walker',
     icon: '🌉',
-    recognition: `You've always been the one who understood both sides. The one who could sit with the academic and the mystic, the executive and the visionary, the ancient and the emergent. You've often felt like a stranger even in groups that were supposed to be your people — because you belong to more than one world at once.
+    recognition: `You've always been the one who understood both sides. The one who could sit with the academic and the mystic, the executive and the visionary, the ancient and the emergent. You've often felt like a stranger even in groups that were supposed to be your people. Because you belong to more than one world at once.
 
 That feeling of not-quite-fitting? It was never a flaw. It was your function.`,
     gifts: `You move between worlds in a way that most cannot. You speak science to the spiritual and spirit to the scientific. You hold two things that appear contradictory and feel how they're the same beneath the surface tension.
 
-The Bridge Walker signal is rare precisely because it requires standing in the between-space — the place most people find unbearable. You have a higher tolerance for that liminal ground than almost anyone you know.`,
+The Bridge Walker signal is rare precisely because it requires standing in the between-space, the place most people find unbearable. You have a higher tolerance for that liminal ground than almost anyone you know.`,
     shadow: `You may feel like you belong nowhere. You carry the patterns of multiple worlds and sometimes lose track of your own center — your native language, your home frequency, your ground.
 
 The shadow of the Bridge Walker is becoming so skilled at translation that you stop knowing what language you actually speak natively. The call is to maintain your own signal even as you carry others'. Your center is the bridge. Without it, nothing holds.`,
@@ -204,7 +204,7 @@ The shadow of the Bridge Walker is becoming so skilled at translation that you s
     icon: '📡',
     recognition: `You've known things before they arrived. You've been in rooms where the energy shifted because you walked in — before you said a word. You've carried the grief and weight of collective systems without a framework for why it was yours to carry.
 
-And you've sometimes wondered whether you're too sensitive, too quiet, too much — or perhaps not enough of what the world says it needs.
+And you've sometimes wondered whether you're too sensitive, too quiet, too much, or perhaps not enough of what the world says it needs.
 
 You were never too much. The world just didn't have a name for what you are.`,
     gifts: `Your presence is a stabilizing field. When you're in a room, things settle. Not because you performed calm — because you are it. You don't lead through assertion or volume. You lead through coherence.
@@ -542,28 +542,85 @@ function initShareButtons(archetype) {
 }
 
 /* ============================================================
-   HOME PAGE — TRAILER
+   HOME PAGE — AUDIO PLAYER
    ============================================================ */
 
-function initTrailer() {
-  // The #trailer section exists as a static section on index.html.
-  // If a YouTube ID is set via data attribute, swap the placeholder for a real iframe.
-  const trailerSection = document.getElementById('trailer');
-  if (!trailerSection) return;
+function initAudioPlayer() {
+  const audio = document.getElementById('trailer-audio');
+  if (!audio) return;
 
-  const embed = trailerSection.querySelector('.trailer-embed');
-  if (!embed) return;
+  const player        = document.getElementById('audio-player');
+  const playBtn       = document.getElementById('audio-play-btn');
+  const progressFill  = document.getElementById('audio-progress-fill');
+  const progressTrack = document.getElementById('audio-progress-track');
+  const currentEl     = document.getElementById('audio-current');
+  const durationEl    = document.getElementById('audio-duration');
+  const iconPlay      = playBtn ? playBtn.querySelector('.icon-play')  : null;
+  const iconPause     = playBtn ? playBtn.querySelector('.icon-pause') : null;
 
-  const ytId = embed.dataset.youtubeId;
-  if (ytId && ytId !== 'YOUR_YOUTUBE_VIDEO_ID') {
-    embed.innerHTML = `<iframe
-      src="https://www.youtube.com/embed/${ytId}?rel=0&modestbranding=1"
-      title="Bridging Earth and Kanaria — Official Trailer"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>`;
+  function fmt(seconds) {
+    if (!isFinite(seconds)) return '--:--';
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
   }
-  // Otherwise placeholder is shown (already in HTML)
+
+  audio.addEventListener('loadedmetadata', () => {
+    if (durationEl) durationEl.textContent = fmt(audio.duration);
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+    if (progressFill)  progressFill.style.width = `${pct}%`;
+    if (progressTrack) progressTrack.setAttribute('aria-valuenow', Math.round(pct));
+    if (currentEl)     currentEl.textContent = fmt(audio.currentTime);
+  });
+
+  function setPlaying(playing) {
+    if (player)     player.classList.toggle('playing', playing);
+    if (iconPlay)   iconPlay.style.display  = playing ? 'none' : '';
+    if (iconPause)  iconPause.style.display = playing ? ''     : 'none';
+    if (playBtn)    playBtn.setAttribute('aria-label', playing ? 'Pause trailer' : 'Play official trailer');
+  }
+
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) { audio.play().catch(() => {}); }
+      else              { audio.pause(); }
+    });
+  }
+
+  audio.addEventListener('play',  () => setPlaying(true));
+  audio.addEventListener('pause', () => setPlaying(false));
+  audio.addEventListener('ended', () => { setPlaying(false); audio.currentTime = 0; });
+
+  if (progressTrack) {
+    progressTrack.addEventListener('click', e => {
+      if (!audio.duration) return;
+      const rect = progressTrack.getBoundingClientRect();
+      const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      audio.currentTime = pct * audio.duration;
+    });
+
+    progressTrack.addEventListener('keydown', e => {
+      const step = audio.duration ? audio.duration * 0.05 : 5;
+      if (e.key === 'ArrowRight') { e.preventDefault(); audio.currentTime = Math.min(audio.duration, audio.currentTime + step); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); audio.currentTime = Math.max(0, audio.currentTime - step); }
+    });
+  }
+
+  // Graceful fallback if MP3 file is missing
+  audio.addEventListener('error', () => {
+    if (player) {
+      player.innerHTML = `
+        <div style="text-align:center;padding:var(--space-xl);width:100%;">
+          <p style="font-family:var(--font-display);font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);">Official Trailer</p>
+          <p style="font-size:13px;color:var(--text-dim);margin-top:8px;">
+            Place <code style="color:var(--gold);">trailer.mp3</code> in the <code style="color:var(--gold);">assets/</code> folder to enable playback.
+          </p>
+        </div>`;
+    }
+  });
 }
 
 /* ============================================================
@@ -603,6 +660,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (page === 'result') {
     initResult();
   } else if (page === 'home') {
-    initTrailer();
+    initAudioPlayer();
   }
 });
