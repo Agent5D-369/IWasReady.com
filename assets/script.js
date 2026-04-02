@@ -498,9 +498,10 @@ function renderResult(a, root) {
             <span class="next-step-label">Hear the Trailer</span>
             <span class="next-step-desc">Listen to the audio transmission that opens the world of Bridging Earth &amp; Kanaria</span>
           </a>
-          <a href="YOUR_AUDIOBOOK_URL" class="next-step-card" target="_blank" rel="noopener"
-             title="PLACEHOLDER: Replace YOUR_AUDIOBOOK_URL with the actual audiobook purchase link">
-            <!-- USER: Replace YOUR_AUDIOBOOK_URL above with the real audiobook URL (Audible, etc.) -->
+          <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="next-step-card" target="_blank" rel="noopener"
+             title="Get the Audiobook | Bridging Earth and Kanaria"
+             aria-label="Get the Audiobook on HelloAudio"
+             rel="noopener noreferrer">
             <span class="next-step-icon">📖</span>
             <span class="next-step-label">Get the Audiobook</span>
             <span class="next-step-desc">The full transmission, every word received, every missing piece named</span>
