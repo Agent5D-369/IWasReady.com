@@ -300,6 +300,12 @@ function renderQuestion(index) {
           </button>
         `).join('')}
       </div>
+      ${index > 0 ? `
+      <div class="quiz-back-row">
+        <button class="quiz-back-btn" id="quiz-back-btn" aria-label="Go back to previous question">
+          &#8592; Back
+        </button>
+      </div>` : ''}
     </div>
   `;
 
@@ -326,6 +332,23 @@ function renderQuestion(index) {
       }
     });
   });
+
+  // Bind back button
+  const backBtn = document.getElementById('quiz-back-btn');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      if (quizState.currentIndex > 0) {
+        // Un-score the previous answer
+        const prevAnswer = quizState.answers[quizState.currentIndex - 1];
+        if (prevAnswer && quizState.scores[prevAnswer] !== undefined) {
+          quizState.scores[prevAnswer] = Math.max(0, quizState.scores[prevAnswer] - 1);
+        }
+        quizState.answers[quizState.currentIndex - 1] = undefined;
+        quizState.currentIndex--;
+        renderQuestion(quizState.currentIndex);
+      }
+    });
+  }
 
   // Scroll to quiz body, accounting for sticky nav + progress bar
   const progressBar = document.querySelector('.progress-container');
@@ -499,12 +522,21 @@ function renderResult(a, root) {
           The conversation that follows tends to be the one that was missing.
         </p>
         <div class="share-btns">
-          <button class="share-btn" id="copy-link-btn" aria-label="Copy result link">
+          <button class="share-btn share-btn--primary" id="copy-link-btn" aria-label="Copy result link">
             🔗 Copy Link
           </button>
           <a class="share-btn" id="share-twitter" href="#" target="_blank" rel="noopener" aria-label="Share on X / Twitter">
             𝕏 Share on X
           </a>
+          <a class="share-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+            💬 WhatsApp
+          </a>
+          <a class="share-btn" id="share-facebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook">
+            Share on Facebook
+          </a>
+          <button class="share-btn" id="copy-result-btn" aria-label="Copy result text for Instagram">
+            📋 Copy for Instagram
+          </button>
         </div>
         <p id="copy-confirm" style="display:none; margin-top:12px; font-size:13px; color:var(--gold);">
           ✓ Link copied to clipboard
@@ -539,40 +571,59 @@ function initShareButtons(archetype) {
   setTimeout(() => {
     const copyBtn = document.getElementById('copy-link-btn');
     const twitterBtn = document.getElementById('share-twitter');
+    const whatsappBtn = document.getElementById('share-whatsapp');
+    const facebookBtn = document.getElementById('share-facebook');
+    const copyResultBtn = document.getElementById('copy-result-btn');
     const confirm = document.getElementById('copy-confirm');
 
     const shareUrl = window.location.href;
-    const shareText = `I just discovered my Starseed Leadership Signal — ${archetype.name}. "${archetype.shareSnippet}" Take the activation at IWasReady.com`;
+    const shareText = `I just discovered my Starseed Leadership Signal: ${archetype.name}. ${archetype.shareSnippet} Take the free activation at IWasReady.com`;
+    const instagramText = `My Starseed Leadership Signal is ${archetype.name}.\n\n${archetype.tagline}\n\nFind yours free: iwasready.com/quiz.html`;
+
+    function showConfirm(msg) {
+      if (confirm) {
+        confirm.textContent = msg || '✓ Copied';
+        confirm.style.display = 'block';
+        setTimeout(() => { confirm.style.display = 'none'; }, 2500);
+      }
+    }
+
+    function copyToClipboard(text, successMsg) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => showConfirm(successMsg));
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none;';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showConfirm(successMsg);
+      }
+    }
 
     if (copyBtn) {
-      copyBtn.addEventListener('click', () => {
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(shareUrl).then(() => {
-            if (confirm) {
-              confirm.style.display = 'block';
-              setTimeout(() => { confirm.style.display = 'none'; }, 3000);
-            }
-          });
-        } else {
-          // Fallback
-          const ta = document.createElement('textarea');
-          ta.value = shareUrl;
-          ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none;';
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-          if (confirm) {
-            confirm.style.display = 'block';
-            setTimeout(() => { confirm.style.display = 'none'; }, 3000);
-          }
-        }
-      });
+      copyBtn.addEventListener('click', () => copyToClipboard(shareUrl, '✓ Link copied'));
     }
 
     if (twitterBtn) {
       const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
       twitterBtn.href = tweetUrl;
+    }
+
+    if (whatsappBtn) {
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`;
+      whatsappBtn.href = waUrl;
+    }
+
+    if (facebookBtn) {
+      const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+      facebookBtn.href = fbUrl;
+    }
+
+    if (copyResultBtn) {
+      copyResultBtn.addEventListener('click', () => copyToClipboard(instagramText, '✓ Copied for Instagram'));
     }
   }, 100);
 }

@@ -1817,6 +1817,18 @@ ul, ol { list-style: none; }
   transform: translateY(-1px);
 }
 
+.share-btn--primary {
+  background: var(--gold-glow);
+  border-color: rgba(201,168,76,0.35);
+  color: var(--gold);
+}
+
+.share-btn--primary:hover {
+  background: rgba(201,168,76,0.18);
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
 .result-retake {
   text-align: center;
   margin-top: var(--space-lg);
@@ -2295,4 +2307,129 @@ ul, ol { list-style: none; }
   .testimonial-quote { padding: var(--space-xl) var(--space-lg); }
   .quiz-cta-inner { padding: var(--space-xl) var(--space-lg); }
   .result-hero { padding-top: calc(var(--nav-height) + var(--space-2xl)); }
+}
+
+/* ============================================================
+   TESTIMONIAL CAROUSEL (infinite scroll, two rows)
+   ============================================================ */
+
+.testimonial-section-sub {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+}
+
+.carousel-mask {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  /* Soft fade edges */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.carousel-track {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.carousel-row {
+  display: flex;
+  width: max-content;
+  gap: var(--space-md);
+}
+
+.carousel-row--1 {
+  animation: carousel-left 60s linear infinite;
+}
+
+.carousel-row--2 {
+  animation: carousel-right 55s linear infinite;
+}
+
+@keyframes carousel-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes carousel-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.carousel-mask:hover .carousel-row {
+  animation-play-state: paused;
+}
+
+.tc-card {
+  flex-shrink: 0;
+  width: clamp(260px, 30vw, 340px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: border-color var(--duration) var(--ease);
+}
+
+.tc-card:hover {
+  border-color: rgba(201, 168, 76, 0.2);
+}
+
+.tc-text {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.tc-attr {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.75;
+}
+
+/* ============================================================
+   QUIZ BACK BUTTON
+   ============================================================ */
+
+.quiz-back-row {
+  margin-bottom: var(--space-md);
+}
+
+.quiz-back-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 6px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--duration) var(--ease);
+}
+
+.quiz-back-btn:hover {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+  .tc-card {
+    width: clamp(220px, 72vw, 300px);
+  }
+
+  .carousel-row--1 { animation-duration: 40s; }
+  .carousel-row--2 { animation-duration: 36s; }
 }
