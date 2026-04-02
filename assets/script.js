@@ -749,6 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (page === 'home') {
     initAudioPlayer();
     initGiftForm();
+    initTestimonialForm();
   }
 });
 
@@ -786,6 +787,46 @@ function initGiftForm() {
       submitBtn.textContent = 'Request a gifted copy';
       submitBtn.disabled = false;
       confirm.textContent = 'Could not send. Please email rick@iwasready.com directly.';
+    }
+  });
+}
+
+/* ============================================================
+   TESTIMONIAL SUBMISSION — FORMSPREE HANDLER
+   ============================================================ */
+
+function initTestimonialForm() {
+  const form = document.getElementById('tsubmit-form');
+  const confirm = document.getElementById('tsubmit-confirm');
+  if (!form || !confirm) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.tsubmit-btn');
+    btn.textContent = 'Submitting...';
+    btn.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        confirm.style.display = 'block';
+      } else {
+        btn.textContent = 'Submit Your Testimonial';
+        btn.disabled = false;
+        const errEl = form.querySelector('.tsubmit-error') || document.createElement('p');
+        errEl.className = 'tsubmit-error';
+        errEl.textContent = 'Something went wrong. Please try again.';
+        if (!form.querySelector('.tsubmit-error')) form.appendChild(errEl);
+      }
+    } catch {
+      btn.textContent = 'Submit Your Testimonial';
+      btn.disabled = false;
     }
   });
 }
