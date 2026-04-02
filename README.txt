@@ -1,133 +1,145 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  IWASREADY.COM — BRIDGING EARTH & KANARIA
-  Complete Static Site Package
+  IWASREADY.COM | BRIDGING EARTH & KANARIA
+  Complete Static Site Package | v15
   By Rick Broider
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 CONTENTS
 ──────────────────────────────────────────────────────────
-  index.html             Homepage + Hero + FAQ + Testimonial + Trailer section
-  quiz.html              The Starseed Leadership Signal Activation (10 questions)
-  result.html            Dynamic result page (4 archetypes, JS-rendered)
-  assets/styles.css      Full design system (dark indigo / gold / cosmic aesthetic)
-  assets/script.js       Quiz logic, result rendering, share functionality
-  assets/cosmic-field.png     Background texture (1920x1080, deep space nebula)
-  assets/mobile-hero.png      Portrait hero image (480x700, sacred geometry overlay)
-  assets/desktop-hero.jpeg    Wide hero image (1920x800, atmospheric cosmic)
-  README.txt             This file
+  index.html          Homepage (hero, trailer, testimonials, FAQ, quiz CTA)
+  quiz.html           The Starseed Leadership Signal Activation (10 questions)
+  result.html         Dynamic result page (4 archetypes, JS-rendered)
+  sitemap.xml         XML sitemap for Google Search Console submission
+  robots.txt          Crawler instructions + sitemap pointer
+  assets/styles.css   Full design system (dark indigo, gold, cosmic aesthetic)
+  assets/script.js    Quiz logic, result rendering, share + form functionality
+  assets/cosmic-field.png    Background texture
+  assets/desktop-hero.jpeg   Wide hero image
+  assets/mobile-hero.png     Portrait hero image
+  assets/rick-broider.jpg    Author photo (About section)
+  assets/sacred-geometry.png Sacred geometry visual
+  README.txt          This file
+
+REQUIRED: IMAGES TO ADD BEFORE GOING LIVE
+──────────────────────────────────────────────────────────
+The following images are referenced in the site but NOT included in this
+package. You must place them in the assets/ folder before deploying.
+
+1. assets/hero-atf.png
+   The above-the-fold hero image (right column, desktop only).
+   This is the AI-generated cosmic figure image you had created.
+   Recommended: 800x1000px minimum, portrait orientation.
+
+2. assets/Bridging-Earth-and-Kanaria-journey.png
+   The Open Graph / social share image used across all three pages.
+   This appears when the site is shared on Facebook, WhatsApp, iMessage, etc.
+   Required dimensions: 1200x630px exactly.
+
+3. assets/archetype-flamekeeper.png
+4. assets/archetype-architect.png
+5. assets/archetype-bridge-walker.png
+6. assets/archetype-signal-holder.png
+   Result page archetype images. One per archetype type.
+   Displayed on result.html for each quiz outcome.
+   Recommended: 800x800px square, portrait crop friendly.
+
+7. assets/trailer.mp3
+   Your audiobook trailer audio file.
+   Drop it into assets/ with exactly this filename.
+   The player on the homepage is already wired to load it.
+
+REQUIRED: TEXT PLACEHOLDERS TO REPLACE
+──────────────────────────────────────────────────────────
+Search for YOUR_AUDIOBOOK_URL in these files and replace with
+your actual audiobook URL (Audible listing, sales page, etc.):
+
+  index.html         (3 instances: nav, hero CTA, post-trailer CTA)
+  quiz.html          (1 instance: nav)
+  result.html        (1 instance: nav)
+  assets/script.js   (1 instance: result page next-step card)
+
+Also replace in index.html:
+  YOUR_YOUTUBE_VIDEO_ID   Your actual YouTube trailer video ID
+                          e.g. if URL is youtube.com/watch?v=abc123
+                          set: data-youtube-id="abc123"
 
 DEPLOYMENT
 ──────────────────────────────────────────────────────────
-This package is ready to deploy to any static hosting:
+Upload all files maintaining the exact folder structure.
+No build step. No server-side processing. No database.
 
-  - Upload all files maintaining the exact folder structure
-  - No build step required
-  - No server-side processing required
-  - Compatible with: GitHub Pages, Netlify, Vercel, Cloudflare Pages,
-    Amazon S3, any standard web host
+Compatible with: GitHub Pages, Netlify, Vercel, Cloudflare Pages, S3.
 
-  File structure must be preserved exactly:
-    /
-    ├── index.html
-    ├── quiz.html
-    ├── result.html
-    ├── README.txt
-    └── assets/
-        ├── styles.css
-        ├── script.js
-        ├── cosmic-field.png
-        ├── mobile-hero.png
-        └── desktop-hero.jpeg
+Required folder structure:
+  /
+  ├── index.html
+  ├── quiz.html
+  ├── result.html
+  ├── sitemap.xml
+  ├── robots.txt
+  ├── README.txt
+  └── assets/
+      ├── styles.css
+      ├── script.js
+      ├── cosmic-field.png
+      ├── desktop-hero.jpeg
+      ├── mobile-hero.png
+      ├── rick-broider.jpg
+      ├── sacred-geometry.png
+      ├── hero-atf.png                         [ADD THIS]
+      ├── Bridging-Earth-and-Kanaria-journey.png  [ADD THIS]
+      ├── archetype-flamekeeper.png             [ADD THIS]
+      ├── archetype-architect.png               [ADD THIS]
+      ├── archetype-bridge-walker.png           [ADD THIS]
+      ├── archetype-signal-holder.png           [ADD THIS]
+      └── trailer.mp3                           [ADD THIS]
 
-REQUIRED: ITEMS TO COMPLETE BEFORE GOING LIVE
+GOOGLE SEARCH CONSOLE
 ──────────────────────────────────────────────────────────
+1. Verify ownership of iwasready.com in Google Search Console
+2. Submit sitemap: https://iwasready.com/sitemap.xml
+3. Request indexing for: https://iwasready.com/ and https://iwasready.com/quiz.html
 
-1. TRAILER YOUTUBE VIDEO ID  [index.html, line ~145]
-
-   Find this in index.html:
-     data-youtube-id="YOUR_YOUTUBE_VIDEO_ID"
-
-   Replace YOUR_YOUTUBE_VIDEO_ID with your actual YouTube video ID.
-   Example: if your trailer URL is https://www.youtube.com/watch?v=abc123xyz
-   then set: data-youtube-id="abc123xyz"
-
-   When set correctly, the JavaScript will automatically embed the video.
-
-2. AUDIOBOOK URL  [assets/script.js, line ~172]
-
-   In result.html (rendered by script.js), there is a next-step card:
-     href="YOUR_AUDIOBOOK_URL"
-
-   Find this in assets/script.js, inside the renderResult() function:
-     href="YOUR_AUDIOBOOK_URL"
-
-   Replace with your actual audiobook purchase/listen URL
-   (e.g., your Audible listing, your own sales page, etc.)
-
-VERIFIED LINKS (no changes needed)
+FORMSPREE FORMS (already wired)
 ──────────────────────────────────────────────────────────
-  ✓ Nav logo "Bridging Earth & Kanaria"  →  https://iwasready.com
-  ✓ "Listen to the Trailer" CTA         →  index.html#trailer  (section exists)
-  ✓ "Builder's Path" link               →  https://stopthecollapse.com
-  ✓ All internal links use relative paths
-  ✓ result.html reads ?type= URL param correctly
-  ✓ Quiz redirects to result.html?type=[slug] on completion
-  ✓ No broken anchors
+  xlgowrbl   Testimonial submission form (index.html)
+  xwvwqgoo   Gift form (index.html)
+  No action required — these are live.
 
-RESULT ARCHETYPES
+VERIFIED LINKS
 ──────────────────────────────────────────────────────────
-The quiz calculates a score for each of 4 signal types and redirects to:
-  result.html?type=flamekeeper
-  result.html?type=architect
-  result.html?type=bridge-walker
-  result.html?type=signal-holder
+  Canonical URLs        Correct on all three pages
+  Open Graph tags       Correct on all three pages
+  Twitter Card tags     Correct on all three pages
+  Schema.org JSON-LD    Valid on all three pages (WebSite, Person, Book,
+                        WebPage, FAQPage with 11 Q&A, BreadcrumbList)
+  sitemap.xml           Valid, references all 3 public URLs
+  robots.txt            Correct, points to sitemap
+  Builder's Path link   https://stopthecollapse.com
+  All internal links    Relative paths, no broken anchors
 
-All content is rendered client-side by assets/script.js.
-No server or database required.
-
-QUIZ RENAMED
+QUIZ FLOW
 ──────────────────────────────────────────────────────────
-The quiz experience is named throughout as:
-  "The Starseed Leadership Signal Activation"
-(previously "The Leadership Signal Activation")
+  quiz.html       10 questions, 4 signal type scores tallied per answer
+  result.html     Reads ?type= URL param, renders matching archetype
+  Valid types:    flamekeeper | architect | bridge-walker | signal-holder
 
-SEO & SCHEMA
+SEO + LLM TARGETING
 ──────────────────────────────────────────────────────────
-All three pages include:
-  - Unique, descriptive <title> tags
-  - Meta descriptions
-  - Canonical URLs
-  - Open Graph + Twitter Card tags
-  - Structured data (Schema.org JSON-LD):
-    - WebSite
-    - Person (Rick Broider)
-    - Book (Bridging Earth and Kanaria)
-    - WebPage (per page)
-    - FAQPage (index.html)
-    - BreadcrumbList (quiz.html, result.html)
+  FAQPage schema with 11 Q&A entries targeting AI Overview queries:
+  - What is a starseed? What are the 4 archetypes? What is galactic ethics?
+  - How long is the quiz? Where to get the audiobook? etc.
+  All meta descriptions and OG tags tuned for starseed search intent.
 
-DESIGN NOTES
+DESIGN SYSTEM
 ──────────────────────────────────────────────────────────
-  - Color palette: deep indigo / navy / black + luminous gold
-  - Typography: Cinzel (display), Cormorant Garamond (serif), Inter (body)
-    loaded from Google Fonts CDN — requires internet connection to render
-  - Mobile-first: intentionally designed for mobile, not just shrunk desktop
-  - Sacred geometry ring animations on hero (CSS only, lightweight)
-  - All font sizes use clamp() for fluid scaling
-  - Minimum readable font size: 13px (labels only); body text 16-17px+
-
-CUSTOMIZATION
-──────────────────────────────────────────────────────────
-  Colors: Edit :root variables in assets/styles.css
-  Quiz questions: Edit QUIZ_QUESTIONS array in assets/script.js
-  Archetype content: Edit ARCHETYPES object in assets/script.js
-  Images: Replace files in assets/ — maintain same filenames
-
-SUPPORT
-──────────────────────────────────────────────────────────
-  Site: https://iwasready.com
-  Builder's Path: https://stopthecollapse.com
+  Colors:      Deep indigo + luminous gold (CSS custom properties in :root)
+  Fonts:       Cinzel (display) | Cormorant Garamond (serif) | Inter (body)
+               Loaded from Google Fonts CDN; internet connection required.
+  Layout:      Mobile-first; two-column hero at desktop (>=900px)
+  Animations:  CSS-only ring animations, infinite testimonial carousel
+  No em dashes anywhere on the site (house rule, enforced in v15).
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  © Rick Broider — All rights reserved
+  Rick Broider | IWasReady.com | All rights reserved
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
