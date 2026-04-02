@@ -151,6 +151,8 @@ const ARCHETYPES = {
     tagline: 'You carry the vision others forgot they were living.',
     badge: '🔥 Signal: Flamekeeper',
     icon: '🔥',
+    image: 'assets/archetype-flamekeeper.png',
+    imageAlt: 'The Flamekeeper — Emotional Architect',
     recognition: `Your signal first became visible in the moments when you stayed when others left. When you held the vision on behalf of people who couldn't hold it for themselves. When you turned back toward the work, again and again, even when the work didn't thank you for it.
 
 You are not just an inspirer. You are an emotional architect. You build the interior field that makes collective motion possible. Others stay in motion because of your presence, often without knowing why.`,
@@ -168,6 +170,8 @@ The shadow of the Flamekeeper is extinction, not through failure, but through ex
     tagline: 'You build what the new world actually needs to stand on.',
     badge: '⚙️ Signal: Architect',
     icon: '⚙️',
+    image: 'assets/archetype-architect.png',
+    imageAlt: 'The Architect — Systems Engineer',
     recognition: `You've been diagnosing systems since you were young. Buildings, relationships, organizations, economies. You've always seen the structure underneath the surface. You noticed when the foundation was wrong before anyone else admitted it.
 
 And you've spent years building things, only to watch them get dismantled by people who didn't understand what they were standing on.`,
@@ -185,6 +189,8 @@ The shadow of the Architect is building something perfect that no one can enter.
     tagline: 'You were born to translate between worlds. This moment needs you.',
     badge: '🌉 Signal: Bridge Walker',
     icon: '🌉',
+    image: 'assets/archetype-bridge-walker.png',
+    imageAlt: 'The Bridge Walker — Connector of Worlds',
     recognition: `You've always been the one who understood both sides. The one who could sit with the academic and the mystic, the executive and the visionary, the ancient and the emergent. You've often felt like a stranger even in groups that were supposed to be your people. Because you belong to more than one world at once.
 
 That feeling of not-quite-fitting? It was never a flaw. It was your function.`,
@@ -202,6 +208,8 @@ The shadow of the Bridge Walker is becoming so skilled at translation that you s
     tagline: 'Your stillness is a technology. Your presence is a field.',
     badge: '📡 Signal: Signal Holder',
     icon: '📡',
+    image: 'assets/archetype-signal-holder.png',
+    imageAlt: 'The Signal Holder — Field of Presence',
     recognition: `You've known things before they arrived. You've been in rooms where the energy shifted because you walked in — before you said a word. You've carried the grief and weight of collective systems without a framework for why it was yours to carry.
 
 And you've sometimes wondered whether you're too sensitive, too quiet, too much, or perhaps not enough of what the world says it needs.
@@ -319,8 +327,13 @@ function renderQuestion(index) {
     });
   });
 
-  // Scroll to top of quiz area
-  quizBody.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Scroll to quiz body, accounting for sticky nav + progress bar
+  const progressBar = document.querySelector('.progress-container');
+  const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72;
+  const progressHeight = progressBar ? progressBar.offsetHeight : 0;
+  const offset = navHeight + progressHeight + 8;
+  const top = quizBody.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
 }
 
 function handleAnswer(type, questionIndex) {
@@ -414,6 +427,9 @@ function renderResult(a, root) {
         </div>
         <h1 class="result-type-name animate-fade-up delay-1">${escapeHtml(a.name)}</h1>
         <p class="result-tagline animate-fade-up delay-2">${escapeHtml(a.tagline)}</p>
+        <div class="result-archetype-image animate-fade-up delay-2">
+          <img src="${a.image}" alt="${escapeHtml(a.imageAlt)}" class="archetype-hero-img" loading="eager" />
+        </div>
         <div class="animate-fade-up delay-3">
           <a href="quiz.html" class="btn btn-secondary">Retake the Activation</a>
         </div>
@@ -681,5 +697,44 @@ document.addEventListener('DOMContentLoaded', () => {
     initResult();
   } else if (page === 'home') {
     initAudioPlayer();
+    initGiftForm();
   }
 });
+
+/* ============================================================
+   GIFTED TRANSMISSION — FORMSPREE HANDLER
+   ============================================================ */
+
+function initGiftForm() {
+  const form = document.getElementById('gift-form');
+  const confirm = document.getElementById('gift-confirm');
+  if (!form || !confirm) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = form.querySelector('.gift-submit');
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+
+      if (response.ok) {
+        form.style.display = 'none';
+        confirm.textContent = 'Received. You will hear back within a few days.';
+      } else {
+        submitBtn.textContent = 'Request a gifted copy';
+        submitBtn.disabled = false;
+        confirm.textContent = 'Something went wrong. Please try again or email rick@iwasready.com.';
+      }
+    } catch {
+      submitBtn.textContent = 'Request a gifted copy';
+      submitBtn.disabled = false;
+      confirm.textContent = 'Could not send. Please email rick@iwasready.com directly.';
+    }
+  });
+}

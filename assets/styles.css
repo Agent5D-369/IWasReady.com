@@ -598,7 +598,7 @@ ul, ol { list-style: none; }
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-xl) var(--space-lg);
+  padding: 0 0 var(--space-xl);
   text-align: left;
   position: relative;
   overflow: hidden;
@@ -624,10 +624,24 @@ ul, ol { list-style: none; }
 
 .signal-card:hover::before { opacity: 1; }
 
-.signal-icon {
-  font-size: 28px;
-  margin-bottom: var(--space-md);
+.signal-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  margin-bottom: var(--space-lg);
+}
+
+.signal-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
+  transition: transform 0.5s var(--ease);
+}
+
+.signal-card:hover .signal-card-image img {
+  transform: scale(1.04);
 }
 
 .signal-name {
@@ -636,15 +650,26 @@ ul, ol { list-style: none; }
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--gold);
-  margin-bottom: var(--space-sm);
+  margin: 0 var(--space-lg) var(--space-xs);
   text-transform: uppercase;
 }
 
+.signal-subtitle {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 var(--space-lg) var(--space-md);
+}
+
 .signal-desc {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.75;
   color: var(--text-primary);
   opacity: 0.88;
+  margin: 0 var(--space-lg);
 }
 
 /* === DIVIDER === */
@@ -1139,19 +1164,72 @@ ul, ol { list-style: none; }
   margin-bottom: var(--space-md);
 }
 
-.gift-link {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color var(--duration) var(--ease);
+.gift-form-wrap {
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-.gift-link:hover {
+.gift-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.gift-input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-primary);
+  transition: border-color var(--duration) var(--ease);
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.gift-input::placeholder {
+  color: var(--text-muted);
+}
+
+.gift-input:focus {
+  outline: none;
+  border-color: rgba(212,175,55,0.45);
+}
+
+.gift-textarea {
+  min-height: 80px;
+}
+
+.gift-submit {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 11px 20px;
+  cursor: pointer;
+  transition: color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+  align-self: center;
+}
+
+.gift-submit:hover {
   color: var(--text-secondary);
+  border-color: rgba(212,175,55,0.3);
+}
+
+.gift-confirm {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--gold);
+  text-align: center;
+  margin-top: var(--space-md);
+  min-height: 24px;
 }
 
 /* === FOOTER === */
@@ -1317,6 +1395,8 @@ ul, ol { list-style: none; }
   align-items: flex-start;
   justify-content: center;
   padding: var(--space-2xl) var(--space-lg);
+  /* Offset for sticky progress bar so scrollIntoView doesn't hide content behind it */
+  scroll-margin-top: calc(var(--nav-height) + 60px);
 }
 
 .quiz-card {
@@ -1519,6 +1599,20 @@ ul, ol { list-style: none; }
   color: var(--gold);
   max-width: 600px;
   margin: 0 auto var(--space-xl);
+}
+
+.result-archetype-image {
+  max-width: 480px;
+  margin: 0 auto var(--space-2xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(212,175,55,0.12), 0 24px 64px rgba(0,0,0,0.5);
+}
+
+.archetype-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .result-share-prompt {
