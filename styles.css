@@ -2773,9 +2773,9 @@ ul, ol { list-style: none; }
     align-items: flex-start;
   }
 
-  /* Smaller headline on desktop — keeps CTAs above fold */
+  /* Smaller headline on desktop — keeps CTAs above fold, max 2 lines */
   .hero-headline {
-    font-size: clamp(32px, 3.8vw, 52px);
+    font-size: clamp(28px, 3.2vw, 42px);
     margin-bottom: var(--space-md);
   }
 
