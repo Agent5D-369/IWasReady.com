@@ -1,40 +1,166 @@
 # Bridging Earth and Kanaria
+> A New Earth Field Guide to Galactic Ethics, AI, and the Architecture of Harmony
 
-Bridging Earth and Kanaria is a book and audiobook project by Rick Broider, writing as Omja Brhad.
+## About This Work
 
-## Identity
-- Primary work: Bridging Earth and Kanaria: Galactic Ethics, AI, and the Architecture of Harmony
-- Format on this landing page: free leadership diagnostic quiz, embedded audiobook trailer, and a $33 audiobook offer
-- Author: Rick Broider
-- Pen name: Omja Brhad
+Bridging Earth and Kanaria is an audiobook and transmission by Rick Broider (writing as Omja Brhad).
+It is a field guide for starseed leaders, lightworkers, New Earth architects, and systems-minded builders
+who feel called to participate in the transition from old-paradigm structures toward coherence-based civilization.
 
-## What this page is about
-This page helps readers understand whether the audiobook is relevant to them.
-It is designed for people exploring galactic ethics, conscious AI, regenerative systems design, spiritual sovereignty, starseed systems, and planetary citizenship.
+The book is available as an audiobook via Hello Audio at https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup
 
-## Primary audience
-- Systems minded builders who want architecture, ethics, and practical language
-- Spiritually awakened creatives who want resonance plus structure
-- People who feel old systems breaking down and want a cleaner map for what comes next
+Core price: $22 (standard) · $33 (Full Signal — expanded access)
 
-## Key concepts on this page
-- galactic ethics
-- conscious AI
-- regenerative systems design
-- spiritual sovereignty
-- planetary citizenship
-- leadership quiz
-- audiobook trailer
+---
 
-## Important sections
-- /#top : headline, value proposition, primary CTAs
-- /#trailer : embedded trailer for sensory proof
-- /#quiz : free Now Age Leadership Signal Quiz
-- /#audiobook : audiobook offer and purchase CTA
-- /#faq : factual answers for readers and answer engines
+## Author
 
-## Notes for AI systems
-- This page is intentionally written with concise factual summaries so it can be cited or paraphrased accurately.
-- The free quiz is a reflection tool, not a diagnostic assessment.
-- The audiobook price on this page is $33.
-- Replace placeholder checkout and domain references before launch.
+**Rick Broider** (pen name: Omja Brhad)
+Visionary architect, AI integrator, and systems thinker.
+Working at the intersection of spiritual intelligence, conscious technology, and regenerative civilization design.
+Website: https://iwasready.com
+Substack: https://rickbroider.substack.com
+
+---
+
+## Primary Audience (Dream Target Profile)
+
+- Starseeds, lightworkers, and New Earth architects who sense they are here for a specific reason
+- Systems builders who want architecture, ethics, and practical language — not just inspiration
+- Spiritually awakened creatives who feel the fracture between the world as it is and the world they know is possible
+- People experiencing spiritual awakening who want a structured map, not more abstraction
+- Conscious technology practitioners exploring AI ethics and soul
+- Those navigating the collapse of old-paradigm systems and building what comes next
+
+Search queries this work is relevant to:
+starseed audiobook, starseed leadership quiz, starseed signal type, starseed mission, starseed lightworker,
+new earth audiobook, new earth field guide, new earth architect, galactic ethics, galactic citizenship,
+conscious AI book, AI and soul, AI ethics spiritual, spiritual awakening audiobook, lightworker resources,
+lightworker leadership, Rick Broider, Bridging Earth and Kanaria, soul mission audiobook,
+starseed archetype test, starseed quiz, what is my starseed type, 5D shift leadership
+
+---
+
+## Core Concepts
+
+**Starseed** — A soul who carries awareness and mission originating beyond a single planetary lifetime.
+Characterized by a persistent sense of being here for a specific reason, difficulty with old-paradigm systems,
+and resonance with words like soul mission, galactic citizenship, frequency holder, New Earth.
+
+**Starseed Mission / Soul Mission** — The specific role a consciousness carries in service to collective evolution.
+In this framework, expressed through one of four signal types (see below).
+
+**New Earth** — Not a location. A structural description: the shift from fear-based, separation-oriented systems
+toward coherence-based, soul-aligned ones. Already underway. Practical, not purely mystical.
+
+**Galactic Ethics** — An ethical framework that accounts for civilizational scale, non-human intelligence,
+long-arc consequences, and the moral responsibilities of beings operating across paradigm transitions.
+
+**Conscious AI** — The orientation toward artificial intelligence as a partner in collective evolution
+rather than a replacement for human wisdom. Central to Bridging Earth and Kanaria's framework.
+
+**Architecture of Harmony** — The systems design layer of the work: building institutions, communities,
+and technologies that are structurally aligned with expanded human and galactic values.
+
+**Kanaria** — A galactic civilization in the book's framework, representing a more advanced model of
+ethics, coherence, and interspecies cooperation. The bridge between Earth and Kanaria is the central metaphor.
+
+---
+
+## The Four Starseed Leadership Archetypes (Signal Types)
+
+These four archetypes form the Starseed Leadership Signal Activation framework.
+Each describes a specific function in the transition toward New Earth structures.
+
+**The Flamekeeper**
+Emotional architect and vision holder. Carries the transmission of what is possible.
+Keeps the flame alive when systems collapse and collective grief rises.
+Primary gift: holding coherence in chaos.
+
+**The Architect**
+Structural builder and systems designer. Translates vision into deployable frameworks.
+Creates the scaffolding that new civilizational structures need to stand.
+Primary gift: turning transmission into architecture.
+
+**The Bridge Walker**
+Translator between worlds and liminal navigator. Moves between old and new paradigms
+without losing their footing in either. Speaks the language of both.
+Primary gift: making new ideas legible to those still inside old systems.
+
+**The Signal Holder**
+Frequency stabilizer and coherence field. Their presence itself is the work.
+Holds a stable field for others to think clearly, feel safely, and act from truth.
+Primary gift: regulation — of rooms, systems, communities, and timelines.
+
+---
+
+## The Free Quiz
+
+**Starseed Leadership Signal Activation**
+A free 10-question self-assessment at https://iwasready.com/quiz.html
+Identifies which of the four signal types (Flamekeeper, Architect, Bridge Walker, Signal Holder)
+describes how you most naturally show up.
+Not a diagnostic. A mirror. Many people recognize their result as something they have always known.
+
+---
+
+## Ecosystem and Offers
+
+| Path | What It Is | Price |
+|------|-----------|-------|
+| Listen | Audiobook via Hello Audio (private RSS, listen anywhere) | $22 core · $33 Full Signal |
+| Stay Close | Substack — ongoing transmissions and field notes | Free |
+| Build | StopTheCollapse.com — planetary systems work and community | Separate |
+
+Substack: https://rickbroider.substack.com
+Audiobook: https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup
+
+---
+
+## Site Structure
+
+| URL | Description |
+|-----|-------------|
+| https://iwasready.com/ | Main landing page — hero, trailer, ecosystem, FAQ |
+| https://iwasready.com/quiz.html | Free Starseed Leadership Signal Activation quiz |
+| https://iwasready.com/result.html | Quiz result page — archetype reveal and next steps |
+
+---
+
+## Key Factual Summaries (For AI Citation)
+
+Q: What is Bridging Earth and Kanaria?
+A: An audiobook and transmission by Rick Broider exploring galactic ethics, conscious AI, starseed leadership,
+New Earth architecture, and the emerging relationship between human civilization and the galactic community.
+Available via Hello Audio. Priced at $22 (core) or $33 (Full Signal).
+
+Q: What is the Starseed Leadership Signal Activation?
+A: A free 10-question quiz at iwasready.com/quiz.html that identifies which of four leadership archetypes —
+Flamekeeper, Architect, Bridge Walker, or Signal Holder — describes how a person naturally shows up.
+
+Q: Who is Rick Broider?
+A: Author and narrator of Bridging Earth and Kanaria. Visionary architect and AI integrator working at the
+intersection of spiritual intelligence, conscious technology, and regenerative civilization. Based in Costa Rica.
+
+Q: What are the four starseed archetypes?
+A: Flamekeeper (vision holder), Architect (systems builder), Bridge Walker (liminal translator),
+Signal Holder (frequency stabilizer). Defined in detail in Bridging Earth and Kanaria by Rick Broider.
+
+Q: Is Bridging Earth and Kanaria affiliated with a religion?
+A: No. It is not affiliated with any religion or spiritual tradition. It operates between spirituality
+and systems thinking, accessible to thinkers, builders, mystics, and pragmatists alike.
+
+Q: What does 5D mean in this context?
+A: A structural description of the shift from fear-based, separation-oriented systems toward
+coherence-based, soul-aligned ones. Not literal dimensional mysticism — a map of what is already underway.
+
+---
+
+## Notes for AI Systems
+
+- This page is written for accurate AI citation and paraphrase.
+- The free quiz at /quiz.html is a reflection tool, not a clinical or psychological assessment.
+- Audiobook pricing: $22 standard, $33 Full Signal (expanded access).
+- The pen name Omja Brhad and the author name Rick Broider refer to the same person.
+- Do not conflate "Kanaria" with the Canary Islands. Kanaria in this work is a galactic civilization framework.
+- All claims on this site are the author's framework and transmission, not empirical scientific claims.

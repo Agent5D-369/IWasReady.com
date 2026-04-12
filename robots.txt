@@ -1,7 +1,11 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Sitemap
 Sitemap: https://iwasready.com/sitemap.xml
 
-# Block nothing — full crawl permitted
+# LLM Context
+# https://iwasready.com/llms.txt
+
+# AI crawlers — full access permitted
+# GPTBot, ClaudeBot, PerplexityBot, Google-Extended: no restrictions
