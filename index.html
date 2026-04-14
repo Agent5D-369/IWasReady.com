@@ -291,6 +291,15 @@
     @media (max-width: 480px) {
       .quiz-cta-inner { padding: 40px 20px; }
     }
+
+    /* ── Three Doors: single column + tighter padding on mobile ─────────────── */
+    @media (max-width: 768px) {
+      .ecosystem-grid { grid-template-columns: 1fr !important; }
+      .ecosystem-card { padding: 24px 20px !important; }
+    }
+
+    /* ── Hero badge as link: gold hover ──────────────────────────────────────── */
+    .hero-badge:hover { opacity: 0.85; }
   </style>
 </head>
 <body data-page="home">
@@ -337,7 +346,7 @@
         <!-- LEFT: text + CTAs -->
         <div class="hero-text-col">
           <div class="animate-fade-up">
-            <span class="hero-badge">Starseed Leadership Signal Activation</span>
+            <a href="consciousness-quiz.html" class="hero-badge" style="text-decoration:none;cursor:pointer;">◉ &nbsp;Free Quiz &nbsp;·&nbsp; Where Are You in the Shift?</a>
           </div>
 
           <h1 id="hero-headline" class="hero-headline animate-fade-up delay-1">
@@ -345,8 +354,8 @@
           </h1>
 
           <p class="hero-subhead animate-fade-up delay-2">
-            You've felt the fracture. The world as it is versus the one you know is possible.
-            <em>Bridging Earth &amp; Kanaria</em> is the map between them.
+            You've felt the fracture. The world running on old software.
+            Start with the free quiz to find your frequency. Then hear the full transmission.
           </p>
 
           <div class="hero-identity-tags animate-fade-up delay-2" aria-hidden="true">
@@ -641,33 +650,36 @@
         <div class="ecosystem-inner">
           <span class="section-label">Where you go from here</span>
           <h2 id="ecosystem-title" class="ecosystem-title">Three doors. One world.</h2>
-          <div class="ecosystem-grid">
-            <div class="ecosystem-card">
-              <span class="ecosystem-icon" aria-hidden="true">◎</span>
-              <h3 class="ecosystem-card-title">Listen</h3>
-              <p class="ecosystem-card-body">The audiobook is the transmission. The full map. Narrated by Rick himself. Buy once, listen anywhere via private RSS.</p>
-              <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="ecosystem-card-link" target="_blank" rel="noopener">Get the Audiobook →</a>
+          <div class="ecosystem-grid" style="gap:16px;">
+
+            <div class="ecosystem-card" style="border:1px solid rgba(201,168,76,0.18);border-radius:16px;padding:32px 28px;background:rgba(201,168,76,0.03);display:flex;flex-direction:column;gap:12px;">
+              <span class="ecosystem-icon" aria-hidden="true" style="font-size:28px;color:var(--gold);opacity:0.7;line-height:1;">◎</span>
+              <h3 class="ecosystem-card-title" style="margin:0;">Listen</h3>
+              <p class="ecosystem-card-body" style="margin:0;flex:1;">The audiobook is the transmission. The full map. Narrated by Rick himself. Buy once, listen anywhere via private RSS.</p>
+              <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="ecosystem-card-link" target="_blank" rel="noopener" style="margin-top:4px;">Get the Audiobook →</a>
             </div>
-            <div class="ecosystem-card">
-              <span class="ecosystem-icon" aria-hidden="true">◈</span>
-              <h3 class="ecosystem-card-title">Stay Close</h3>
-              <p class="ecosystem-card-body">Ongoing transmissions, builder essays, and pattern intelligence. Free and paid tiers. For those who want the signal on a regular frequency.</p>
-              <!-- UPDATE: Replace with your actual Substack URL -->
-              <a href="https://rickbroider.substack.com" class="ecosystem-card-link" target="_blank" rel="noopener">Subscribe on Substack →</a>
+
+            <div class="ecosystem-card" style="border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px 28px;background:rgba(255,255,255,0.02);display:flex;flex-direction:column;gap:12px;">
+              <span class="ecosystem-icon" aria-hidden="true" style="font-size:28px;color:rgba(184,152,232,0.7);line-height:1;">◈</span>
+              <h3 class="ecosystem-card-title" style="margin:0;">Stay Close</h3>
+              <p class="ecosystem-card-body" style="margin:0;flex:1;">Ongoing transmissions, builder essays, and pattern intelligence. Free and paid tiers. For those who want the signal on a regular frequency.</p>
+              <a href="https://rickbroider.substack.com" class="ecosystem-card-link" target="_blank" rel="noopener" style="margin-top:4px;">Subscribe on Substack →</a>
             </div>
-            <div class="ecosystem-card">
-              <span class="ecosystem-icon" aria-hidden="true">◇</span>
-              <h3 class="ecosystem-card-title">Build</h3>
-              <p class="ecosystem-card-body">For those already in the territory. Structural diagnosis, collapse pattern recognition, and builder frameworks for what you're actively building.</p>
-              <a href="https://stopthecollapse.com" class="ecosystem-card-link" target="_blank" rel="noopener">The Builder's Path →</a>
+
+            <div class="ecosystem-card" style="border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px 28px;background:rgba(255,255,255,0.02);display:flex;flex-direction:column;gap:12px;">
+              <span class="ecosystem-icon" aria-hidden="true" style="font-size:28px;color:rgba(122,180,232,0.7);line-height:1;">◇</span>
+              <h3 class="ecosystem-card-title" style="margin:0;">Build</h3>
+              <p class="ecosystem-card-body" style="margin:0;flex:1;">For those already in the territory. Structural diagnosis, collapse pattern recognition, and builder frameworks for what you're actively building.</p>
+              <a href="https://stopthecollapse.com" class="ecosystem-card-link" target="_blank" rel="noopener" style="margin-top:4px;">The Builder's Path →</a>
             </div>
+
           </div>
 
-          <!-- Substack embed -->
+          <!-- Substack embed — mobile safe -->
           <div style="margin-top:var(--space-3xl);text-align:center;">
             <p style="font-family:var(--font-serif);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:var(--space-md);">Stay in the signal</p>
-            <div style="display:inline-block;border-radius:14px;overflow:hidden;max-width:480px;width:100%;box-shadow:0 0 40px rgba(201,168,76,0.12),0 8px 32px rgba(0,0,0,0.5);">
-              <iframe src="https://rickbroider.substack.com/embed" width="480" height="150" style="border:none;background:white;display:block;width:100%;max-width:100%;" frameborder="0" scrolling="no" title="Subscribe to Rick Broider on Substack"></iframe>
+            <div style="display:block;border-radius:14px;overflow:hidden;max-width:480px;width:100%;margin:0 auto;box-shadow:0 0 40px rgba(201,168,76,0.12),0 8px 32px rgba(0,0,0,0.5);">
+              <iframe src="https://rickbroider.substack.com/embed" width="100%" height="150" style="border:none;background:white;display:block;width:100%;max-width:100%;" frameborder="0" scrolling="no" title="Subscribe to Rick Broider on Substack"></iframe>
             </div>
             <p style="font-size:13px;color:var(--text-secondary);margin-top:var(--space-sm);opacity:0.7;">Transmissions, builder intelligence, and 3 free chapters. Free and paid tiers.</p>
           </div>
