@@ -432,10 +432,10 @@ body {
 .result-hero-img {
   width: 100%;
   max-width: 400px;
-  margin: 0 auto 36px;
+  margin: 32px auto 32px;
   border-radius: 18px;
   overflow: hidden;
-  animation: fadeUp 0.7s 0.15s both;
+  animation: fadeUp 0.7s 0.35s both;
   position: relative;
 }
 .result-hero-img img {
@@ -537,10 +537,10 @@ body {
   z-index: 1;
 }
 
-/* Score spectrum */
+/* Score spectrum — sits below the image, above body copy */
 .spectrum-wrap {
-  margin: 32px 0 40px;
-  animation: fadeUp 0.6s 0.1s both;
+  margin: 0 0 40px;
+  animation: fadeUp 0.6s 0.45s both;
 }
 .spectrum-label {
   font-size: 11px;
@@ -856,6 +856,20 @@ body {
       <div style="width:60px"></div>
     </nav>
     <div class="result-inner">
+
+      <!-- 1. IDENTITY REVEAL — title first -->
+      <div class="result-symbol" id="result-symbol"></div>
+      <div class="result-dimension-label" id="result-dimension-label"></div>
+      <h2 class="result-title" id="result-title"></h2>
+      <div class="result-divider" id="result-divider"></div>
+
+      <!-- 2. VISUAL LOCK-IN — image confirms identity -->
+      <div class="result-hero-img" id="result-hero-img">
+        <img id="result-img" src="" alt="" loading="eager" />
+        <div class="result-hero-img-glow" id="result-img-glow"></div>
+      </div>
+
+      <!-- 3. POSITION CONFIRMATION — spectrum as supporting data -->
       <div class="spectrum-wrap">
         <div class="spectrum-label">Your Frequency</div>
         <div class="spectrum-track">
@@ -871,15 +885,7 @@ body {
         </div>
       </div>
 
-      <div class="result-hero-img" id="result-hero-img">
-        <img id="result-img" src="" alt="" loading="eager" />
-        <div class="result-hero-img-glow" id="result-img-glow"></div>
-      </div>
-
-      <div class="result-symbol" id="result-symbol"></div>
-      <div class="result-dimension-label" id="result-dimension-label"></div>
-      <h2 class="result-title" id="result-title"></h2>
-      <div class="result-divider" id="result-divider"></div>
+      <!-- 4. UNDERSTANDING — body copy -->
       <div class="result-body" id="result-body"></div>
 
       <div class="result-actions">
