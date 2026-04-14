@@ -257,6 +257,40 @@
     /* Mobile book cover — shown in hero text column below 900px */
     .hero-mobile-cover { display: block; text-align: center; margin: 1.5rem auto 0.75rem; }
     @media (min-width: 900px) { .hero-mobile-cover { display: none !important; } }
+
+    /* ── Nav: primary quiz link (purple bordered button) ───────────────────── */
+    .nav-link--quiz-primary {
+      color: #B898E8;
+      border: 1px solid rgba(184,152,232,0.40);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .nav-link--quiz-primary:hover {
+      background: rgba(184,152,232,0.12);
+      color: #C8AAFF;
+    }
+
+    /* ── Mobile nav — keep primary quiz link visible ────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-link--quiz-primary { display: inline-block !important; }
+    }
+
+    /* ── Mobile: improve touch targets ─────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-cta { padding: 10px 16px; font-size: 13px; }
+      .btn-primary, .btn-secondary { min-height: 50px; font-size: 14px; }
+    }
+
+    /* ── Mobile: quiz CTA dimension pills wrap cleanly ──────────────────────── */
+    @media (max-width: 600px) {
+      .quiz-cta-section .quiz-meta { flex-wrap: wrap; justify-content: center; gap: 8px; }
+    }
+
+    /* ── Mobile: tighten signal quiz card inner padding ────────────────────── */
+    @media (max-width: 480px) {
+      .quiz-cta-inner { padding: 40px 20px; }
+    }
   </style>
 </head>
 <body data-page="home">
@@ -277,8 +311,8 @@
         <div class="nav-actions">
           <a href="#trailer" class="nav-link">Trailer</a>
           <a href="#about" class="nav-link">About</a>
-          <a href="quiz.html" class="nav-link nav-link--book">Discover Your Signal</a>
-          <a href="consciousness-quiz.html" class="nav-link" style="color:rgba(184,152,232,0.85);">3D / 4D / 5D Quiz</a>
+          <a href="quiz.html" class="nav-link">Your Signal</a>
+          <a href="consciousness-quiz.html" class="nav-link nav-link--quiz-primary">Your Frequency</a>
           <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="nav-cta" target="_blank" rel="noopener">Get the Audiobook</a>
         </div>
       </div>

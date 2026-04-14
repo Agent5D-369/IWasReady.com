@@ -581,15 +581,26 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 0 2px;
+  gap: 4px;
 }
 .spectrum-zone {
   font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.35;
+  white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .spectrum-zone.active { opacity: 0.9; font-weight: 700; }
+
+/* Mobile: spectrum zones font shrink */
+@media (max-width: 420px) {
+  .spectrum-zone { font-size: 8.5px; letter-spacing: 0.04em; }
+}
 
 /* Result hero */
 .result-symbol {
@@ -768,6 +779,40 @@ body {
   .option-card { padding: 22px 26px; }
   .result-inner { padding: 24px 40px 60px; }
 }
+
+/* Mobile-first refinements */
+@media (max-width: 480px) {
+  /* Option cards: ensure full touch target */
+  .option-card { padding: 18px 18px; min-height: 56px; }
+
+  /* Result inner: less lateral padding on very small screens */
+  .result-inner { padding: 16px 18px 48px; }
+
+  /* Result hero image: slightly smaller, saves vertical space */
+  .result-hero-img { max-width: 320px; margin: 24px auto 24px; }
+
+  /* CTA buttons: full width for easy tapping */
+  .btn-share, .btn-cta { width: 100%; justify-content: center; }
+
+  /* Symbol: slightly smaller on tiny screens */
+  .result-symbol { font-size: 56px; }
+
+  /* Result title size */
+  .result-title { font-size: clamp(22px, 6vw, 30px); }
+
+  /* Dim def block: tighter padding */
+  .dim-def { padding: 14px 16px; }
+
+  /* Co-diag: tighter */
+  .co-diag-block { padding: 14px 16px; }
+}
+
+/* Intro screen: pills wrap on small screens */
+@media (max-width: 400px) {
+  .dimension-pills { gap: 6px; }
+  .pill { font-size: 10px; padding: 5px 10px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
