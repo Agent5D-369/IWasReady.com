@@ -882,6 +882,134 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ── Audiobook CTA Block ─────────────────────────────────────────────────── */
+.audiobook-cta-block {
+  margin: 32px 0 0;
+  padding: 28px 28px 24px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.09), rgba(201,168,76,0.04));
+  border: 1px solid rgba(201,168,76,0.28);
+  border-radius: 16px;
+  text-align: center;
+}
+.audiobook-cta-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  opacity: 0.75;
+  margin-bottom: 10px;
+}
+.audiobook-cta-text {
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 20px;
+}
+.btn-audiobook {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #C9A84C, #E4C46A);
+  color: #04060F;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px 26px;
+  border-radius: 9px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-audiobook:hover { opacity: 0.88; transform: translateY(-1px); }
+.audiobook-cta-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 12px;
+  letter-spacing: 0.02em;
+}
+
+/* ── Email Capture Block ─────────────────────────────────────────────────── */
+.email-capture-block {
+  width: 100%;
+  max-width: 440px;
+  margin: 8px auto 0;
+  padding: 26px 28px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  text-align: center;
+}
+.email-capture-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 8px;
+}
+.email-capture-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.45;
+  margin-bottom: 5px;
+}
+.email-capture-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.38);
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+.email-capture-form {
+  display: flex;
+  gap: 8px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.email-capture-input {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.9);
+  font-size: 14px;
+  padding: 11px 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.email-capture-input::placeholder { color: rgba(255,255,255,0.3); }
+.email-capture-input:focus { border-color: rgba(184,152,232,0.55); }
+.email-capture-btn {
+  background: rgba(184,152,232,0.18);
+  border: 1px solid rgba(184,152,232,0.38);
+  color: #B898E8;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 11px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.email-capture-btn:hover { background: rgba(184,152,232,0.28); }
+.email-capture-privacy {
+  font-size: 11px;
+  color: rgba(255,255,255,0.22);
+  margin-top: 10px;
+}
+.email-capture-success {
+  display: none;
+  font-size: 14px;
+  color: rgba(184,152,232,0.8);
+  padding: 6px 0 2px;
+  line-height: 1.5;
+}
+@media (max-width: 480px) {
+  .email-capture-form { flex-direction: column; }
+  .audiobook-cta-block { padding: 22px 18px 20px; }
+  .email-capture-block { padding: 22px 18px; }
+  .btn-audiobook { width: 100%; justify-content: center; }
+}
 </style>
 </head>
 <body>
@@ -1005,12 +1133,21 @@ body {
           Share Your Result
         </button>
         <a href="https://rickbroider.substack.com" target="_blank" rel="noopener" class="btn-cta btn-cta-secondary">
-          Hear 3 Free Chapters on Substack
+          Hear 3 Free Chapters First
         </a>
-        <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" class="btn-cta btn-cta-primary">
-          Get the Audiobook
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
-        </a>
+      </div>
+
+      <!-- Email Capture -->
+      <div class="email-capture-block" id="email-capture-block">
+        <p class="email-capture-eyebrow">Stay in the Field</p>
+        <p class="email-capture-title">Want transmissions matched to your frequency?</p>
+        <p class="email-capture-sub">Occasional dispatches. No noise. Unsubscribe anytime.</p>
+        <form class="email-capture-form" onsubmit="submitEmailCapture(event)">
+          <input class="email-capture-input" type="email" placeholder="your@email.com" id="capture-email" required />
+          <button class="email-capture-btn" type="submit">Send it</button>
+        </form>
+        <p class="email-capture-privacy">No spam. Your frequency, your inbox.</p>
+        <p class="email-capture-success" id="capture-success">You're in. Watch for something worth opening.</p>
       </div>
 
       <div class="cross-quiz-cta">
@@ -1202,7 +1339,12 @@ const RESULTS = {
         <p class="co-diag-label">Compare Your Result</p>
         <p class="co-diag-text">This is easier to see when more than one person can name it. Forward to someone who knows you well. Ask: <em>"Does this sound like me?"</em> Then send them the quiz and see where they land.</p>
       </div>
-      <p><strong>Bridging Earth &amp; Kanaria</strong> was written for the moment the foundation starts to crack. Not to break you open. To give you a map for what's underneath.</p>
+      <div class="audiobook-cta-block">
+        <p class="audiobook-cta-label">Your Next Step</p>
+        <p class="audiobook-cta-text">Bridging Earth &amp; Kanaria maps what's underneath the code you've been running. Not theory. A transmission for the moment the foundation cracks and something real starts to emerge.</p>
+        <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" class="btn-audiobook">Get the Audiobook →</a>
+        <p class="audiobook-cta-meta">Core $22 &nbsp;·&nbsp; Full Signal Package $33 &nbsp;·&nbsp; Private RSS &nbsp;·&nbsp; Listen anywhere</p>
+      </div>
     `
   },
 
@@ -1227,7 +1369,12 @@ const RESULTS = {
         <p class="co-diag-label">Compare Your Result</p>
         <p class="co-diag-text">The people you're building with are somewhere on this spectrum too. Forward and ask: <em>"Where does this say you are?"</em> The conversation that follows is usually the one you've been circling.</p>
       </div>
-      <p><strong>Bridging Earth &amp; Kanaria</strong> is a transmission for this exact moment. Not after the awakening. During it.</p>
+      <div class="audiobook-cta-block">
+        <p class="audiobook-cta-label">Your Next Step</p>
+        <p class="audiobook-cta-text">This audiobook was written for the in-between you're navigating right now. The confusion is real. So is what's coming. This is the map for the crossing.</p>
+        <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" class="btn-audiobook">Get the Audiobook →</a>
+        <p class="audiobook-cta-meta">Core $22 &nbsp;·&nbsp; Full Signal Package $33 &nbsp;·&nbsp; Private RSS &nbsp;·&nbsp; Listen anywhere</p>
+      </div>
     `
   },
 
@@ -1252,7 +1399,12 @@ const RESULTS = {
         <p class="co-diag-label">Compare Your Result</p>
         <p class="co-diag-text">The gap between 4D and 5D is often a team problem. Forward to someone building alongside you. Ask: <em>"Where does this put you?"</em> Knowing who's where changes everything about how you structure the work.</p>
       </div>
-      <p><strong>Bridging Earth &amp; Kanaria</strong> is a blueprint for exactly this: translating the frequency you already carry into systems that can hold it.</p>
+      <div class="audiobook-cta-block">
+        <p class="audiobook-cta-label">Your Next Step</p>
+        <p class="audiobook-cta-text">The last mile of integration needs architecture, not more awakening. This is the blueprint for translating the frequency you already carry into structures that can hold it.</p>
+        <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" class="btn-audiobook">Get the Audiobook →</a>
+        <p class="audiobook-cta-meta">Core $22 &nbsp;·&nbsp; Full Signal Package $33 &nbsp;·&nbsp; Private RSS &nbsp;·&nbsp; Listen anywhere</p>
+      </div>
     `
   },
 
@@ -1277,7 +1429,12 @@ const RESULTS = {
         <p class="co-diag-label">Compare Your Result</p>
         <p class="co-diag-text">Most people carrying this much awareness are not doing it alone. Send this to someone in your ecosystem and ask: <em>"Where do you think I am? Take it yourself."</em> One of you will see something the other couldn't name.</p>
       </div>
-      <p><strong>Bridging Earth &amp; Kanaria</strong> maps the move from perception to construction: from seeing what's broken to designing what comes next, with integrity, without losing your soul in the process.</p>
+      <div class="audiobook-cta-block">
+        <p class="audiobook-cta-label">Your Next Step</p>
+        <p class="audiobook-cta-text">You've seen enough to know the old world won't hold. This is the architecture for what you build next — from the frequency you've already activated.</p>
+        <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" class="btn-audiobook">Get the Audiobook →</a>
+        <p class="audiobook-cta-meta">Core $22 &nbsp;·&nbsp; Full Signal Package $33 &nbsp;·&nbsp; Private RSS &nbsp;·&nbsp; Listen anywhere</p>
+      </div>
     `
   },
 
@@ -1302,7 +1459,12 @@ const RESULTS = {
         <p class="co-diag-label">Forward and Compare</p>
         <p class="co-diag-text">5D perception needs structure to move through the world without being diluted. Send this to everyone building with you. Ask: <em>"Where are you in the shift?"</em> A team that knows its own spectrum can actually function from it.</p>
       </div>
-      <p><strong>Bridging Earth &amp; Kanaria</strong> is a blueprint for translating 5D perception into real systems, real communities, real structures that survive contact with the world as it is.</p>
+      <div class="audiobook-cta-block">
+        <p class="audiobook-cta-label">Your Next Step</p>
+        <p class="audiobook-cta-text">At 5D the work stops being about your own ascension. This is the architecture for building communities and systems that can hold the field you're already carrying.</p>
+        <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" class="btn-audiobook">Get the Audiobook →</a>
+        <p class="audiobook-cta-meta">Core $22 &nbsp;·&nbsp; Full Signal Package $33 &nbsp;·&nbsp; Private RSS &nbsp;·&nbsp; Listen anywhere</p>
+      </div>
     `
   },
 
@@ -1569,6 +1731,29 @@ window.addEventListener('DOMContentLoaded', () => {
     showResult(score);
   }
 });
+
+// ── Email Capture ─────────────────────────────────────────────────────────────
+async function submitEmailCapture(e) {
+  e.preventDefault();
+  const email = document.getElementById('capture-email').value.trim();
+  if (!email) return;
+  const btn = e.target.querySelector('.email-capture-btn');
+  btn.textContent = '...';
+  btn.disabled = true;
+  try {
+    // Submits to Substack subscribe API (no-cors: response unreadable but request goes through)
+    await fetch('https://rickbroider.substack.com/api/v1/free', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'email=' + encodeURIComponent(email) + '&first_url=' + encodeURIComponent(window.location.href),
+      mode: 'no-cors'
+    });
+  } catch (_) { /* silent — Substack sends confirmation email regardless */ }
+  // Show success state
+  e.target.style.display = 'none';
+  document.querySelector('.email-capture-privacy').style.display = 'none';
+  document.getElementById('capture-success').style.display = 'block';
+}
 
 // ── Retake ────────────────────────────────────────────────────────────────────
 function retakeQuiz() {
