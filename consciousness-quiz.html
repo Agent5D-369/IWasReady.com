@@ -1820,19 +1820,29 @@ async function submitEmailCapture(e) {
 
   let kitOk = false;
 
-  // Kit v3 API — confirmed form ID 9354202, public API key in JSON body
+  // Kit v3 API — subscribe to form 9354202 + add Frequency-Finder tag 19053268
+  // Tag add triggers the Kit automation → sequence entry
   try {
-    const res = await fetch('https://api.convertkit.com/v3/forms/9354202/subscribe', {
+    const formRes  = await fetch('https://api.convertkit.com/v3/forms/9354202/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ api_key: 'rHVnH9w-RQSRS8Fft38AeQ', email: email })
     });
-    console.log('[Kit] status:', res.status, res.statusText);
-    const data = await res.json().catch(() => ({}));
-    console.log('[Kit] response:', data);
-    kitOk = res.ok && data.subscription != null;
+    const formData = await formRes.json().catch(() => ({}));
+    console.log('[Kit form]', formRes.status, formData);
+
+    const tagRes  = await fetch('https://api.convertkit.com/v3/tags/19053268/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ api_key: 'rHVnH9w-RQSRS8Fft38AeQ', email: email })
+    });
+    const tagData = await tagRes.json().catch(() => ({}));
+    console.log('[Kit tag]', tagRes.status, tagData);
+
+    kitOk = (formRes.ok && formData.subscription != null) ||
+            (tagRes.ok  && tagData.subscription  != null);
   } catch (err) {
-    console.warn('[Kit] fetch error:', err);
+    console.warn('[Kit] error:', err);
     kitOk = false;
   }
 
