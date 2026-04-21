@@ -557,6 +557,21 @@ body {
   pointer-events: none;
   z-index: -1;
 }
+.btn-save-card {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  border-bottom: none;
+  margin: -16px auto 28px;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.btn-save-card:hover { color: rgba(255,255,255,0.65); }
 
 /* ── Cross-Quiz CTA ───────────────────────────────────────────────────────── */
 .cross-quiz-cta {
@@ -1146,6 +1161,9 @@ body {
         <div class="result-hero-img-glow" id="result-img-glow"></div>
       </div>
 
+      <!-- Save result card -->
+      <a id="btn-save-card" href="" download class="btn-save-card">↓ Save your result card</a>
+
       <!-- 3. POSITION CONFIRMATION — spectrum as supporting data -->
       <div class="spectrum-wrap">
         <div class="spectrum-label">Your Frequency</div>
@@ -1664,6 +1682,13 @@ function showResult(score) {
   img.alt = r.title;
   const imgGlow = document.getElementById('result-img-glow');
   imgGlow.style.background = r.glowColor;
+
+  // Save result card download link
+  const saveCardLink = document.getElementById('btn-save-card');
+  if (saveCardLink) {
+    saveCardLink.href = 'assets/images/result-' + r.key + '.png';
+    saveCardLink.setAttribute('download', 'frequency-finder-' + r.key + '.png');
+  }
 
   // Update OG/Twitter image for result-specific social cards
   const ogImg = document.querySelector('meta[property="og:image"]');
