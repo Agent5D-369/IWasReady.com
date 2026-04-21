@@ -1193,6 +1193,9 @@ body {
         </a>
       </div>
 
+      <!-- Audiobook CTA — injected per result after share buttons -->
+      <div id="audiobook-cta-slot"></div>
+
       <!-- Email Capture -->
       <div class="email-capture-block" id="email-capture-block">
         <p class="email-capture-eyebrow">Stay in the Field</p>
@@ -1395,6 +1398,8 @@ const RESULTS = {
         <p class="co-diag-label">Compare Your Result</p>
         <p class="co-diag-text">This is easier to see when more than one person can name it. Forward to someone who knows you well. Ask: <em>"Does this sound like me?"</em> Then send them the quiz and see where they land.</p>
       </div>
+    `,
+    audiobookCta: `
       <div class="audiobook-cta-block">
         <p class="audiobook-cta-label">Your Next Step</p>
         <p class="audiobook-cta-text">Bridging Earth &amp; Kanaria maps what's underneath the code you've been running. Not theory. A transmission for the moment the foundation cracks and something real starts to emerge.</p>
@@ -1425,6 +1430,8 @@ const RESULTS = {
         <p class="co-diag-label">Compare Your Result</p>
         <p class="co-diag-text">The people you're building with are somewhere on this spectrum too. Forward and ask: <em>"Where does this say you are?"</em> The conversation that follows is usually the one you've been circling.</p>
       </div>
+    `,
+    audiobookCta: `
       <div class="audiobook-cta-block">
         <p class="audiobook-cta-label">Your Next Step</p>
         <p class="audiobook-cta-text">This audiobook was written for the in-between you're navigating right now. The confusion is real. So is what's coming. This is the map for the crossing.</p>
@@ -1455,6 +1462,8 @@ const RESULTS = {
         <p class="co-diag-label">Compare Your Result</p>
         <p class="co-diag-text">The gap between 4D and 5D is often a team problem. Forward to someone building alongside you. Ask: <em>"Where does this put you?"</em> Knowing who's where changes everything about how you structure the work.</p>
       </div>
+    `,
+    audiobookCta: `
       <div class="audiobook-cta-block">
         <p class="audiobook-cta-label">Your Next Step</p>
         <p class="audiobook-cta-text">The last mile of integration needs architecture, not more awakening. This is the blueprint for translating the frequency you already carry into structures that can hold it.</p>
@@ -1485,6 +1494,8 @@ const RESULTS = {
         <p class="co-diag-label">Compare Your Result</p>
         <p class="co-diag-text">Most people carrying this much awareness are not doing it alone. Send this to someone in your ecosystem and ask: <em>"Where do you think I am? Take it yourself."</em> One of you will see something the other couldn't name.</p>
       </div>
+    `,
+    audiobookCta: `
       <div class="audiobook-cta-block">
         <p class="audiobook-cta-label">Your Next Step</p>
         <p class="audiobook-cta-text">You've seen enough to know the old world won't hold. This is the architecture for what you build next — from the frequency you've already activated.</p>
@@ -1515,6 +1526,8 @@ const RESULTS = {
         <p class="co-diag-label">Forward and Compare</p>
         <p class="co-diag-text">5D perception needs structure to move through the world without being diluted. Send this to everyone building with you. Ask: <em>"Where are you in the shift?"</em> A team that knows its own spectrum can actually function from it.</p>
       </div>
+    `,
+    audiobookCta: `
       <div class="audiobook-cta-block">
         <p class="audiobook-cta-label">Your Next Step</p>
         <p class="audiobook-cta-text">At 5D the work stops being about your own ascension. This is the architecture for building communities and systems that can hold the field you're already carrying.</p>
@@ -1722,6 +1735,9 @@ function showResult(score) {
        <div class="dim-def-text">${r.dimDef}</div>
      </div>` + r.body;
 
+  // Audiobook CTA renders after share buttons
+  document.getElementById('audiobook-cta-slot').innerHTML = r.audiobookCta;
+
   // Spectrum bar
   const pct = ((score - 10) / 30) * 100;
   const fill = document.getElementById('spectrum-fill');
@@ -1849,6 +1865,8 @@ function retakeQuiz() {
   const capturePrivacy = document.querySelector('.email-capture-privacy');
   const captureSuccess = document.getElementById('capture-success');
   const captureBtn = document.querySelector('.email-capture-btn');
+  const audiobookSlot = document.getElementById('audiobook-cta-slot');
+  if (audiobookSlot) audiobookSlot.innerHTML = '';
   if (captureForm) { captureForm.style.display = ''; captureForm.reset(); }
   if (capturePrivacy) capturePrivacy.style.display = '';
   if (captureSuccess) { captureSuccess.style.display = 'none'; captureSuccess.style.color = ''; captureSuccess.textContent = ''; }
