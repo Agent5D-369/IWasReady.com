@@ -1820,21 +1820,17 @@ async function submitEmailCapture(e) {
 
   let kitOk = false;
 
-  // Kit hosted-domain subscription endpoint (new kit.com domain has CORS open)
-  // Falls back gracefully — Substack fires in parallel regardless
+  // Kit v3 API — confirmed form ID 9354202, public API key in JSON body
   try {
-    const res = await fetch('https://rick-broider.kit.com/b50ff46c9e/subscriptions', {
+    const res = await fetch('https://api.convertkit.com/v3/forms/9354202/subscribe', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      credentials: 'omit',
-      body: 'email_address=' + encodeURIComponent(email)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ api_key: 'rHVnH9w-RQSRS8Fft38AeQ', email: email })
     });
     console.log('[Kit] status:', res.status, res.statusText);
-    kitOk = res.ok || res.status === 200 || res.status === 201;
-    if (!kitOk) {
-      const body = await res.text().catch(() => '');
-      console.warn('[Kit] response body:', body);
-    }
+    const data = await res.json().catch(() => ({}));
+    console.log('[Kit] response:', data);
+    kitOk = res.ok && data.subscription != null;
   } catch (err) {
     console.warn('[Kit] fetch error:', err);
     kitOk = false;
