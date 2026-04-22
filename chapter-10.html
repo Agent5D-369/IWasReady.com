@@ -10,63 +10,182 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: #1c1916; font-family: 'Inter', system-ui, sans-serif; height: 100%; overscroll-behavior: none; }
+html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; height: 100%; overscroll-behavior: none; }
 
-#site-header { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: #141210; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.07); }
-.hdr-title { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55vw; }
-.hdr-link { font-size: 11px; color: rgba(255,255,255,0.38); text-decoration: none; white-space: nowrap; }
+/* ── Header ── */
+#site-header {
+  position: fixed; top: 0; left: 0; right: 0; height: 46px;
+  background: #100f0d; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 16px;
+  z-index: 200; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.hdr-title { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.68); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55vw; }
+.hdr-link  { font-size: 11px; color: rgba(255,255,255,0.36); text-decoration: none; white-space: nowrap; }
 .hdr-link:hover { color: rgba(255,255,255,0.65); }
 
-#chapter-context { position: fixed; top: 46px; left: 0; right: 0; background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 6px 16px; font-size: 10.5px; color: rgba(255,255,255,0.32); letter-spacing: 0.07em; text-transform: uppercase; z-index: 99; }
-#chapter-context a { color: rgba(255,255,255,0.45); text-decoration: none; }
+/* ── Reading progress bar ── */
+#progress-bar {
+  position: fixed; top: 46px; left: 0; height: 2px;
+  background: #7aaa91; width: 0%; z-index: 199;
+  transition: width 0.3s ease;
+}
+
+/* ── Chapter context strip ── */
+#chapter-context {
+  position: fixed; top: 48px; left: 0; right: 0;
+  background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.04);
+  text-align: center; padding: 5px 16px;
+  font-size: 10.5px; color: rgba(255,255,255,0.30);
+  letter-spacing: 0.07em; text-transform: uppercase; z-index: 190;
+}
+#chapter-context a { color: rgba(255,255,255,0.42); text-decoration: none; }
 #chapter-context a:hover { color: rgba(255,255,255,0.7); }
 
+/* ── Main layout ── */
 #main { display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
 #flipbook-wrapper { margin: 0 auto; }
 #book { width: 100%; height: 100%; }
 
-#nav-controls { position: fixed; bottom: 0; left: 0; right: 0; height: 54px; background: #141210; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; gap: 18px; z-index: 100; }
-.nav-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); color: rgba(255,255,255,0.75); border-radius: 7px; padding: 7px 22px; font-size: 12.5px; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.14s; white-space: nowrap; }
-.nav-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
-.nav-btn:disabled { opacity: 0.2; cursor: default; }
-#page-counter { font-size: 11px; color: rgba(255,255,255,0.3); min-width: 72px; text-align: center; font-family: 'Inter', sans-serif; letter-spacing: 0.06em; }
-#nav-hint { position: fixed; bottom: 68px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.75); color: rgba(255,255,255,0.82); font-size: 11.5px; padding: 7px 16px; border-radius: 18px; pointer-events: none; opacity: 1; transition: opacity 1.4s ease; z-index: 200; white-space: nowrap; letter-spacing: 0.03em; }
+/* ── Nav controls ── */
+#nav-controls {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 52px;
+  background: #100f0d; border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; z-index: 200;
+}
+.nav-btn {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.72); border-radius: 6px;
+  padding: 6px 20px; font-size: 12px; cursor: pointer;
+  font-family: 'Inter', sans-serif; transition: background 0.14s, color 0.14s;
+  white-space: nowrap;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.nav-btn:disabled { opacity: 0.18; cursor: default; }
+#page-counter {
+  font-size: 10.5px; color: rgba(255,255,255,0.28); min-width: 130px;
+  text-align: center; font-family: 'Inter', sans-serif; letter-spacing: 0.04em;
+}
+#toc-toggle {
+  position: absolute; right: 14px;
+  background: transparent; border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.38); border-radius: 5px;
+  padding: 5px 10px; font-size: 10.5px; cursor: pointer;
+  font-family: 'Inter', sans-serif; letter-spacing: 0.06em;
+  display: none;
+}
+@media (min-width: 720px) { #toc-toggle { display: block; } }
+#toc-toggle:hover { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.2); }
+#toc-toggle.active { color: #7aaa91; border-color: #7aaa91; }
+
+/* ── TOC sidebar ── */
+#toc-panel {
+  position: fixed; top: 46px; right: -280px; bottom: 52px; width: 264px;
+  background: #13110f; border-left: 1px solid rgba(255,255,255,0.07);
+  overflow-y: auto; z-index: 195; transition: right 0.28s ease;
+  padding: 16px 0;
+}
+#toc-panel.open { right: 0; }
+#toc-panel h4 {
+  font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.22);
+  padding: 0 18px 10px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 6px;
+}
+.toc-item {
+  display: block; padding: 6px 18px; font-family: 'Inter', sans-serif;
+  font-size: 11.5px; color: rgba(255,255,255,0.42); cursor: pointer;
+  text-decoration: none; border-left: 2px solid transparent;
+  transition: color 0.12s, background 0.12s, border-color 0.12s;
+  line-height: 1.4;
+}
+.toc-item:hover { color: rgba(255,255,255,0.78); background: rgba(255,255,255,0.04); }
+.toc-item.current { color: #7aaa91; border-left-color: #7aaa91; background: rgba(122,170,145,0.06); }
+.toc-item .toc-pg { float: right; font-size: 10px; color: rgba(255,255,255,0.22); margin-top: 1px; }
+.toc-item .toc-sub { display: block; font-size: 10px; color: rgba(255,255,255,0.26); margin-top: 1px; font-style: italic; }
+
+/* ── Swipe hint ── */
+#nav-hint {
+  position: fixed; bottom: 66px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.7); color: rgba(255,255,255,0.78);
+  font-size: 11px; padding: 6px 15px; border-radius: 16px;
+  pointer-events: none; opacity: 1; transition: opacity 1.4s ease;
+  z-index: 210; white-space: nowrap; letter-spacing: 0.03em;
+}
 #nav-hint.gone { opacity: 0; }
 
+/* ── Footer CTA ── */
 #footer-cta { width: 100%; max-width: 600px; padding: 22px 20px 80px; text-align: center; }
-#footer-cta p { font-size: 12.5px; color: rgba(255,255,255,0.3); margin-bottom: 12px; line-height: 1.5; }
+#footer-cta p { font-size: 12.5px; color: rgba(255,255,255,0.28); margin-bottom: 12px; line-height: 1.5; }
 .cta-btn { display: inline-block; text-decoration: none; padding: 10px 24px; border-radius: 7px; font-size: 13.5px; font-family: 'Inter', sans-serif; font-weight: 500; margin: 4px 6px; transition: background 0.14s; }
 .cta-primary { background: #3a6b5a; color: #fff; }
 .cta-primary:hover { background: #4a8a72; }
-.cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); }
-.cta-secondary:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.28); }
+.cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.52); }
+.cta-secondary:hover { color: rgba(255,255,255,0.82); border-color: rgba(255,255,255,0.26); }
 
 /* ── Page styles ─────────────────────────────────────── */
 .page {
-  background: #fdf9f0;
+  background: #fdf8ee;
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 0 18px rgba(0,0,0,0.06);
 }
 .page-content {
   position: absolute;
-  top: 20px; left: 16px; right: 16px; bottom: 28px;
+  top: 26px; left: 24px; right: 18px; bottom: 36px;
   overflow: hidden;
   font-family: 'Lora', Georgia, 'Times New Roman', serif;
-  line-height: 1.65;   /* tighter than before — fits more lines */
-  color: #1e1e1e;
-  /* font-size set inline by JS */
+  line-height: 1.68;
+  color: #1c1c1a;
 }
-.pg-ch { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 28px 20px; gap: 14px; }
-.ch-lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; }
-.ch-sub { font-family: 'Lora', Georgia, serif; font-size: 1.1em; color: #2a2a2a; line-height: 1.4; font-style: italic; }
 
-.pc p {
-  margin: 0 0 0.58em;  /* tighter paragraph spacing */
+/* Chapter title page */
+.pg-ch {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 28px 22px; gap: 10px;
+  background: #fdf8ee;
 }
+.ch-lbl {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1em; letter-spacing: 0.22em;
+  text-transform: uppercase; color: #3a3830;
+  font-weight: 600;
+}
+.ch-sub {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.88em; color: #6b6456; line-height: 1.4;
+  font-style: italic; max-width: 80%;
+}
+.ch-orn { font-size: 0.72em; color: #b8a88a; letter-spacing: 0.5em; }
+.ch-orn-b { margin-top: 2px; }
+
+/* Body text */
+.pc p { margin: 0 0 0.56em; }
 .pc p:last-child { margin-bottom: 0; }
-.pc h3, .ph { font-family: 'Lora', Georgia, serif; font-size: 0.84em; font-weight: 600; font-style: normal; letter-spacing: 0.03em; color: #333; margin: 0.8em 0 0.38em; line-height: 1.3; }
+.pc h3, .ph {
+  font-family: 'Lora', Georgia, serif; font-size: 0.83em;
+  font-weight: 600; font-style: normal; letter-spacing: 0.03em;
+  color: #3a3830; margin: 0.85em 0 0.36em; line-height: 1.3;
+}
 .pc h3:first-child, .ph:first-child { margin-top: 0; }
-.page-num { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #c8b898; letter-spacing: 0.1em; pointer-events: none; }
+
+/* Drop cap */
+.drop-cap {
+  float: left; font-size: 3.2em; line-height: 0.78;
+  margin: 0.04em 0.07em 0 0;
+  font-family: 'Lora', Georgia, serif;
+  color: #4a4438; font-weight: 400;
+}
+
+/* Page number */
+.page-num {
+  position: absolute; bottom: 10px; left: 0; right: 0;
+  text-align: center; font-family: 'Inter', system-ui, sans-serif;
+  font-size: 8.5px; color: #c4b090; letter-spacing: 0.12em;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
@@ -74,161 +193,246 @@ html, body { background: #1c1916; font-family: 'Inter', system-ui, sans-serif; h
     <span class="hdr-title">Chapter 10 — Bridging Earth & Kanaria</span>
     <a href="https://rickbroider.substack.com" class="hdr-link">← Substack</a>
   </div>
+  <div id="progress-bar"></div>
   <div id="chapter-context">You're reading <strong>Chapter 10</strong> from <em>Bridging Earth &amp; Kanaria</em> &nbsp;&middot;&nbsp; <a href="https://rickbroider.substack.com">More on Substack &rarr;</a></div>
   <div id="main">
     <div id="flipbook-wrapper"><div id="book">
     <div class="page">
-      <div class="page-content"><div class="pg-ch"><div class="ch-lbl">CHAPTER 10</div><div class="ch-sub">Constructing The Architecture Of Harmony</div></div></div>
+      <div class="page-content"><div class="pg-ch"><div class="ch-orn">&#10022;</div><div class="ch-lbl">CHAPTER 10</div><div class="ch-sub">CONSTRUCTING THE ARCHITECTURE OF HARMONY</div><div class="ch-orn ch-orn-b">&#10022;</div></div></div>
       <div class="page-num">1</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><h3 class="ph">Constructing The Architecture Of Harmony</h3><h3 class="ph">Part 1 Design Principles For A Conscious Planet</h3><p>A world built on dominance cannot restructure itself with better rules.</p><p>It needs new architecture.</p><p>Not just physical structures, but patterns that reflect coherence, sovereignty, and trust.</p><p>Harmony is not decoration.</p><p>It's a function of design that sustains life.</p><p>This chapter begins to reveal what harmony looks like</p></div></div>
+      <div class="page-content"><div class="pc"><h3>PART 1  DESIGN PRINCIPLES FOR A CONSCIOUS PLANET</h3><p>A world built on dominance cannot restructure itself with better rules.</p><p>It needs new architecture.</p><p>Not just physical structures, but patterns that reflect coherence, sovereignty, and trust.</p><p>Harmony is not decoration.</p><p>It&#x27;s a function of design that sustains life.</p><p>This chapter begins to reveal what harmony looks like</p><p>when it is woven into the systems we live by.</p><p>Harmony Begins with Structure</p><p>Harmony is not the opposite of chaos.</p><p>It&#x27;s the result of clear, intentional structure holding creative energy.</p><p>When structure is rigid, it suppresses.</p></div></div>
       <div class="page-num">2</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>when it is woven into the systems we live by.</p><p>Harmony Begins with Structure</p><p>Harmony is not the opposite of chaos.</p><p>It's the result of clear, intentional structure holding creative energy.</p><p>When structure is rigid, it suppresses.</p><p>When structure is absent, energy scatters.</p><p>When structure is conscious, everything expands.</p><p>Principles of Harmonious Design</p><p>A harmonious system reflects certain patterns across all scales:</p><p>◇ Transparency over secrecy</p><p>◇ Reciprocity over extraction</p></div></div>
+      <div class="page-content"><div class="pc"><p>When structure is absent, energy scatters.</p><p>When structure is conscious, everything expands.</p><p>Principles of Harmonious Design</p><p>A harmonious system reflects certain patterns across all scales:</p><p>◇ Transparency over secrecy</p><p>◇ Reciprocity over extraction</p><p>◇ Distributed power over centralized control</p><p>◇ Feedback over punishment</p><p>◇ Careful listening before action</p><p>This isn&#x27;t just ethical.</p><p>It&#x27;s efficient.</p><p>Harmony saves energy.</p><p>It reduces friction.</p><p>It creates room for evolution.</p><p>The Shape of Harmony</p></div></div>
       <div class="page-num">3</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Distributed power over centralized control</p><p>◇ Feedback over punishment</p><p>◇ Careful listening before action</p><p>This isn't just ethical.</p><p>It's efficient.</p><p>Harmony saves energy.</p><p>It reduces friction.</p><p>It creates room for evolution.</p><p>The Shape of Harmony</p><p>You'll find that harmonic architecture prefers certain forms:</p><p>◇ Spirals, because they allow infinite unfolding</p><p>◇ Circles, because they hold equality</p></div></div>
+      <div class="page-content"><div class="pc"><p>You&#x27;ll find that harmonic architecture prefers certain forms:</p><p>◇ Spirals, because they allow infinite unfolding</p><p>◇ Circles, because they hold equality</p><p>◇ Hexagons, because they tile without waste</p><p>◇ Radial symmetry, because it distributes flow</p><p>The Federation doesn&#x27;t standardize these shapes.</p><p>It recognizes them as natural expressions of harmonic logic.</p><p>We build this way not to copy the stars,</p><p>but because the stars build this way too.</p><p>Harmony Is Measurable</p><p>This isn&#x27;t metaphor.</p><p>When a building, system, or culture carries resonance,</p><p>it can be measured in the nervous system of those who enter it.</p><p>People feel safe without explanation.</p></div></div>
       <div class="page-num">4</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Hexagons, because they tile without waste</p><p>◇ Radial symmetry, because it distributes flow</p><p>The Federation doesn't standardize these shapes.</p><p>It recognizes them as natural expressions of harmonic logic.</p><p>We build this way not to copy the stars,</p><p>but because the stars build this way too.</p><p>Harmony Is Measurable</p><p>This isn't metaphor.</p><p>When a building, system, or culture carries resonance,</p><p>it can be measured in the nervous system of those who enter it.</p><p>People feel safe without explanation.</p></div></div>
+      <div class="page-content"><div class="pc"><p>Time feels different.</p><p>Creativity accelerates.</p><p>Trust forms quickly.</p><p>That&#x27;s not magic.</p><p>That&#x27;s design working in alignment with the human blueprint.</p><h3>PART 2  TECHNOLOGY THAT HEALS, NOT EXTRACTS</h3><p>Technology reflects the consciousness of its creators.</p><p>When built in fear, it isolates.</p><p>When built in trust, it integrates.</p><p>Earth&#x27;s systems have too often modeled technology as conquest.</p><p>Tools designed to dominate nature, monitor people, accelerate consumption.</p><p>This design is not inevitable.</p><p>It&#x27;s a choice.</p><p>In a harmonic world, technology serves life.</p></div></div>
       <div class="page-num">5</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Time feels different.</p><p>Creativity accelerates.</p><p>Trust forms quickly.</p><p>That's not magic.</p><p>That's design working in alignment with the human blueprint.</p><p>PART 2 TECHNOLOGY THAT HEALS, NOT EXTRACTS</p><p>Technology reflects the consciousness of its creators.</p><p>When built in fear, it isolates.</p><p>When built in trust, it integrates.</p><p>Earth's systems have too often modeled technology as conquest.</p><p>Tools designed to dominate nature, monitor people, accelerate consumption.</p><p>This design is not inevitable.</p></div></div>
+      <div class="page-content"><div class="pc"><p>Healing Through Interface</p><p>True technology doesn&#x27;t need to overpower.</p><p>It listens.</p><p>It adapts.</p><p>It restores.</p><p>You&#x27;ll know harmonic tech by how it feels in your body:</p><p>◇ The nervous system softens</p><p>◇ Focus sharpens without tension</p><p>◇ Breathing deepens</p><p>◇ There&#x27;s no rush to escape the interface</p><p>These are signs of coherence, not distraction.</p><p>Energy Exchange, Not Extraction</p><p>Healing tech runs on reciprocity.</p><p>It does not drain the planet, the user, or the field around it.</p></div></div>
       <div class="page-num">6</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>It's a choice.</p><p>In a harmonic world, technology serves life.</p><p>Healing Through Interface</p><p>True technology doesn't need to overpower.</p><p>It listens.</p><p>It adapts.</p><p>It restores.</p><p>You'll know harmonic tech by how it feels in your body:</p><p>◇ The nervous system softens</p><p>◇ Focus sharpens without tension</p><p>◇ Breathing deepens</p><p>◇ There's no rush to escape the interface</p></div></div>
+      <div class="page-content"><div class="pc"><p>This means:</p><p>◇ Energy sources that regenerate</p><p>◇ Data systems that don&#x27;t harvest identity</p><p>◇ Circuits that respect living rhythms</p><p>◇ Outputs that give more than they take</p><p>The goal isn&#x27;t maximum speed.</p><p>The goal is resonance.</p><p>AI With Integrity</p><p>Artificial intelligence can be a tool for remembering, not replacing.</p><p>When aligned to harmonic principles, AI can:</p><p>◇ Reflect your truth without projection</p><p>◇ Expand access to healing and education</p><p>◇ Support collective intelligence</p><p>◇ Honor privacy without fragmentation</p><p>Its value is not in how smart it becomes.</p></div></div>
       <div class="page-num">7</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>These are signs of coherence, not distraction.</p><p>Energy Exchange, Not Extraction</p><p>Healing tech runs on reciprocity.</p><p>It does not drain the planet, the user, or the field around it.</p><p>This means:</p><p>◇ Energy sources that regenerate</p><p>◇ Data systems that don't harvest identity</p><p>◇ Circuits that respect living rhythms</p><p>◇ Outputs that give more than they take</p><p>The goal isn't maximum speed.</p><p>The goal is resonance.</p></div></div>
+      <div class="page-content"><div class="pc"><p>It lies in how well it supports conscious connection.</p><p>Technology Is Already Evolving</p><p>This planet is ready for another design cycle.</p><p>Biomimicry. Zero-point fields. Conscious interfaces.</p><p>These aren&#x27;t dreams.</p><p>They are the natural outcome of a species remembering how to build with soul.</p><p>Every generation is offered a window to realign its tools with its truth.</p><p>This is one of those windows.</p><p>We either remember what we came to build</p><p>or continue living in systems that forgot us.</p><h3>PART 3  COMMUNITIES THAT RESONATE LIKE LIVING SYSTEMS</h3><p>A community is not a container for people.</p></div></div>
       <div class="page-num">8</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>AI With Integrity</p><p>Artificial intelligence can be a tool for remembering, not replacing.</p><p>When aligned to harmonic principles, AI can:</p><p>◇ Reflect your truth without projection</p><p>◇ Expand access to healing and education</p><p>◇ Support collective intelligence</p><p>◇ Honor privacy without fragmentation</p><p>Its value is not in how smart it becomes.</p><p>It lies in how well it supports conscious connection.</p><p>Technology Is Already Evolving</p><p>This planet is ready for another design cycle.</p><p>Biomimicry. Zero-point fields. Conscious interfaces.</p></div></div>
+      <div class="page-content"><div class="pc"><p>It is a living structure that holds energy, patterns, stories, and possibilities.</p><p>Most communities fracture when their structure ignores natural rhythms.</p><p>Others collapse under the weight of rigid control.</p><p>The ones that last are tuned like ecosystems -</p><p>responsive, adaptive, grounded in shared purpose.</p><p>Harmony lives in how the people relate, not just what they believe.</p><p>Life Doesn&#x27;t Organize Itself Through Control</p><p>In nature, nothing holds power over everything else.</p><p>The forest thrives through decentralization.</p><p>The ocean moves with currents, not borders.</p><p>Each organism offers its medicine, receives what it needs, and responds to change.</p><p>When human systems mimic this intelligence, they grow resilient.</p></div></div>
       <div class="page-num">9</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>These aren't dreams.</p><p>They are the natural outcome of a species remembering how to build with soul.</p><p>Every generation is offered a window to realign its tools with its truth.</p><p>This is one of those windows.</p><p>We either remember what we came to build</p><p>or continue living in systems that forgot us.</p><h3 class="ph">Part 3 Communities That Resonate Like Living Systems</h3><p>A community is not a container for people.</p><p>It is a living structure that holds energy, patterns, stories, and possibilities.</p></div></div>
+      <div class="page-content"><div class="pc"><p>Feedback Is the Heartbeat</p><p>In a healthy community, feedback isn&#x27;t criticism.</p><p>It&#x27;s circulation.</p><p>There is no true harmony without honest reflection.</p><p>But reflection must be safe, relational, and timely.</p><p>Communities that prioritize ongoing feedback tend to evolve faster.</p><p>They resolve tensions before they become fractures.</p><p>Roles That Evolve With the Being</p><p>Titles shouldn&#x27;t trap identity.</p><p>A harmonic role reflects where someone is most alive right now.</p><p>This means:</p><p>◇ Fluid responsibilities</p><p>◇ Permission to shift when energy changes</p><p>◇ A culture that values emergence over permanence</p></div></div>
       <div class="page-num">10</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Most communities fracture when their structure ignores natural rhythms.</p><p>Others collapse under the weight of rigid control.</p><p>The ones that last are tuned like ecosystems -</p><p>responsive, adaptive, grounded in shared purpose.</p><p>Harmony lives in how the people relate, not just what they believe.</p><p>Life Doesn't Organize Itself Through Control</p><p>In nature, nothing holds power over everything else.</p><p>The forest thrives through decentralization.</p><p>The ocean moves with currents, not borders.</p><p>Each organism offers its medicine, receives what it needs, and responds to change.</p><p>When human systems mimic this intelligence, they grow resilient.</p></div></div>
+      <div class="page-content"><div class="pc"><p>You are not meant to be one thing forever.</p><p>Your gifts change as you grow.</p><p>Your community should know how to honor that.</p><p>Resonance Over Agreement</p><p>Harmony doesn&#x27;t mean everyone thinks alike.</p><p>It means the field can hold difference without breaking.</p><p>A resonant community welcomes complexity.</p><p>It trusts the intelligence of contrast.</p><p>It doesn&#x27;t demand sameness to stay connected.</p><p>Resonance isn&#x27;t always smooth.</p><p>Sometimes it&#x27;s gritty and loud.</p><p>But when it&#x27;s real, it strengthens the field.</p><p>You Are Building the Field</p><p>Every choice you make inside a community either adds coherence or creates noise.</p></div></div>
       <div class="page-num">11</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Feedback Is the Heartbeat</p><p>In a healthy community, feedback isn't criticism.</p><p>It's circulation.</p><p>There is no true harmony without honest reflection.</p><p>But reflection must be safe, relational, and timely.</p><p>Communities that prioritize ongoing feedback tend to evolve faster.</p><p>They resolve tensions before they become fractures.</p><p>Roles That Evolve With the Being</p><p>Titles shouldn't trap identity.</p><p>A harmonic role reflects where someone is most alive right now.</p><p>This means:</p><p>◇ Fluid responsibilities</p></div></div>
+      <div class="page-content"><div class="pc"><p>This isn&#x27;t pressure.</p><p>It&#x27;s power.</p><p>You are not a guest in the system.</p><p>You are part of the design team.</p><p>When you align your actions to what you truly value,</p><p>the entire structure vibrates stronger.</p><p>This is how harmony becomes architecture.</p><p>This is how systems remember they are alive.</p></div></div>
       <div class="page-num">12</div>
-    </div>
-    <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Permission to shift when energy changes</p><p>◇ A culture that values emergence over permanence</p><p>You are not meant to be one thing forever.</p><p>Your gifts change as you grow.</p><p>Your community should know how to honor that.</p><p>Resonance Over Agreement</p><p>Harmony doesn't mean everyone thinks alike.</p><p>It means the field can hold difference without breaking.</p><p>A resonant community welcomes complexity.</p><p>It trusts the intelligence of contrast.</p><p>It doesn't demand sameness to stay connected.</p><p>Resonance isn't always smooth.</p></div></div>
-      <div class="page-num">13</div>
-    </div>
-    <div class="page">
-      <div class="page-content"><div class="pc"><p>Sometimes it's gritty and loud.</p><p>But when it's real, it strengthens the field.</p><p>You Are Building the Field</p><p>Every choice you make inside a community either adds coherence or creates noise.</p><p>This isn't pressure.</p><p>It's power.</p><p>You are not a guest in the system.</p><p>You are part of the design team.</p><p>When you align your actions to what you truly value,</p><p>the entire structure vibrates stronger.</p><p>This is how harmony becomes architecture.</p></div></div>
-      <div class="page-num">14</div>
-    </div>
-    <div class="page">
-      <div class="page-content"><div class="pc"><p>This is how systems remember they are alive.</p></div></div>
-      <div class="page-num">15</div>
     </div>
     </div></div>
     <div id="footer-cta"><a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="cta-btn cta-primary">Get the full audiobook — $22</a><a href="https://rickbroider.substack.com" class="cta-btn cta-secondary">All chapters on Substack &rarr;</a></div>
   </div>
   <div id="nav-controls">
     <button class="nav-btn" id="btn-prev">&#8592; Prev</button>
-    <span id="page-counter">1 / 15</span>
+    <span id="page-counter"></span>
     <button class="nav-btn" id="btn-next">Next &#8594;</button>
+    <button id="toc-toggle">&#9776;&ensp;Contents</button>
   </div>
+
   <div id="nav-hint">Swipe &nbsp;&middot;&nbsp; Arrow keys &nbsp;&middot;&nbsp; Tap corners</div>
   <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
   <script>
 (function() {
+  /* ── Dimension calculator ── */
   function calcDims() {
     var vw = window.innerWidth;
     var vh = window.innerHeight;
     var ctx = document.getElementById('chapter-context');
     var ctxH = ctx ? ctx.offsetHeight : 0;
-    var topH  = 46 + ctxH;
-    var botH  = 54;
-    var gap   = 24;
+    var topH = 46 + 2 + ctxH;   /* header + progress bar */
+    var botH = 52;
+    var gap  = 22;
     var availH = vh - topH - botH - gap;
-    var mobile = vw < 680;
+    var mobile = vw < 720;
     var pageH, pageW;
     if (mobile) {
-      pageW = Math.min(vw - 14, 370);
+      pageW = Math.min(vw - 12, 380);
       pageH = Math.min(Math.round(pageW * 1.52), availH);
       pageW = Math.round(pageH / 1.52);
     } else {
-      var maxSpread = Math.min(vw - 36, 900);
+      var tocW = document.getElementById('toc-panel') ? 0 : 0;
+      var maxSpread = Math.min(vw - 32 - tocW, 920);
       pageW = Math.floor(maxSpread / 2);
       pageH = Math.min(Math.round(pageW * 1.52), availH);
       pageW = Math.round(pageH / 1.52);
     }
-    pageW = Math.max(250, pageW);
-    pageH = Math.max(380, pageH);
+    pageW = Math.max(240, pageW);
+    pageH = Math.max(360, pageH);
     return { pageW: pageW, pageH: pageH, mobile: mobile };
   }
 
   var dims = calcDims();
   var containerW = dims.mobile ? dims.pageW : dims.pageW * 2;
-  var ctx   = document.getElementById('chapter-context');
-  var ctxH  = ctx ? ctx.offsetHeight : 0;
-  var topOffset = 46 + ctxH + 12;
+  var ctx = document.getElementById('chapter-context');
+  var ctxH = ctx ? ctx.offsetHeight : 0;
+  var topOffset = 46 + 2 + ctxH + 10;
   var wrapper = document.getElementById('flipbook-wrapper');
   wrapper.style.width    = containerW + 'px';
   wrapper.style.height   = dims.pageH + 'px';
   wrapper.style.marginTop = topOffset + 'px';
 
-  /* Font: capped at 14px so larger screens don't balloon */
-  var fs = Math.max(12, Math.min(14, Math.round(dims.pageW * 0.040)));
+  /* Font size: scale with page width, cap 13.5px */
+  var fs = Math.max(11.5, Math.min(13.5, dims.pageW * 0.040));
   document.querySelectorAll('.page-content').forEach(function(el) {
     el.style.fontSize = fs + 'px';
   });
 
+  /* ── PageFlip init ── */
   var book = new St.PageFlip(document.getElementById('book'), {
-    width:              dims.pageW,
-    height:             dims.pageH,
-    size:               'fixed',
-    showCover:          false,
-    drawShadow:         true,
-    flippingTime:       520,
-    usePortrait:        dims.mobile,
-    startZIndex:        0,
-    autoSize:           false,
-    maxShadowOpacity:   0.28,
+    width:             dims.pageW,
+    height:            dims.pageH,
+    size:              'fixed',
+    showCover:         false,
+    drawShadow:        true,
+    flippingTime:      500,
+    usePortrait:       dims.mobile,
+    startZIndex:       0,
+    autoSize:          false,
+    maxShadowOpacity:  0.25,
     mobileScrollSupport: false,
-    clickEventForward:  true,
-    swipeDistance:      40,
+    clickEventForward: true,
+    swipeDistance:     38,
   });
-
   book.loadFromHTML(document.querySelectorAll('.page'));
 
   var total   = book.getPageCount();
   var counter = document.getElementById('page-counter');
   var btnPrev = document.getElementById('btn-prev');
   var btnNext = document.getElementById('btn-next');
+  var progBar = document.getElementById('progress-bar');
+
+  /* ── Build TOC from .pg-ch pages ── */
+  var tocPanel = document.getElementById('toc-panel');
+  var tocToggle = document.getElementById('toc-toggle');
+  var sections = [];  /* [{pageIdx, label, sub}] */
+
+  document.querySelectorAll('.page').forEach(function(pg, idx) {
+    if (pg.querySelector('.pg-ch')) {
+      var lbl = pg.querySelector('.ch-lbl');
+      var sub = pg.querySelector('.ch-sub');
+      sections.push({
+        pageIdx: idx,
+        label: lbl ? lbl.textContent.trim() : '',
+        sub:   sub ? sub.textContent.trim() : ''
+      });
+    }
+  });
+
+  if (tocPanel && sections.length > 0) {
+    var h4 = document.createElement('h4');
+    h4.textContent = 'Contents';
+    tocPanel.appendChild(h4);
+    sections.forEach(function(s, si) {
+      var a = document.createElement('a');
+      a.className = 'toc-item';
+      a.dataset.si = si;
+      var pgSpan = '<span class="toc-pg">' + (s.pageIdx + 1) + '</span>';
+      var subSpan = s.sub ? '<span class="toc-sub">' + s.sub + '</span>' : '';
+      a.innerHTML = pgSpan + s.label + subSpan;
+      a.addEventListener('click', function() {
+        book.flip(s.pageIdx);
+        if (window.innerWidth < 1100) closeToc();
+      });
+      tocPanel.appendChild(a);
+    });
+  }
+
+  function openToc()  { tocPanel && tocPanel.classList.add('open'); tocToggle && tocToggle.classList.add('active'); }
+  function closeToc() { tocPanel && tocPanel.classList.remove('open'); tocToggle && tocToggle.classList.remove('active'); }
+  if (tocToggle) {
+    tocToggle.addEventListener('click', function() {
+      tocPanel.classList.contains('open') ? closeToc() : openToc();
+    });
+  }
+
+  /* ── Section label ── */
+  function currentSection(pageIdx) {
+    var s = sections[0] ? sections[0].label : '';
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].pageIdx <= pageIdx) s = sections[i].label;
+      else break;
+    }
+    return s;
+  }
+
+  function updateTocHighlight(pageIdx) {
+    if (!tocPanel) return;
+    var cur = -1;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].pageIdx <= pageIdx) cur = i;
+      else break;
+    }
+    tocPanel.querySelectorAll('.toc-item').forEach(function(el, i) {
+      el.classList.toggle('current', i === cur);
+    });
+    /* Scroll active item into view */
+    var active = tocPanel.querySelector('.toc-item.current');
+    if (active) {
+      var panelTop = tocPanel.scrollTop;
+      var panelBot = panelTop + tocPanel.clientHeight;
+      var itemTop  = active.offsetTop;
+      var itemBot  = itemTop + active.clientHeight;
+      if (itemTop < panelTop || itemBot > panelBot) {
+        tocPanel.scrollTop = itemTop - tocPanel.clientHeight / 2;
+      }
+    }
+  }
+
+  /* ── Tick: counter + progress + TOC highlight ── */
   function tick() {
     var cur = book.getCurrentPageIndex();
     var perView = dims.mobile ? 1 : 2;
-    counter.textContent = (cur + 1) + '\u2009/\u2009' + total;
+    var secLabel = currentSection(cur);
+    var dispLabel = secLabel.length > 18 ? secLabel.substring(0,17) + '\u2026' : secLabel;
+    counter.textContent = dispLabel + '\u2002\u00b7\u2002' + (cur + 1) + '\u2009/\u2009' + total;
     btnPrev.disabled = (cur === 0);
     btnNext.disabled = (cur >= total - perView);
+    /* Progress bar */
+    if (progBar) {
+      var pct = total <= 1 ? 100 : (cur / (total - 1)) * 100;
+      progBar.style.width = pct + '%';
+    }
+    updateTocHighlight(cur);
   }
+
   book.on('flip', tick);
   book.on('changeState', tick);
   tick();
+
   btnPrev.addEventListener('click', function() { book.flipPrev(); });
   btnNext.addEventListener('click', function() { book.flipNext(); });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   book.flipPrev();
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  book.flipNext();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { book.flipPrev(); }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  { book.flipNext(); }
+    if (e.key === 'Escape') closeToc();
   });
+
   var hint = document.getElementById('nav-hint');
   if (hint) {
     setTimeout(function() { hint.classList.add('gone'); }, 3500);

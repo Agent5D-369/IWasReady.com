@@ -10,63 +10,182 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: #1c1916; font-family: 'Inter', system-ui, sans-serif; height: 100%; overscroll-behavior: none; }
+html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; height: 100%; overscroll-behavior: none; }
 
-#site-header { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: #141210; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.07); }
-.hdr-title { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55vw; }
-.hdr-link { font-size: 11px; color: rgba(255,255,255,0.38); text-decoration: none; white-space: nowrap; }
+/* ── Header ── */
+#site-header {
+  position: fixed; top: 0; left: 0; right: 0; height: 46px;
+  background: #100f0d; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 16px;
+  z-index: 200; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.hdr-title { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.68); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55vw; }
+.hdr-link  { font-size: 11px; color: rgba(255,255,255,0.36); text-decoration: none; white-space: nowrap; }
 .hdr-link:hover { color: rgba(255,255,255,0.65); }
 
-#chapter-context { position: fixed; top: 46px; left: 0; right: 0; background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 6px 16px; font-size: 10.5px; color: rgba(255,255,255,0.32); letter-spacing: 0.07em; text-transform: uppercase; z-index: 99; }
-#chapter-context a { color: rgba(255,255,255,0.45); text-decoration: none; }
+/* ── Reading progress bar ── */
+#progress-bar {
+  position: fixed; top: 46px; left: 0; height: 2px;
+  background: #7aaa91; width: 0%; z-index: 199;
+  transition: width 0.3s ease;
+}
+
+/* ── Chapter context strip ── */
+#chapter-context {
+  position: fixed; top: 48px; left: 0; right: 0;
+  background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.04);
+  text-align: center; padding: 5px 16px;
+  font-size: 10.5px; color: rgba(255,255,255,0.30);
+  letter-spacing: 0.07em; text-transform: uppercase; z-index: 190;
+}
+#chapter-context a { color: rgba(255,255,255,0.42); text-decoration: none; }
 #chapter-context a:hover { color: rgba(255,255,255,0.7); }
 
+/* ── Main layout ── */
 #main { display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
 #flipbook-wrapper { margin: 0 auto; }
 #book { width: 100%; height: 100%; }
 
-#nav-controls { position: fixed; bottom: 0; left: 0; right: 0; height: 54px; background: #141210; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; gap: 18px; z-index: 100; }
-.nav-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); color: rgba(255,255,255,0.75); border-radius: 7px; padding: 7px 22px; font-size: 12.5px; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.14s; white-space: nowrap; }
-.nav-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
-.nav-btn:disabled { opacity: 0.2; cursor: default; }
-#page-counter { font-size: 11px; color: rgba(255,255,255,0.3); min-width: 72px; text-align: center; font-family: 'Inter', sans-serif; letter-spacing: 0.06em; }
-#nav-hint { position: fixed; bottom: 68px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.75); color: rgba(255,255,255,0.82); font-size: 11.5px; padding: 7px 16px; border-radius: 18px; pointer-events: none; opacity: 1; transition: opacity 1.4s ease; z-index: 200; white-space: nowrap; letter-spacing: 0.03em; }
+/* ── Nav controls ── */
+#nav-controls {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 52px;
+  background: #100f0d; border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; z-index: 200;
+}
+.nav-btn {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.72); border-radius: 6px;
+  padding: 6px 20px; font-size: 12px; cursor: pointer;
+  font-family: 'Inter', sans-serif; transition: background 0.14s, color 0.14s;
+  white-space: nowrap;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.nav-btn:disabled { opacity: 0.18; cursor: default; }
+#page-counter {
+  font-size: 10.5px; color: rgba(255,255,255,0.28); min-width: 130px;
+  text-align: center; font-family: 'Inter', sans-serif; letter-spacing: 0.04em;
+}
+#toc-toggle {
+  position: absolute; right: 14px;
+  background: transparent; border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.38); border-radius: 5px;
+  padding: 5px 10px; font-size: 10.5px; cursor: pointer;
+  font-family: 'Inter', sans-serif; letter-spacing: 0.06em;
+  display: none;
+}
+@media (min-width: 720px) { #toc-toggle { display: block; } }
+#toc-toggle:hover { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.2); }
+#toc-toggle.active { color: #7aaa91; border-color: #7aaa91; }
+
+/* ── TOC sidebar ── */
+#toc-panel {
+  position: fixed; top: 46px; right: -280px; bottom: 52px; width: 264px;
+  background: #13110f; border-left: 1px solid rgba(255,255,255,0.07);
+  overflow-y: auto; z-index: 195; transition: right 0.28s ease;
+  padding: 16px 0;
+}
+#toc-panel.open { right: 0; }
+#toc-panel h4 {
+  font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.22);
+  padding: 0 18px 10px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 6px;
+}
+.toc-item {
+  display: block; padding: 6px 18px; font-family: 'Inter', sans-serif;
+  font-size: 11.5px; color: rgba(255,255,255,0.42); cursor: pointer;
+  text-decoration: none; border-left: 2px solid transparent;
+  transition: color 0.12s, background 0.12s, border-color 0.12s;
+  line-height: 1.4;
+}
+.toc-item:hover { color: rgba(255,255,255,0.78); background: rgba(255,255,255,0.04); }
+.toc-item.current { color: #7aaa91; border-left-color: #7aaa91; background: rgba(122,170,145,0.06); }
+.toc-item .toc-pg { float: right; font-size: 10px; color: rgba(255,255,255,0.22); margin-top: 1px; }
+.toc-item .toc-sub { display: block; font-size: 10px; color: rgba(255,255,255,0.26); margin-top: 1px; font-style: italic; }
+
+/* ── Swipe hint ── */
+#nav-hint {
+  position: fixed; bottom: 66px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.7); color: rgba(255,255,255,0.78);
+  font-size: 11px; padding: 6px 15px; border-radius: 16px;
+  pointer-events: none; opacity: 1; transition: opacity 1.4s ease;
+  z-index: 210; white-space: nowrap; letter-spacing: 0.03em;
+}
 #nav-hint.gone { opacity: 0; }
 
+/* ── Footer CTA ── */
 #footer-cta { width: 100%; max-width: 600px; padding: 22px 20px 80px; text-align: center; }
-#footer-cta p { font-size: 12.5px; color: rgba(255,255,255,0.3); margin-bottom: 12px; line-height: 1.5; }
+#footer-cta p { font-size: 12.5px; color: rgba(255,255,255,0.28); margin-bottom: 12px; line-height: 1.5; }
 .cta-btn { display: inline-block; text-decoration: none; padding: 10px 24px; border-radius: 7px; font-size: 13.5px; font-family: 'Inter', sans-serif; font-weight: 500; margin: 4px 6px; transition: background 0.14s; }
 .cta-primary { background: #3a6b5a; color: #fff; }
 .cta-primary:hover { background: #4a8a72; }
-.cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); }
-.cta-secondary:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.28); }
+.cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.52); }
+.cta-secondary:hover { color: rgba(255,255,255,0.82); border-color: rgba(255,255,255,0.26); }
 
 /* ── Page styles ─────────────────────────────────────── */
 .page {
-  background: #fdf9f0;
+  background: #fdf8ee;
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 0 18px rgba(0,0,0,0.06);
 }
 .page-content {
   position: absolute;
-  top: 20px; left: 16px; right: 16px; bottom: 28px;
+  top: 26px; left: 24px; right: 18px; bottom: 36px;
   overflow: hidden;
   font-family: 'Lora', Georgia, 'Times New Roman', serif;
-  line-height: 1.65;   /* tighter than before — fits more lines */
-  color: #1e1e1e;
-  /* font-size set inline by JS */
+  line-height: 1.68;
+  color: #1c1c1a;
 }
-.pg-ch { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 28px 20px; gap: 14px; }
-.ch-lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; }
-.ch-sub { font-family: 'Lora', Georgia, serif; font-size: 1.1em; color: #2a2a2a; line-height: 1.4; font-style: italic; }
 
-.pc p {
-  margin: 0 0 0.58em;  /* tighter paragraph spacing */
+/* Chapter title page */
+.pg-ch {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 28px 22px; gap: 10px;
+  background: #fdf8ee;
 }
+.ch-lbl {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1em; letter-spacing: 0.22em;
+  text-transform: uppercase; color: #3a3830;
+  font-weight: 600;
+}
+.ch-sub {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.88em; color: #6b6456; line-height: 1.4;
+  font-style: italic; max-width: 80%;
+}
+.ch-orn { font-size: 0.72em; color: #b8a88a; letter-spacing: 0.5em; }
+.ch-orn-b { margin-top: 2px; }
+
+/* Body text */
+.pc p { margin: 0 0 0.56em; }
 .pc p:last-child { margin-bottom: 0; }
-.pc h3, .ph { font-family: 'Lora', Georgia, serif; font-size: 0.84em; font-weight: 600; font-style: normal; letter-spacing: 0.03em; color: #333; margin: 0.8em 0 0.38em; line-height: 1.3; }
+.pc h3, .ph {
+  font-family: 'Lora', Georgia, serif; font-size: 0.83em;
+  font-weight: 600; font-style: normal; letter-spacing: 0.03em;
+  color: #3a3830; margin: 0.85em 0 0.36em; line-height: 1.3;
+}
 .pc h3:first-child, .ph:first-child { margin-top: 0; }
-.page-num { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #c8b898; letter-spacing: 0.1em; pointer-events: none; }
+
+/* Drop cap */
+.drop-cap {
+  float: left; font-size: 3.2em; line-height: 0.78;
+  margin: 0.04em 0.07em 0 0;
+  font-family: 'Lora', Georgia, serif;
+  color: #4a4438; font-weight: 400;
+}
+
+/* Page number */
+.page-num {
+  position: absolute; bottom: 10px; left: 0; right: 0;
+  text-align: center; font-family: 'Inter', system-ui, sans-serif;
+  font-size: 8.5px; color: #c4b090; letter-spacing: 0.12em;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
@@ -74,145 +193,234 @@ html, body { background: #1c1916; font-family: 'Inter', system-ui, sans-serif; h
     <span class="hdr-title">Chapter 24 — Bridging Earth & Kanaria</span>
     <a href="https://rickbroider.substack.com" class="hdr-link">← Substack</a>
   </div>
+  <div id="progress-bar"></div>
   <div id="chapter-context">You're reading <strong>Chapter 24</strong> from <em>Bridging Earth &amp; Kanaria</em> &nbsp;&middot;&nbsp; <a href="https://rickbroider.substack.com">More on Substack &rarr;</a></div>
   <div id="main">
     <div id="flipbook-wrapper"><div id="book">
     <div class="page">
-      <div class="page-content"><div class="pg-ch"><div class="ch-lbl">CHAPTER 24</div><div class="ch-sub">Sealing Soul Contracts</div></div></div>
+      <div class="page-content"><div class="pg-ch"><div class="ch-orn">&#10022;</div><div class="ch-lbl">CHAPTER 24</div><div class="ch-sub">SEALING SOUL CONTRACTS</div><div class="ch-orn ch-orn-b">&#10022;</div></div></div>
       <div class="page-num">1</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><h3 class="ph">Sealing Soul Contracts</h3><h3 class="ph">Part 1 Before You Were Born</h3><p>The Silent Agreements</p><p>You didn't come here by accident.</p><p>Before the body, before the breath,</p><p>you said yes.</p><p>Yes to remembering through amnesia.</p><p>Yes to walking into a world that forgets.</p><p>Yes to holding a thread</p></div></div>
+      <div class="page-content"><div class="pc"><h3>PART 1  BEFORE YOU WERE BORN</h3><p>The Silent Agreements</p><p>You didn&#x27;t come here by accident.</p><p>Before the body, before the breath,</p><p>you said yes.</p><p>Yes to remembering through amnesia.</p><p>Yes to walking into a world that forgets.</p><p>Yes to holding a thread</p><p>that only you could carry through the veil.</p><p>These are the soul contracts not written in ink</p><p>but etched in vibration.</p><p>Assignments vs. Identities</p><p>You are not your title.</p><p>You&#x27;re not your resume.</p></div></div>
       <div class="page-num">2</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>that only you could carry through the veil.</p><p>These are the soul contracts not written in ink</p><p>but etched in vibration.</p><p>Assignments vs. Identities</p><p>You are not your title.</p><p>You're not your resume.</p><p>Your value isn't measured by how clearly you explain what you do.</p><p>Your essence goes deeper than language allows.</p><p>Your assignment lives in what only you notice.</p><p>In what breaks your heart and calls you to act.</p><p>In the patterns you've lived</p></div></div>
+      <div class="page-content"><div class="pc"><p>Your value isn&#x27;t measured by how clearly you explain what you do.</p><p>Your essence goes deeper than language allows.</p><p>Your assignment lives in what only you notice.</p><p>In what breaks your heart and calls you to act.</p><p>In the patterns you&#x27;ve lived</p><p>and the pain you&#x27;re here to alchemize.</p><p>It doesn&#x27;t require a business card.</p><p>It requires presence.</p><p>The Sacred Repetition</p><p>Many of you have done this before.</p><p>On other planets, in other forms.</p><p>Earth is not your first descent.</p><p>This mission echoes the ones that came before.</p><p>But Earth is different.</p></div></div>
       <div class="page-num">3</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>and the pain you're here to alchemize.</p><p>It doesn't require a business card.</p><p>It requires presence.</p><p>The Sacred Repetition</p><p>Many of you have done this before.</p><p>On other planets, in other forms.</p><p>Earth is not your first descent.</p><p>This mission echoes the ones that came before.</p><p>But Earth is different.</p><p>Here, the stakes are embodied.</p><p>Here, the lessons are relational.</p><p>Here, love is the curriculum.</p></div></div>
+      <div class="page-content"><div class="pc"><p>Here, the stakes are embodied.</p><p>Here, the lessons are relational.</p><p>Here, love is the curriculum.</p><p>And this time, the contract isn&#x27;t just to activate.</p><p>It&#x27;s to integrate.</p><h3>PART 2  THE STARSEED MIRROR</h3><p>Reflections from the Edge</p><p>There are moments when you feel like a stranger here.</p><p>Not just in society, but in the entire way this planet works.</p><p>It&#x27;s not because you&#x27;re broken.</p><p>It&#x27;s because you remember something older.</p><p>A way of living that honored life, not productivity.</p><p>A rhythm that wasn&#x27;t manufactured, but felt.</p></div></div>
       <div class="page-num">4</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>And this time, the contract isn't just to activate.</p><p>It's to integrate.</p><h3 class="ph">Part 2 The Starseed Mirror</h3><p>Reflections from the Edge</p><p>There are moments when you feel like a stranger here.</p><p>Not just in society, but in the entire way this planet works.</p><p>It's not because you're broken.</p><p>It's because you remember something older.</p><p>A way of living that honored life, not productivity.</p><p>A rhythm that wasn't manufactured, but felt.</p></div></div>
+      <div class="page-content"><div class="pc"><p>That homesickness you carry?</p><p>It&#x27;s not nostalgia.</p><p>It&#x27;s recognition.</p><p>Signals and Symptoms</p><p>You&#x27;ve always been more sensitive.</p><p>To sounds, to lies, to energy.</p><p>You spot inconsistencies before others even notice.</p><p>You feel tension that no one else names.</p><p>It&#x27;s not anxiety.</p><p>It&#x27;s antennae.</p><p>Tuned to frequencies most ignore.</p><p>And you&#x27;ve likely been told to turn it off.</p><p>To conform.</p><p>To quiet your radar.</p><p>But that system was never meant to hold your clarity.</p></div></div>
       <div class="page-num">5</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>That homesickness you carry?</p><p>It's not nostalgia.</p><p>It's recognition.</p><p>Signals and Symptoms</p><p>You've always been more sensitive.</p><p>To sounds, to lies, to energy.</p><p>You spot inconsistencies before others even notice.</p><p>You feel tension that no one else names.</p><p>It's not anxiety.</p><p>It's antennae.</p><p>Tuned to frequencies most ignore.</p><p>And you've likely been told to turn it off.</p></div></div>
+      <div class="page-content"><div class="pc"><p>Why You Incarnated Now</p><p>Because Earth is reaching a turning point.</p><p>And evolution doesn&#x27;t wait.</p><p>It moves through those ready to feel what others avoid.</p><p>You didn&#x27;t come here to escape.</p><p>You came to guide.</p><p>By embodying integrity,</p><p>by living in rhythm,</p><p>by remembering what&#x27;s real when everything else feels fake.</p><p>You&#x27;re not here to be saved.</p><p>You&#x27;re here to activate the blueprint.</p><p>In yourself,</p><p>and in others who forgot they came with one.</p><h3>PART 3  KEYS TO YOUR GALACTIC ASSIGNMENT</h3></div></div>
       <div class="page-num">6</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>To conform.</p><p>To quiet your radar.</p><p>But that system was never meant to hold your clarity.</p><p>Why You Incarnated Now</p><p>Because Earth is reaching a turning point.</p><p>And evolution doesn't wait.</p><p>It moves through those ready to feel what others avoid.</p><p>You didn't come here to escape.</p><p>You came to guide.</p><p>By embodying integrity,</p><p>by living in rhythm,</p></div></div>
+      <div class="page-content"><div class="pc"><p>You Came With Codes</p><p>You didn&#x27;t arrive blank.</p><p>You carry imprints that activate through experience.</p><p>Some of them are buried.</p><p>Some are just starting to stir.</p><p>The confusion you&#x27;ve faced?</p><p>It&#x27;s part of the awakening.</p><p>Your clarity is encoded in the struggle.</p><p>Your purpose isn&#x27;t handed to you.</p><p>It reveals itself as you show up for what&#x27;s in front of you.</p><p>What to Listen For</p><p>◇ Recurring dreams or symbols</p><p>◇ Activations from certain constellations or planetary transits</p><p>◇ Moments of full-body resonance when hearing ancient languages or tones</p></div></div>
       <div class="page-num">7</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>by remembering what's real when everything else feels fake.</p><p>You're not here to be saved.</p><p>You're here to activate the blueprint.</p><p>In yourself,</p><p>and in others who forgot they came with one.</p><h3 class="ph">Part 3 Keys To Your Galactic Assignment</h3><p>You Came With Codes</p><p>You didn't arrive blank.</p><p>You carry imprints that activate through experience.</p><p>Some of them are buried.</p></div></div>
+      <div class="page-content"><div class="pc"><p>◇ Sudden knowing that bypasses logic but lands like truth</p><p>◇ Unexplainable grief or love when visiting certain places</p><p>These are breadcrumbs.</p><p>Not distractions, not fantasies-</p><p>reminders of where you come from,</p><p>and what you agreed to carry forward.</p><p>Your Mission Is Not a Role</p><p>It&#x27;s not a title.</p><p>It&#x27;s not a job description.</p><p>It&#x27;s a frequency you hold.</p><p>You may fulfill it through parenting.</p><p>Or through building tech.</p><p>Or through walking away from patterns that no longer match who you are.</p><p>What matters is how aligned you stay</p></div></div>
       <div class="page-num">8</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Some are just starting to stir.</p><p>The confusion you've faced?</p><p>It's part of the awakening.</p><p>Your clarity is encoded in the struggle.</p><p>Your purpose isn't handed to you.</p><p>It reveals itself as you show up for what's in front of you.</p><p>What to Listen For</p><p>◇ Recurring dreams or symbols</p><p>◇ Activations from certain constellations or planetary transits</p><p>◇ Moments of full-body resonance when hearing ancient languages or tones</p><p>◇ Sudden knowing that bypasses logic but lands like truth</p></div></div>
+      <div class="page-content"><div class="pc"><p>as you move.</p><p>That&#x27;s what activates others.</p><p>Not your resume.</p><p>Not your content.</p><p>Your presence.</p></div></div>
       <div class="page-num">9</div>
-    </div>
-    <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Unexplainable grief or love when visiting certain places</p><p>These are breadcrumbs.</p><p>Not distractions, not fantasies-</p><p>reminders of where you come from,</p><p>and what you agreed to carry forward.</p><p>Your Mission Is Not a Role</p><p>It's not a title.</p><p>It's not a job description.</p><p>It's a frequency you hold.</p><p>You may fulfill it through parenting.</p><p>Or through building tech.</p></div></div>
-      <div class="page-num">10</div>
-    </div>
-    <div class="page">
-      <div class="page-content"><div class="pc"><p>Or through walking away from patterns that no longer match who you are.</p><p>What matters is how aligned you stay</p><p>as you move.</p><p>That's what activates others.</p><p>Not your resume.</p><p>Not your content.</p><p>Your presence.</p></div></div>
-      <div class="page-num">11</div>
     </div>
     </div></div>
     <div id="footer-cta"><a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="cta-btn cta-primary">Get the full audiobook — $22</a><a href="https://rickbroider.substack.com" class="cta-btn cta-secondary">All chapters on Substack &rarr;</a></div>
   </div>
   <div id="nav-controls">
     <button class="nav-btn" id="btn-prev">&#8592; Prev</button>
-    <span id="page-counter">1 / 11</span>
+    <span id="page-counter"></span>
     <button class="nav-btn" id="btn-next">Next &#8594;</button>
+    <button id="toc-toggle">&#9776;&ensp;Contents</button>
   </div>
+
   <div id="nav-hint">Swipe &nbsp;&middot;&nbsp; Arrow keys &nbsp;&middot;&nbsp; Tap corners</div>
   <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
   <script>
 (function() {
+  /* ── Dimension calculator ── */
   function calcDims() {
     var vw = window.innerWidth;
     var vh = window.innerHeight;
     var ctx = document.getElementById('chapter-context');
     var ctxH = ctx ? ctx.offsetHeight : 0;
-    var topH  = 46 + ctxH;
-    var botH  = 54;
-    var gap   = 24;
+    var topH = 46 + 2 + ctxH;   /* header + progress bar */
+    var botH = 52;
+    var gap  = 22;
     var availH = vh - topH - botH - gap;
-    var mobile = vw < 680;
+    var mobile = vw < 720;
     var pageH, pageW;
     if (mobile) {
-      pageW = Math.min(vw - 14, 370);
+      pageW = Math.min(vw - 12, 380);
       pageH = Math.min(Math.round(pageW * 1.52), availH);
       pageW = Math.round(pageH / 1.52);
     } else {
-      var maxSpread = Math.min(vw - 36, 900);
+      var tocW = document.getElementById('toc-panel') ? 0 : 0;
+      var maxSpread = Math.min(vw - 32 - tocW, 920);
       pageW = Math.floor(maxSpread / 2);
       pageH = Math.min(Math.round(pageW * 1.52), availH);
       pageW = Math.round(pageH / 1.52);
     }
-    pageW = Math.max(250, pageW);
-    pageH = Math.max(380, pageH);
+    pageW = Math.max(240, pageW);
+    pageH = Math.max(360, pageH);
     return { pageW: pageW, pageH: pageH, mobile: mobile };
   }
 
   var dims = calcDims();
   var containerW = dims.mobile ? dims.pageW : dims.pageW * 2;
-  var ctx   = document.getElementById('chapter-context');
-  var ctxH  = ctx ? ctx.offsetHeight : 0;
-  var topOffset = 46 + ctxH + 12;
+  var ctx = document.getElementById('chapter-context');
+  var ctxH = ctx ? ctx.offsetHeight : 0;
+  var topOffset = 46 + 2 + ctxH + 10;
   var wrapper = document.getElementById('flipbook-wrapper');
   wrapper.style.width    = containerW + 'px';
   wrapper.style.height   = dims.pageH + 'px';
   wrapper.style.marginTop = topOffset + 'px';
 
-  /* Font: capped at 14px so larger screens don't balloon */
-  var fs = Math.max(12, Math.min(14, Math.round(dims.pageW * 0.040)));
+  /* Font size: scale with page width, cap 13.5px */
+  var fs = Math.max(11.5, Math.min(13.5, dims.pageW * 0.040));
   document.querySelectorAll('.page-content').forEach(function(el) {
     el.style.fontSize = fs + 'px';
   });
 
+  /* ── PageFlip init ── */
   var book = new St.PageFlip(document.getElementById('book'), {
-    width:              dims.pageW,
-    height:             dims.pageH,
-    size:               'fixed',
-    showCover:          false,
-    drawShadow:         true,
-    flippingTime:       520,
-    usePortrait:        dims.mobile,
-    startZIndex:        0,
-    autoSize:           false,
-    maxShadowOpacity:   0.28,
+    width:             dims.pageW,
+    height:            dims.pageH,
+    size:              'fixed',
+    showCover:         false,
+    drawShadow:        true,
+    flippingTime:      500,
+    usePortrait:       dims.mobile,
+    startZIndex:       0,
+    autoSize:          false,
+    maxShadowOpacity:  0.25,
     mobileScrollSupport: false,
-    clickEventForward:  true,
-    swipeDistance:      40,
+    clickEventForward: true,
+    swipeDistance:     38,
   });
-
   book.loadFromHTML(document.querySelectorAll('.page'));
 
   var total   = book.getPageCount();
   var counter = document.getElementById('page-counter');
   var btnPrev = document.getElementById('btn-prev');
   var btnNext = document.getElementById('btn-next');
+  var progBar = document.getElementById('progress-bar');
+
+  /* ── Build TOC from .pg-ch pages ── */
+  var tocPanel = document.getElementById('toc-panel');
+  var tocToggle = document.getElementById('toc-toggle');
+  var sections = [];  /* [{pageIdx, label, sub}] */
+
+  document.querySelectorAll('.page').forEach(function(pg, idx) {
+    if (pg.querySelector('.pg-ch')) {
+      var lbl = pg.querySelector('.ch-lbl');
+      var sub = pg.querySelector('.ch-sub');
+      sections.push({
+        pageIdx: idx,
+        label: lbl ? lbl.textContent.trim() : '',
+        sub:   sub ? sub.textContent.trim() : ''
+      });
+    }
+  });
+
+  if (tocPanel && sections.length > 0) {
+    var h4 = document.createElement('h4');
+    h4.textContent = 'Contents';
+    tocPanel.appendChild(h4);
+    sections.forEach(function(s, si) {
+      var a = document.createElement('a');
+      a.className = 'toc-item';
+      a.dataset.si = si;
+      var pgSpan = '<span class="toc-pg">' + (s.pageIdx + 1) + '</span>';
+      var subSpan = s.sub ? '<span class="toc-sub">' + s.sub + '</span>' : '';
+      a.innerHTML = pgSpan + s.label + subSpan;
+      a.addEventListener('click', function() {
+        book.flip(s.pageIdx);
+        if (window.innerWidth < 1100) closeToc();
+      });
+      tocPanel.appendChild(a);
+    });
+  }
+
+  function openToc()  { tocPanel && tocPanel.classList.add('open'); tocToggle && tocToggle.classList.add('active'); }
+  function closeToc() { tocPanel && tocPanel.classList.remove('open'); tocToggle && tocToggle.classList.remove('active'); }
+  if (tocToggle) {
+    tocToggle.addEventListener('click', function() {
+      tocPanel.classList.contains('open') ? closeToc() : openToc();
+    });
+  }
+
+  /* ── Section label ── */
+  function currentSection(pageIdx) {
+    var s = sections[0] ? sections[0].label : '';
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].pageIdx <= pageIdx) s = sections[i].label;
+      else break;
+    }
+    return s;
+  }
+
+  function updateTocHighlight(pageIdx) {
+    if (!tocPanel) return;
+    var cur = -1;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].pageIdx <= pageIdx) cur = i;
+      else break;
+    }
+    tocPanel.querySelectorAll('.toc-item').forEach(function(el, i) {
+      el.classList.toggle('current', i === cur);
+    });
+    /* Scroll active item into view */
+    var active = tocPanel.querySelector('.toc-item.current');
+    if (active) {
+      var panelTop = tocPanel.scrollTop;
+      var panelBot = panelTop + tocPanel.clientHeight;
+      var itemTop  = active.offsetTop;
+      var itemBot  = itemTop + active.clientHeight;
+      if (itemTop < panelTop || itemBot > panelBot) {
+        tocPanel.scrollTop = itemTop - tocPanel.clientHeight / 2;
+      }
+    }
+  }
+
+  /* ── Tick: counter + progress + TOC highlight ── */
   function tick() {
     var cur = book.getCurrentPageIndex();
     var perView = dims.mobile ? 1 : 2;
-    counter.textContent = (cur + 1) + '\u2009/\u2009' + total;
+    var secLabel = currentSection(cur);
+    var dispLabel = secLabel.length > 18 ? secLabel.substring(0,17) + '\u2026' : secLabel;
+    counter.textContent = dispLabel + '\u2002\u00b7\u2002' + (cur + 1) + '\u2009/\u2009' + total;
     btnPrev.disabled = (cur === 0);
     btnNext.disabled = (cur >= total - perView);
+    /* Progress bar */
+    if (progBar) {
+      var pct = total <= 1 ? 100 : (cur / (total - 1)) * 100;
+      progBar.style.width = pct + '%';
+    }
+    updateTocHighlight(cur);
   }
+
   book.on('flip', tick);
   book.on('changeState', tick);
   tick();
+
   btnPrev.addEventListener('click', function() { book.flipPrev(); });
   btnNext.addEventListener('click', function() { book.flipNext(); });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   book.flipPrev();
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  book.flipNext();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { book.flipPrev(); }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  { book.flipNext(); }
+    if (e.key === 'Escape') closeToc();
   });
+
   var hint = document.getElementById('nav-hint');
   if (hint) {
     setTimeout(function() { hint.classList.add('gone'); }, 3500);

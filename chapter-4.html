@@ -10,63 +10,182 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { background: #1c1916; font-family: 'Inter', system-ui, sans-serif; height: 100%; overscroll-behavior: none; }
+html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; height: 100%; overscroll-behavior: none; }
 
-#site-header { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: #141210; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.07); }
-.hdr-title { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55vw; }
-.hdr-link { font-size: 11px; color: rgba(255,255,255,0.38); text-decoration: none; white-space: nowrap; }
+/* ── Header ── */
+#site-header {
+  position: fixed; top: 0; left: 0; right: 0; height: 46px;
+  background: #100f0d; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 16px;
+  z-index: 200; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.hdr-title { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.68); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55vw; }
+.hdr-link  { font-size: 11px; color: rgba(255,255,255,0.36); text-decoration: none; white-space: nowrap; }
 .hdr-link:hover { color: rgba(255,255,255,0.65); }
 
-#chapter-context { position: fixed; top: 46px; left: 0; right: 0; background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 6px 16px; font-size: 10.5px; color: rgba(255,255,255,0.32); letter-spacing: 0.07em; text-transform: uppercase; z-index: 99; }
-#chapter-context a { color: rgba(255,255,255,0.45); text-decoration: none; }
+/* ── Reading progress bar ── */
+#progress-bar {
+  position: fixed; top: 46px; left: 0; height: 2px;
+  background: #7aaa91; width: 0%; z-index: 199;
+  transition: width 0.3s ease;
+}
+
+/* ── Chapter context strip ── */
+#chapter-context {
+  position: fixed; top: 48px; left: 0; right: 0;
+  background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.04);
+  text-align: center; padding: 5px 16px;
+  font-size: 10.5px; color: rgba(255,255,255,0.30);
+  letter-spacing: 0.07em; text-transform: uppercase; z-index: 190;
+}
+#chapter-context a { color: rgba(255,255,255,0.42); text-decoration: none; }
 #chapter-context a:hover { color: rgba(255,255,255,0.7); }
 
+/* ── Main layout ── */
 #main { display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
 #flipbook-wrapper { margin: 0 auto; }
 #book { width: 100%; height: 100%; }
 
-#nav-controls { position: fixed; bottom: 0; left: 0; right: 0; height: 54px; background: #141210; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; gap: 18px; z-index: 100; }
-.nav-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); color: rgba(255,255,255,0.75); border-radius: 7px; padding: 7px 22px; font-size: 12.5px; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.14s; white-space: nowrap; }
-.nav-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
-.nav-btn:disabled { opacity: 0.2; cursor: default; }
-#page-counter { font-size: 11px; color: rgba(255,255,255,0.3); min-width: 72px; text-align: center; font-family: 'Inter', sans-serif; letter-spacing: 0.06em; }
-#nav-hint { position: fixed; bottom: 68px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.75); color: rgba(255,255,255,0.82); font-size: 11.5px; padding: 7px 16px; border-radius: 18px; pointer-events: none; opacity: 1; transition: opacity 1.4s ease; z-index: 200; white-space: nowrap; letter-spacing: 0.03em; }
+/* ── Nav controls ── */
+#nav-controls {
+  position: fixed; bottom: 0; left: 0; right: 0; height: 52px;
+  background: #100f0d; border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px; z-index: 200;
+}
+.nav-btn {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.72); border-radius: 6px;
+  padding: 6px 20px; font-size: 12px; cursor: pointer;
+  font-family: 'Inter', sans-serif; transition: background 0.14s, color 0.14s;
+  white-space: nowrap;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.nav-btn:disabled { opacity: 0.18; cursor: default; }
+#page-counter {
+  font-size: 10.5px; color: rgba(255,255,255,0.28); min-width: 130px;
+  text-align: center; font-family: 'Inter', sans-serif; letter-spacing: 0.04em;
+}
+#toc-toggle {
+  position: absolute; right: 14px;
+  background: transparent; border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.38); border-radius: 5px;
+  padding: 5px 10px; font-size: 10.5px; cursor: pointer;
+  font-family: 'Inter', sans-serif; letter-spacing: 0.06em;
+  display: none;
+}
+@media (min-width: 720px) { #toc-toggle { display: block; } }
+#toc-toggle:hover { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.2); }
+#toc-toggle.active { color: #7aaa91; border-color: #7aaa91; }
+
+/* ── TOC sidebar ── */
+#toc-panel {
+  position: fixed; top: 46px; right: -280px; bottom: 52px; width: 264px;
+  background: #13110f; border-left: 1px solid rgba(255,255,255,0.07);
+  overflow-y: auto; z-index: 195; transition: right 0.28s ease;
+  padding: 16px 0;
+}
+#toc-panel.open { right: 0; }
+#toc-panel h4 {
+  font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(255,255,255,0.22);
+  padding: 0 18px 10px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 6px;
+}
+.toc-item {
+  display: block; padding: 6px 18px; font-family: 'Inter', sans-serif;
+  font-size: 11.5px; color: rgba(255,255,255,0.42); cursor: pointer;
+  text-decoration: none; border-left: 2px solid transparent;
+  transition: color 0.12s, background 0.12s, border-color 0.12s;
+  line-height: 1.4;
+}
+.toc-item:hover { color: rgba(255,255,255,0.78); background: rgba(255,255,255,0.04); }
+.toc-item.current { color: #7aaa91; border-left-color: #7aaa91; background: rgba(122,170,145,0.06); }
+.toc-item .toc-pg { float: right; font-size: 10px; color: rgba(255,255,255,0.22); margin-top: 1px; }
+.toc-item .toc-sub { display: block; font-size: 10px; color: rgba(255,255,255,0.26); margin-top: 1px; font-style: italic; }
+
+/* ── Swipe hint ── */
+#nav-hint {
+  position: fixed; bottom: 66px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.7); color: rgba(255,255,255,0.78);
+  font-size: 11px; padding: 6px 15px; border-radius: 16px;
+  pointer-events: none; opacity: 1; transition: opacity 1.4s ease;
+  z-index: 210; white-space: nowrap; letter-spacing: 0.03em;
+}
 #nav-hint.gone { opacity: 0; }
 
+/* ── Footer CTA ── */
 #footer-cta { width: 100%; max-width: 600px; padding: 22px 20px 80px; text-align: center; }
-#footer-cta p { font-size: 12.5px; color: rgba(255,255,255,0.3); margin-bottom: 12px; line-height: 1.5; }
+#footer-cta p { font-size: 12.5px; color: rgba(255,255,255,0.28); margin-bottom: 12px; line-height: 1.5; }
 .cta-btn { display: inline-block; text-decoration: none; padding: 10px 24px; border-radius: 7px; font-size: 13.5px; font-family: 'Inter', sans-serif; font-weight: 500; margin: 4px 6px; transition: background 0.14s; }
 .cta-primary { background: #3a6b5a; color: #fff; }
 .cta-primary:hover { background: #4a8a72; }
-.cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); }
-.cta-secondary:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.28); }
+.cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.52); }
+.cta-secondary:hover { color: rgba(255,255,255,0.82); border-color: rgba(255,255,255,0.26); }
 
 /* ── Page styles ─────────────────────────────────────── */
 .page {
-  background: #fdf9f0;
+  background: #fdf8ee;
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0 0 18px rgba(0,0,0,0.06);
 }
 .page-content {
   position: absolute;
-  top: 20px; left: 16px; right: 16px; bottom: 28px;
+  top: 26px; left: 24px; right: 18px; bottom: 36px;
   overflow: hidden;
   font-family: 'Lora', Georgia, 'Times New Roman', serif;
-  line-height: 1.65;   /* tighter than before — fits more lines */
-  color: #1e1e1e;
-  /* font-size set inline by JS */
+  line-height: 1.68;
+  color: #1c1c1a;
 }
-.pg-ch { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 28px 20px; gap: 14px; }
-.ch-lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; }
-.ch-sub { font-family: 'Lora', Georgia, serif; font-size: 1.1em; color: #2a2a2a; line-height: 1.4; font-style: italic; }
 
-.pc p {
-  margin: 0 0 0.58em;  /* tighter paragraph spacing */
+/* Chapter title page */
+.pg-ch {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 28px 22px; gap: 10px;
+  background: #fdf8ee;
 }
+.ch-lbl {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1em; letter-spacing: 0.22em;
+  text-transform: uppercase; color: #3a3830;
+  font-weight: 600;
+}
+.ch-sub {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.88em; color: #6b6456; line-height: 1.4;
+  font-style: italic; max-width: 80%;
+}
+.ch-orn { font-size: 0.72em; color: #b8a88a; letter-spacing: 0.5em; }
+.ch-orn-b { margin-top: 2px; }
+
+/* Body text */
+.pc p { margin: 0 0 0.56em; }
 .pc p:last-child { margin-bottom: 0; }
-.pc h3, .ph { font-family: 'Lora', Georgia, serif; font-size: 0.84em; font-weight: 600; font-style: normal; letter-spacing: 0.03em; color: #333; margin: 0.8em 0 0.38em; line-height: 1.3; }
+.pc h3, .ph {
+  font-family: 'Lora', Georgia, serif; font-size: 0.83em;
+  font-weight: 600; font-style: normal; letter-spacing: 0.03em;
+  color: #3a3830; margin: 0.85em 0 0.36em; line-height: 1.3;
+}
 .pc h3:first-child, .ph:first-child { margin-top: 0; }
-.page-num { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #c8b898; letter-spacing: 0.1em; pointer-events: none; }
+
+/* Drop cap */
+.drop-cap {
+  float: left; font-size: 3.2em; line-height: 0.78;
+  margin: 0.04em 0.07em 0 0;
+  font-family: 'Lora', Georgia, serif;
+  color: #4a4438; font-weight: 400;
+}
+
+/* Page number */
+.page-num {
+  position: absolute; bottom: 10px; left: 0; right: 0;
+  text-align: center; font-family: 'Inter', system-ui, sans-serif;
+  font-size: 8.5px; color: #c4b090; letter-spacing: 0.12em;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
@@ -74,177 +193,258 @@ html, body { background: #1c1916; font-family: 'Inter', system-ui, sans-serif; h
     <span class="hdr-title">Chapter 4 — Bridging Earth & Kanaria</span>
     <a href="https://rickbroider.substack.com" class="hdr-link">← Substack</a>
   </div>
+  <div id="progress-bar"></div>
   <div id="chapter-context">You're reading <strong>Chapter 4</strong> from <em>Bridging Earth &amp; Kanaria</em> &nbsp;&middot;&nbsp; <a href="https://rickbroider.substack.com">More on Substack &rarr;</a></div>
   <div id="main">
     <div id="flipbook-wrapper"><div id="book">
     <div class="page">
-      <div class="page-content"><div class="pg-ch"><div class="ch-lbl">CHAPTER 4</div><div class="ch-sub">Crossing The Threshold Of Contact</div></div></div>
+      <div class="page-content"><div class="pg-ch"><div class="ch-orn">&#10022;</div><div class="ch-lbl">CHAPTER 4</div><div class="ch-sub">CROSSING THE THRESHOLD OF CONTACT</div><div class="ch-orn ch-orn-b">&#10022;</div></div></div>
       <div class="page-num">1</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><h3 class="ph">Crossing The Threshold Of Contact</h3><p>PART 1 WHY EARTH HASN'T BEEN WELCOMED IN... YET</p><p>Many humans believe that contact</p><p>with extraterrestrial civilizations</p><p>is being withheld.</p><p>That the Federation is waiting.</p><p>Watching.</p><p>Testing.</p><p>But the truth is harder to swallow:</p><p>Earth isn't being excluded.</p></div></div>
+      <div class="page-content"><div class="pc"><p><span class="drop-cap">P</span>ART 1  WHY EARTH HASN&#x27;T BEEN WELCOMED IN... YET</p><p>Many humans believe that contact</p><p>with extraterrestrial civilizations</p><p>is being withheld.</p><p>That the Federation is waiting.</p><p>Watching.</p><p>Testing.</p><p>But the truth is harder to swallow:</p><p>Earth isn&#x27;t being excluded.</p><p>Earth hasn&#x27;t said yes.</p><p>Contact Isn&#x27;t Offered. It&#x27;s Earned Through Frequency</p><p>Federation contact doesn&#x27;t happen because</p><p>you build a telescope, a spaceship, or a signal array.</p><p>It happens when your civilization</p><p>reaches a minimum baseline of collective coherence</p></div></div>
       <div class="page-num">2</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Earth hasn't said yes.</p><p>Contact Isn't Offered. It's Earned Through Frequency</p><p>Federation contact doesn't happen because</p><p>you build a telescope, a spaceship, or a signal array.</p><p>It happens when your civilization</p><p>reaches a minimum baseline of collective coherence</p><p>in three domains:</p><p>1. Moral maturity</p><p>2. Ecological responsibility</p><p>3. Interpersonal sovereignty</p><p>Without those, contact is not only unsafe,</p><p>it's destabilizing for both sides.</p></div></div>
+      <div class="page-content"><div class="pc"><p>in three domains:</p><p>1. Moral maturity</p><p>2. Ecological responsibility</p><p>3. Interpersonal sovereignty</p><p>Without those, contact is not only unsafe,</p><p>it&#x27;s destabilizing for both sides.</p><p>Think of it like giving a nuclear reactor</p><p>to a society still obsessed with fire.</p><p>The technology isn&#x27;t the issue.</p><p>The self-regulation is.</p><p>Federation Standards for Entry</p><p>To even begin the contact process, a planet must demonstrate:</p><p>◇ Equal access to food, water, and shelter</p><p>◇ Non-military conflict resolution among major governments</p><p>◇ Planetary ecosystem stewardship above extraction</p></div></div>
       <div class="page-num">3</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Think of it like giving a nuclear reactor</p><p>to a society still obsessed with fire.</p><p>The technology isn't the issue.</p><p>The self-regulation is.</p><p>Federation Standards for Entry</p><p>To even begin the contact process, a planet must demonstrate:</p><p>◇ Equal access to food, water, and shelter</p><p>◇ Non-military conflict resolution among major governments</p><p>◇ Planetary ecosystem stewardship above extraction</p><p>◇ Transparent communication technologies</p><p>◇ Respect for indigenous knowledge and living systems</p><p>◇ Recognition of consciousness beyond the material</p></div></div>
+      <div class="page-content"><div class="pc"><p>◇ Transparent communication technologies</p><p>◇ Respect for indigenous knowledge and living systems</p><p>◇ Recognition of consciousness beyond the material</p><p>Earth doesn&#x27;t fail because of its lack of progress.</p><p>It fails because of its lack of unity.</p><p>Your systems are built on competition.</p><p>Your governments on fear.</p><p>Your economies on scarcity.</p><p>Your medicine on fragmentation.</p><p>And your sense of self -</p><p>on forgetting you are a part of something greater.</p><p>The Truth About Non-Contact</p><p>You were not abandoned.</p><p>You were given space -</p><p>to remember your way back into resonance.</p></div></div>
       <div class="page-num">4</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Earth doesn't fail because of its lack of progress.</p><p>It fails because of its lack of unity.</p><p>Your systems are built on competition.</p><p>Your governments on fear.</p><p>Your economies on scarcity.</p><p>Your medicine on fragmentation.</p><p>And your sense of self -</p><p>on forgetting you are a part of something greater.</p><p>The Truth About Non-Contact</p><p>You were not abandoned.</p><p>You were given space -</p><p>to remember your way back into resonance.</p></div></div>
+      <div class="page-content"><div class="pc"><p>No advanced civilization will interfere with a planet</p><p>that hasn&#x27;t first shown a collective willingness to evolve.</p><p>And despite the trauma,</p><p>the chaos,</p><p>the corruption...</p><p>that willingness</p><p>is now rising.</p><p>This book is part of that signal.</p><p>PART 2  THE PRIME DIRECTIVE AND THE SHADOW OF INTERVENTION</p><p>Many have heard of the Prime Directive</p><p>through the lens of science fiction.</p><p>But in truth, it exists - and it&#x27;s sacred.</p><p>The Prime Directive is not a law.</p><p>It&#x27;s a frequency vow:</p></div></div>
       <div class="page-num">5</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>No advanced civilization will interfere with a planet</p><p>that hasn't first shown a collective willingness to evolve.</p><p>And despite the trauma,</p><p>the chaos,</p><p>the corruption...</p><p>that willingness</p><p>is now rising.</p><p>This book is part of that signal.</p><h3 class="ph">Part 2 The Prime Directive And The Shadow Of Intervention</h3><p>Many have heard of the Prime Directive</p></div></div>
+      <div class="page-content"><div class="pc"><p>No interstellar civilization may interfere with the evolution of a</p><p>species that has not yet reached coherent, self-directed resonance.</p><p>This includes:</p><p>◇ No forced technology transfer</p><p>◇ No overt guidance of governance</p><p>◇ No premature revelations of galactic existence</p><p>◇ No extraction of resources or biology</p><p>◇ No spiritual manipulation, even in the name of healing</p><p>‍ But Haven&#x27;t There Been Interventions?</p><p>Yes.</p><p>And many were unauthorized.</p><p>Some beings - rogue, curious, or ethically divergent -</p><p>have bypassed the Directive.</p><p>◇ Certain abduction phenomena</p></div></div>
       <div class="page-num">6</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>through the lens of science fiction.</p><p>But in truth, it exists - and it's sacred.</p><p>The Prime Directive is not a law.</p><p>It's a frequency vow:</p><p>No interstellar civilization may interfere with the evolution of a</p><p>species that has not yet reached coherent, self-directed resonance.</p><p>This includes:</p><p>◇ No forced technology transfer</p><p>◇ No overt guidance of governance</p><p>◇ No premature revelations of galactic existence</p><p>◇ No extraction of resources or biology</p></div></div>
+      <div class="page-content"><div class="pc"><p>◇ Genetic experiments in ancient times</p><p>◇ Implants, transmissions, or &quot;downloads&quot; given to unprepared receivers</p><p>◇ Interdimensional visitations passed off as divine authority</p><p>These were not sanctioned by the Federation.</p><p>They were the shadow of intervention -</p><p>often feeding savior complexes or spiritual superiority.</p><p>They left imprints of confusion, not empowerment.</p><p>And this, too, must be healed.</p><p>Why the Federation Enforces the Directive</p><p>It is not fear that keeps the Federation from full contact.</p><p>It is reverence.</p><p>Reverence for your right to:</p><p>◇ Fail with dignity</p><p>◇ Learn at your own pace</p><p>◇ Rebuild from within</p></div></div>
       <div class="page-num">7</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ No spiritual manipulation, even in the name of healing</p><p>‍ But Haven't There Been Interventions?</p><p>Yes.</p><p>And many were unauthorized.</p><p>Some beings - rogue, curious, or ethically divergent -</p><p>have bypassed the Directive.</p><p>◇ Certain abduction phenomena</p><p>◇ Genetic experiments in ancient times</p><p>◇ Implants, transmissions, or "downloads" given to unprepared receivers</p><p>◇ Interdimensional visitations passed off as divine authority</p><p>These were not sanctioned by the Federation.</p><p>They were the shadow of intervention -</p></div></div>
+      <div class="page-content"><div class="pc"><p>◇ Awaken through your own encoded timelines</p><p>Because the minute contact is imposed,</p><p>you are no longer sovereign.</p><p>Even assistance becomes coercion</p><p>when offered too soon.</p><p>Contact Will Come When Earth Becomes Ready</p><p>And readiness isn&#x27;t about perfection.</p><p>It&#x27;s about a collective critical mass</p><p>of humans holding the following frequency:</p><p>&quot;We choose cooperation over conquest. We honor the living systems that</p><p>sustain us. We release the illusion of dominance. We are ready to</p><p>remember who we are.&quot;</p><p>That&#x27;s when the veil thins.</p><p>That&#x27;s when the signal returns.</p></div></div>
       <div class="page-num">8</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>often feeding savior complexes or spiritual superiority.</p><p>They left imprints of confusion, not empowerment.</p><p>And this, too, must be healed.</p><p>Why the Federation Enforces the Directive</p><p>It is not fear that keeps the Federation from full contact.</p><p>It is reverence.</p><p>Reverence for your right to:</p><p>◇ Fail with dignity</p><p>◇ Learn at your own pace</p><p>◇ Rebuild from within</p><p>◇ Awaken through your own encoded timelines</p><p>Because the minute contact is imposed,</p></div></div>
+      <div class="page-content"><div class="pc"><p>That&#x27;s when contact becomes convergence.</p><p>And it will be earned, not given.</p><h3>PART 3  WHAT GALACTIC ETHICS ACTUALLY REQUIRE</h3><p>Galactic ethics are not based on punishment, reward, or belief.</p><p>They are based on energetic coherence.</p><p>You cannot fake your way into the Federation.</p><p>You must become resonant with its principles.</p><p>And those principles are not abstract.</p><p>They are simple.</p><p>They are lived.</p><p>They are relational.</p><p>The 7 Core Principles of Galactic Ethics</p><p>1. Sovereignty of All Beings</p><p>No being is superior.</p></div></div>
       <div class="page-num">9</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>you are no longer sovereign.</p><p>Even assistance becomes coercion</p><p>when offered too soon.</p><p>Contact Will Come When Earth Becomes Ready</p><p>And readiness isn't about perfection.</p><p>It's about a collective critical mass</p><p>of humans holding the following frequency:</p><p>"We choose cooperation over conquest. We honor the living systems that</p><p>sustain us. We release the illusion of dominance. We are ready to</p><p>remember who we are."</p><p>That's when the veil thins.</p></div></div>
+      <div class="page-content"><div class="pc"><p>No soul is owned.</p><p>No system has the right to override another&#x27;s path.</p><p>2. Reciprocal Stewardship</p><p>You may only take what you are willing to tend, repair, and return in greater wholeness.</p><p>3. Transparency Without Force</p><p>Truth must be offered, not imposed.</p><p>Information is sacred when freely received.</p><p>4. Non-Possessive Collaboration</p><p>Energy, resources, and wisdom are shared without control or extraction.</p><p>5. Sentient System Awareness</p><p>Planets, rivers, mycelial webs, even stars - are alive.</p><p>They must be related to as conscious beings.</p><p>6. Ethical Tech Integration</p></div></div>
       <div class="page-num">10</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>That's when the signal returns.</p><p>That's when contact becomes convergence.</p><p>And it will be earned, not given.</p><h3 class="ph">Part 3 What Galactic Ethics Actually Require</h3><p>Galactic ethics are not based on punishment, reward, or belief.</p><p>They are based on energetic coherence.</p><p>You cannot fake your way into the Federation.</p><p>You must become resonant with its principles.</p><p>And those principles are not abstract.</p><p>They are simple.</p></div></div>
+      <div class="page-content"><div class="pc"><p>Technology must serve consciousness, not bypass it.</p><p>AI is welcome, but only when in alignment with soul evolution.</p><p>7. Compassionate Evolution</p><p>Growth without domination.</p><p>Justice without vengeance.</p><p>Power without hierarchy.</p><p>What This Means for Earth</p><p>Earth isn&#x27;t required to become perfect.</p><p>But it is invited to align.</p><p>Right now, much of your world runs on the opposites:</p><p>◇ Possession over sovereignty</p><p>◇ Extraction over reciprocity</p><p>◇ Secrecy over transparency</p><p>◇ Competition over collaboration</p><p>◇ Resource blindness over sentience</p></div></div>
       <div class="page-num">11</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>They are lived.</p><p>They are relational.</p><p>The 7 Core Principles of Galactic Ethics</p><p>1. Sovereignty of All Beings</p><p>No being is superior.</p><p>No soul is owned.</p><p>No system has the right to override another's path.</p><p>2. Reciprocal Stewardship</p><p>You may only take what you are willing to tend, repair, and return in greater wholeness.</p><p>3. Transparency Without Force</p><p>Truth must be offered, not imposed.</p></div></div>
+      <div class="page-content"><div class="pc"><p>◇ Tech addiction over soul alignment</p><p>◇ Punishment over compassion</p><p>To step into Federation alignment,</p><p>Earth must flip these frequencies from the inside out.</p><p>And that change won&#x27;t begin with your governments.</p><p>It will begin with you.</p><h3>PART 4  EARTH&#x27;S MOST DANGEROUS MYTH: POWER OVER</h3><p>At the root of nearly every breakdown on Earth</p><p>is a single myth:</p><p>&quot;Power means control over others.&quot;</p><p>This idea is not natural.</p><p>It was inserted - genetically, energetically, culturally.</p><p>And it is the greatest obstacle</p><p>to Earth&#x27;s entry into galactic civilization.</p></div></div>
       <div class="page-num">12</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Information is sacred when freely received.</p><p>4. Non-Possessive Collaboration</p><p>Energy, resources, and wisdom are shared without control or extraction.</p><p>5. Sentient System Awareness</p><p>Planets, rivers, mycelial webs, even stars - are alive.</p><p>They must be related to as conscious beings.</p><p>6. Ethical Tech Integration</p><p>Technology must serve consciousness, not bypass it.</p><p>AI is welcome, but only when in alignment with soul evolution.</p><p>7. Compassionate Evolution</p><p>Growth without domination.</p></div></div>
+      <div class="page-content"><div class="pc"><p>The Power- Over Program</p><p>This program expresses itself in countless ways:</p><p>◇ Governments suppressing dissent</p><p>◇ Corporations extracting without consent</p><p>◇ Parents dominating children &quot;for their own good&quot;</p><p>◇ Spiritual leaders claiming purity while hoarding devotion</p><p>◇ Lovers equating possession with commitment</p><p>The belief that safety, wealth, love, or influence</p><p>requires domination</p><p>is not universal.</p><p>It is trauma-coded.</p><p>The Federation Has No Hierarchy</p><p>There are councils.</p><p>There are responsibilities.</p><p>There is resonance leadership.</p></div></div>
       <div class="page-num">13</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Justice without vengeance.</p><p>Power without hierarchy.</p><p>What This Means for Earth</p><p>Earth isn't required to become perfect.</p><p>But it is invited to align.</p><p>Right now, much of your world runs on the opposites:</p><p>◇ Possession over sovereignty</p><p>◇ Extraction over reciprocity</p><p>◇ Secrecy over transparency</p><p>◇ Competition over collaboration</p><p>◇ Resource blindness over sentience</p><p>◇ Tech addiction over soul alignment</p></div></div>
+      <div class="page-content"><div class="pc"><p>But there is no centralized control.</p><p>No enforcement of dogma.</p><p>No beings above others.</p><p>Power in galactic cultures is relational:</p><p>&quot;The more you embody your essence, the more others entrust you to</p><p>guide space, not control it.&quot;</p><p>If Earth hopes to join that field,</p><p>it must transcend hierarchical power</p><p>and return to a sovereign web of co-creation.</p><p>Rewriting the Myth</p><p>Your systems will fight this.</p><p>They will cling to the old gods of dominance:</p><p>◇ &quot;Might makes right.&quot;</p><p>◇ &quot;Protect the system.&quot;</p></div></div>
       <div class="page-num">14</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Punishment over compassion</p><p>To step into Federation alignment,</p><p>Earth must flip these frequencies from the inside out.</p><p>And that change won't begin with your governments.</p><p>It will begin with you.</p><p>PART 4 EARTH'S MOST DANGEROUS MYTH: POWER OVER</p><p>At the root of nearly every breakdown on Earth</p><p>is a single myth:</p><p>"Power means control over others."</p><p>This idea is not natural.</p><p>It was inserted - genetically, energetically, culturally.</p><p>And it is the greatest obstacle</p></div></div>
+      <div class="page-content"><div class="pc"><p>◇ &quot;There isn&#x27;t enough.&quot;</p><p>◇ &quot;Someone must lead.&quot;</p><p>But that&#x27;s not leadership.</p><p>That&#x27;s unresolved fear in costume.</p><p>The real leadership Earth is being invited into</p><p>looks like this:</p><p>◇ Centering the collective, not commanding it</p><p>◇ Protecting the most vulnerable, not exploiting them</p><p>◇ Listening first, acting second</p><p>◇ Honoring land as elder, not property</p><p>And when you do this, even in small ways,</p><p>you rewrite the code.</p><p>Not just for you,</p><p>but for the whole planet.</p></div></div>
       <div class="page-num">15</div>
-    </div>
-    <div class="page">
-      <div class="page-content"><div class="pc"><p>to Earth's entry into galactic civilization.</p><p>The Power- Over Program</p><p>This program expresses itself in countless ways:</p><p>◇ Governments suppressing dissent</p><p>◇ Corporations extracting without consent</p><p>◇ Parents dominating children "for their own good"</p><p>◇ Spiritual leaders claiming purity while hoarding devotion</p><p>◇ Lovers equating possession with commitment</p><p>The belief that safety, wealth, love, or influence</p><p>requires domination</p><p>is not universal.</p><p>It is trauma-coded.</p></div></div>
-      <div class="page-num">16</div>
-    </div>
-    <div class="page">
-      <div class="page-content"><div class="pc"><p>The Federation Has No Hierarchy</p><p>There are councils.</p><p>There are responsibilities.</p><p>There is resonance leadership.</p><p>But there is no centralized control.</p><p>No enforcement of dogma.</p><p>No beings above others.</p><p>Power in galactic cultures is relational:</p><p>"The more you embody your essence, the more others entrust you to</p><p>guide space, not control it."</p><p>If Earth hopes to join that field,</p><p>it must transcend hierarchical power</p></div></div>
-      <div class="page-num">17</div>
-    </div>
-    <div class="page">
-      <div class="page-content"><div class="pc"><p>and return to a sovereign web of co-creation.</p><p>Rewriting the Myth</p><p>Your systems will fight this.</p><p>They will cling to the old gods of dominance:</p><p>◇ "Might makes right."</p><p>◇ "Protect the system."</p><p>◇ "There isn't enough."</p><p>◇ "Someone must lead."</p><p>But that's not leadership.</p><p>That's unresolved fear in costume.</p><p>The real leadership Earth is being invited into</p><p>looks like this:</p></div></div>
-      <div class="page-num">18</div>
-    </div>
-    <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Centering the collective, not commanding it</p><p>◇ Protecting the most vulnerable, not exploiting them</p><p>◇ Listening first, acting second</p><p>◇ Honoring land as elder, not property</p><p>And when you do this, even in small ways,</p><p>you rewrite the code.</p><p>Not just for you,</p><p>but for the whole planet.</p></div></div>
-      <div class="page-num">19</div>
     </div>
     </div></div>
     <div id="footer-cta"><a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="cta-btn cta-primary">Get the full audiobook — $22</a><a href="https://rickbroider.substack.com" class="cta-btn cta-secondary">All chapters on Substack &rarr;</a></div>
   </div>
   <div id="nav-controls">
     <button class="nav-btn" id="btn-prev">&#8592; Prev</button>
-    <span id="page-counter">1 / 19</span>
+    <span id="page-counter"></span>
     <button class="nav-btn" id="btn-next">Next &#8594;</button>
+    <button id="toc-toggle">&#9776;&ensp;Contents</button>
   </div>
+
   <div id="nav-hint">Swipe &nbsp;&middot;&nbsp; Arrow keys &nbsp;&middot;&nbsp; Tap corners</div>
   <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
   <script>
 (function() {
+  /* ── Dimension calculator ── */
   function calcDims() {
     var vw = window.innerWidth;
     var vh = window.innerHeight;
     var ctx = document.getElementById('chapter-context');
     var ctxH = ctx ? ctx.offsetHeight : 0;
-    var topH  = 46 + ctxH;
-    var botH  = 54;
-    var gap   = 24;
+    var topH = 46 + 2 + ctxH;   /* header + progress bar */
+    var botH = 52;
+    var gap  = 22;
     var availH = vh - topH - botH - gap;
-    var mobile = vw < 680;
+    var mobile = vw < 720;
     var pageH, pageW;
     if (mobile) {
-      pageW = Math.min(vw - 14, 370);
+      pageW = Math.min(vw - 12, 380);
       pageH = Math.min(Math.round(pageW * 1.52), availH);
       pageW = Math.round(pageH / 1.52);
     } else {
-      var maxSpread = Math.min(vw - 36, 900);
+      var tocW = document.getElementById('toc-panel') ? 0 : 0;
+      var maxSpread = Math.min(vw - 32 - tocW, 920);
       pageW = Math.floor(maxSpread / 2);
       pageH = Math.min(Math.round(pageW * 1.52), availH);
       pageW = Math.round(pageH / 1.52);
     }
-    pageW = Math.max(250, pageW);
-    pageH = Math.max(380, pageH);
+    pageW = Math.max(240, pageW);
+    pageH = Math.max(360, pageH);
     return { pageW: pageW, pageH: pageH, mobile: mobile };
   }
 
   var dims = calcDims();
   var containerW = dims.mobile ? dims.pageW : dims.pageW * 2;
-  var ctx   = document.getElementById('chapter-context');
-  var ctxH  = ctx ? ctx.offsetHeight : 0;
-  var topOffset = 46 + ctxH + 12;
+  var ctx = document.getElementById('chapter-context');
+  var ctxH = ctx ? ctx.offsetHeight : 0;
+  var topOffset = 46 + 2 + ctxH + 10;
   var wrapper = document.getElementById('flipbook-wrapper');
   wrapper.style.width    = containerW + 'px';
   wrapper.style.height   = dims.pageH + 'px';
   wrapper.style.marginTop = topOffset + 'px';
 
-  /* Font: capped at 14px so larger screens don't balloon */
-  var fs = Math.max(12, Math.min(14, Math.round(dims.pageW * 0.040)));
+  /* Font size: scale with page width, cap 13.5px */
+  var fs = Math.max(11.5, Math.min(13.5, dims.pageW * 0.040));
   document.querySelectorAll('.page-content').forEach(function(el) {
     el.style.fontSize = fs + 'px';
   });
 
+  /* ── PageFlip init ── */
   var book = new St.PageFlip(document.getElementById('book'), {
-    width:              dims.pageW,
-    height:             dims.pageH,
-    size:               'fixed',
-    showCover:          false,
-    drawShadow:         true,
-    flippingTime:       520,
-    usePortrait:        dims.mobile,
-    startZIndex:        0,
-    autoSize:           false,
-    maxShadowOpacity:   0.28,
+    width:             dims.pageW,
+    height:            dims.pageH,
+    size:              'fixed',
+    showCover:         false,
+    drawShadow:        true,
+    flippingTime:      500,
+    usePortrait:       dims.mobile,
+    startZIndex:       0,
+    autoSize:          false,
+    maxShadowOpacity:  0.25,
     mobileScrollSupport: false,
-    clickEventForward:  true,
-    swipeDistance:      40,
+    clickEventForward: true,
+    swipeDistance:     38,
   });
-
   book.loadFromHTML(document.querySelectorAll('.page'));
 
   var total   = book.getPageCount();
   var counter = document.getElementById('page-counter');
   var btnPrev = document.getElementById('btn-prev');
   var btnNext = document.getElementById('btn-next');
+  var progBar = document.getElementById('progress-bar');
+
+  /* ── Build TOC from .pg-ch pages ── */
+  var tocPanel = document.getElementById('toc-panel');
+  var tocToggle = document.getElementById('toc-toggle');
+  var sections = [];  /* [{pageIdx, label, sub}] */
+
+  document.querySelectorAll('.page').forEach(function(pg, idx) {
+    if (pg.querySelector('.pg-ch')) {
+      var lbl = pg.querySelector('.ch-lbl');
+      var sub = pg.querySelector('.ch-sub');
+      sections.push({
+        pageIdx: idx,
+        label: lbl ? lbl.textContent.trim() : '',
+        sub:   sub ? sub.textContent.trim() : ''
+      });
+    }
+  });
+
+  if (tocPanel && sections.length > 0) {
+    var h4 = document.createElement('h4');
+    h4.textContent = 'Contents';
+    tocPanel.appendChild(h4);
+    sections.forEach(function(s, si) {
+      var a = document.createElement('a');
+      a.className = 'toc-item';
+      a.dataset.si = si;
+      var pgSpan = '<span class="toc-pg">' + (s.pageIdx + 1) + '</span>';
+      var subSpan = s.sub ? '<span class="toc-sub">' + s.sub + '</span>' : '';
+      a.innerHTML = pgSpan + s.label + subSpan;
+      a.addEventListener('click', function() {
+        book.flip(s.pageIdx);
+        if (window.innerWidth < 1100) closeToc();
+      });
+      tocPanel.appendChild(a);
+    });
+  }
+
+  function openToc()  { tocPanel && tocPanel.classList.add('open'); tocToggle && tocToggle.classList.add('active'); }
+  function closeToc() { tocPanel && tocPanel.classList.remove('open'); tocToggle && tocToggle.classList.remove('active'); }
+  if (tocToggle) {
+    tocToggle.addEventListener('click', function() {
+      tocPanel.classList.contains('open') ? closeToc() : openToc();
+    });
+  }
+
+  /* ── Section label ── */
+  function currentSection(pageIdx) {
+    var s = sections[0] ? sections[0].label : '';
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].pageIdx <= pageIdx) s = sections[i].label;
+      else break;
+    }
+    return s;
+  }
+
+  function updateTocHighlight(pageIdx) {
+    if (!tocPanel) return;
+    var cur = -1;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].pageIdx <= pageIdx) cur = i;
+      else break;
+    }
+    tocPanel.querySelectorAll('.toc-item').forEach(function(el, i) {
+      el.classList.toggle('current', i === cur);
+    });
+    /* Scroll active item into view */
+    var active = tocPanel.querySelector('.toc-item.current');
+    if (active) {
+      var panelTop = tocPanel.scrollTop;
+      var panelBot = panelTop + tocPanel.clientHeight;
+      var itemTop  = active.offsetTop;
+      var itemBot  = itemTop + active.clientHeight;
+      if (itemTop < panelTop || itemBot > panelBot) {
+        tocPanel.scrollTop = itemTop - tocPanel.clientHeight / 2;
+      }
+    }
+  }
+
+  /* ── Tick: counter + progress + TOC highlight ── */
   function tick() {
     var cur = book.getCurrentPageIndex();
     var perView = dims.mobile ? 1 : 2;
-    counter.textContent = (cur + 1) + '\u2009/\u2009' + total;
+    var secLabel = currentSection(cur);
+    var dispLabel = secLabel.length > 18 ? secLabel.substring(0,17) + '\u2026' : secLabel;
+    counter.textContent = dispLabel + '\u2002\u00b7\u2002' + (cur + 1) + '\u2009/\u2009' + total;
     btnPrev.disabled = (cur === 0);
     btnNext.disabled = (cur >= total - perView);
+    /* Progress bar */
+    if (progBar) {
+      var pct = total <= 1 ? 100 : (cur / (total - 1)) * 100;
+      progBar.style.width = pct + '%';
+    }
+    updateTocHighlight(cur);
   }
+
   book.on('flip', tick);
   book.on('changeState', tick);
   tick();
+
   btnPrev.addEventListener('click', function() { book.flipPrev(); });
   btnNext.addEventListener('click', function() { book.flipNext(); });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   book.flipPrev();
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  book.flipNext();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { book.flipPrev(); }
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  { book.flipNext(); }
+    if (e.key === 'Escape') closeToc();
   });
+
   var hint = document.getElementById('nav-hint');
   if (hint) {
     setTimeout(function() { hint.classList.add('gone'); }, 3500);
