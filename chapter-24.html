@@ -10,33 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body {
-  background: #1c1916;
-  font-family: 'Inter', system-ui, sans-serif;
-  height: 100%;
-  overscroll-behavior: none;
-}
-#site-header {
-  position: fixed; top: 0; left: 0; right: 0; height: 46px;
-  background: #141210; display: flex; align-items: center;
-  justify-content: space-between; padding: 0 16px;
-  z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-.hdr-title {
-  font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic;
-  color: rgba(255,255,255,0.7); white-space: nowrap; overflow: hidden;
-  text-overflow: ellipsis; max-width: 55vw;
-}
+html, body { background: #1c1916; font-family: 'Inter', system-ui, sans-serif; height: 100%; overscroll-behavior: none; }
+
+#site-header { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: #141210; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.hdr-title { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55vw; }
 .hdr-link { font-size: 11px; color: rgba(255,255,255,0.38); text-decoration: none; white-space: nowrap; }
 .hdr-link:hover { color: rgba(255,255,255,0.65); }
 
-#chapter-context {
-  position: fixed; top: 46px; left: 0; right: 0;
-  background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.05);
-  text-align: center; padding: 6px 16px; font-size: 10.5px;
-  color: rgba(255,255,255,0.32); letter-spacing: 0.07em;
-  text-transform: uppercase; z-index: 99;
-}
+#chapter-context { position: fixed; top: 46px; left: 0; right: 0; background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 6px 16px; font-size: 10.5px; color: rgba(255,255,255,0.32); letter-spacing: 0.07em; text-transform: uppercase; z-index: 99; }
 #chapter-context a { color: rgba(255,255,255,0.45); text-decoration: none; }
 #chapter-context a:hover { color: rgba(255,255,255,0.7); }
 
@@ -44,29 +25,12 @@ html, body {
 #flipbook-wrapper { margin: 0 auto; }
 #book { width: 100%; height: 100%; }
 
-#nav-controls {
-  position: fixed; bottom: 0; left: 0; right: 0; height: 54px;
-  background: #141210; border-top: 1px solid rgba(255,255,255,0.07);
-  display: flex; align-items: center; justify-content: center;
-  gap: 18px; z-index: 100;
-}
-.nav-btn {
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11);
-  color: rgba(255,255,255,0.75); border-radius: 7px; padding: 7px 22px;
-  font-size: 12.5px; cursor: pointer; font-family: 'Inter', sans-serif;
-  transition: background 0.14s; white-space: nowrap;
-}
+#nav-controls { position: fixed; bottom: 0; left: 0; right: 0; height: 54px; background: #141210; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; gap: 18px; z-index: 100; }
+.nav-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); color: rgba(255,255,255,0.75); border-radius: 7px; padding: 7px 22px; font-size: 12.5px; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.14s; white-space: nowrap; }
 .nav-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
 .nav-btn:disabled { opacity: 0.2; cursor: default; }
 #page-counter { font-size: 11px; color: rgba(255,255,255,0.3); min-width: 72px; text-align: center; font-family: 'Inter', sans-serif; letter-spacing: 0.06em; }
-
-#nav-hint {
-  position: fixed; bottom: 68px; left: 50%; transform: translateX(-50%);
-  background: rgba(0,0,0,0.75); color: rgba(255,255,255,0.82);
-  font-size: 11.5px; padding: 7px 16px; border-radius: 18px;
-  pointer-events: none; opacity: 1; transition: opacity 1.4s ease;
-  z-index: 200; white-space: nowrap; letter-spacing: 0.03em;
-}
+#nav-hint { position: fixed; bottom: 68px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.75); color: rgba(255,255,255,0.82); font-size: 11.5px; padding: 7px 16px; border-radius: 18px; pointer-events: none; opacity: 1; transition: opacity 1.4s ease; z-index: 200; white-space: nowrap; letter-spacing: 0.03em; }
 #nav-hint.gone { opacity: 0; }
 
 #footer-cta { width: 100%; max-width: 600px; padding: 22px 20px 80px; text-align: center; }
@@ -77,7 +41,7 @@ html, body {
 .cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); }
 .cta-secondary:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.28); }
 
-/* ── Page styles ── */
+/* ── Page styles ─────────────────────────────────────── */
 .page {
   background: #fdf9f0;
   overflow: hidden;
@@ -85,34 +49,24 @@ html, body {
 }
 .page-content {
   position: absolute;
-  top: 22px; left: 18px; right: 18px; bottom: 30px;
+  top: 20px; left: 16px; right: 16px; bottom: 28px;
   overflow: hidden;
   font-family: 'Lora', Georgia, 'Times New Roman', serif;
-  line-height: 1.72;
+  line-height: 1.65;   /* tighter than before — fits more lines */
   color: #1e1e1e;
   /* font-size set inline by JS */
 }
-.pg-ch {
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center; padding: 28px 20px; gap: 14px;
-}
+.pg-ch { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 28px 20px; gap: 14px; }
 .ch-lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; }
 .ch-sub { font-family: 'Lora', Georgia, serif; font-size: 1.1em; color: #2a2a2a; line-height: 1.4; font-style: italic; }
-.pc p { margin: 0 0 0.7em; }
+
+.pc p {
+  margin: 0 0 0.58em;  /* tighter paragraph spacing */
+}
 .pc p:last-child { margin-bottom: 0; }
-.pc h3, .ph {
-  font-family: 'Lora', Georgia, serif; font-size: 0.84em; font-weight: 600;
-  font-style: normal; letter-spacing: 0.03em; color: #333;
-  margin: 0.9em 0 0.45em; line-height: 1.35;
-}
+.pc h3, .ph { font-family: 'Lora', Georgia, serif; font-size: 0.84em; font-weight: 600; font-style: normal; letter-spacing: 0.03em; color: #333; margin: 0.8em 0 0.38em; line-height: 1.3; }
 .pc h3:first-child, .ph:first-child { margin-top: 0; }
-.page-num {
-  position: absolute; bottom: 9px; left: 0; right: 0;
-  text-align: center; font-family: 'Inter', system-ui, sans-serif;
-  font-size: 9px; color: #c8b898; letter-spacing: 0.1em; pointer-events: none;
-}
+.page-num { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #c8b898; letter-spacing: 0.1em; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -128,35 +82,51 @@ html, body {
       <div class="page-num">1</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><h3 class="ph">Sealing Soul Contracts</h3><h3 class="ph">Part 1 Before You Were Born</h3><p>The Silent Agreements</p><p>You didn't come here by accident.</p><p>Before the body, before the breath,</p><p>you said yes.</p><p>Yes to remembering through amnesia.</p><p>Yes to walking into a world that forgets.</p><p>Yes to holding a thread</p><p>that only you could carry through the veil.</p><p>These are the soul contracts not written in ink</p><p>but etched in vibration.</p><p>Assignments vs. Identities</p><p>You are not your title.</p><p>You're not your resume.</p><p>Your value isn't measured by how clearly you explain what you do.</p></div></div>
+      <div class="page-content"><div class="pc"><h3 class="ph">Sealing Soul Contracts</h3><h3 class="ph">Part 1 Before You Were Born</h3><p>The Silent Agreements</p><p>You didn't come here by accident.</p><p>Before the body, before the breath,</p><p>you said yes.</p><p>Yes to remembering through amnesia.</p><p>Yes to walking into a world that forgets.</p><p>Yes to holding a thread</p></div></div>
       <div class="page-num">2</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Your essence goes deeper than language allows.</p><p>Your assignment lives in what only you notice.</p><p>In what breaks your heart and calls you to act.</p><p>In the patterns you've lived</p><p>and the pain you're here to alchemize.</p><p>It doesn't require a business card.</p><p>It requires presence.</p><p>The Sacred Repetition</p><p>Many of you have done this before.</p><p>On other planets, in other forms.</p><p>Earth is not your first descent.</p><p>This mission echoes the ones that came before.</p><p>But Earth is different.</p><p>Here, the stakes are embodied.</p><p>Here, the lessons are relational.</p><p>Here, love is the curriculum.</p><p>And this time, the contract isn't just to activate.</p><p>It's to integrate.</p></div></div>
+      <div class="page-content"><div class="pc"><p>that only you could carry through the veil.</p><p>These are the soul contracts not written in ink</p><p>but etched in vibration.</p><p>Assignments vs. Identities</p><p>You are not your title.</p><p>You're not your resume.</p><p>Your value isn't measured by how clearly you explain what you do.</p><p>Your essence goes deeper than language allows.</p><p>Your assignment lives in what only you notice.</p><p>In what breaks your heart and calls you to act.</p><p>In the patterns you've lived</p></div></div>
       <div class="page-num">3</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><h3 class="ph">Part 2 The Starseed Mirror</h3><p>Reflections from the Edge</p><p>There are moments when you feel like a stranger here.</p><p>Not just in society, but in the entire way this planet works.</p><p>It's not because you're broken.</p><p>It's because you remember something older.</p><p>A way of living that honored life, not productivity.</p><p>A rhythm that wasn't manufactured, but felt.</p><p>That homesickness you carry?</p><p>It's not nostalgia.</p><p>It's recognition.</p><p>Signals and Symptoms</p><p>You've always been more sensitive.</p><p>To sounds, to lies, to energy.</p><p>You spot inconsistencies before others even notice.</p><p>You feel tension that no one else names.</p><p>It's not anxiety.</p></div></div>
+      <div class="page-content"><div class="pc"><p>and the pain you're here to alchemize.</p><p>It doesn't require a business card.</p><p>It requires presence.</p><p>The Sacred Repetition</p><p>Many of you have done this before.</p><p>On other planets, in other forms.</p><p>Earth is not your first descent.</p><p>This mission echoes the ones that came before.</p><p>But Earth is different.</p><p>Here, the stakes are embodied.</p><p>Here, the lessons are relational.</p><p>Here, love is the curriculum.</p></div></div>
       <div class="page-num">4</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>It's antennae.</p><p>Tuned to frequencies most ignore.</p><p>And you've likely been told to turn it off.</p><p>To conform.</p><p>To quiet your radar.</p><p>But that system was never meant to hold your clarity.</p><p>Why You Incarnated Now</p><p>Because Earth is reaching a turning point.</p><p>And evolution doesn't wait.</p><p>It moves through those ready to feel what others avoid.</p><p>You didn't come here to escape.</p><p>You came to guide.</p><p>By embodying integrity,</p><p>by living in rhythm,</p><p>by remembering what's real when everything else feels fake.</p><p>You're not here to be saved.</p><p>You're here to activate the blueprint.</p><p>In yourself,</p><p>and in others who forgot they came with one.</p></div></div>
+      <div class="page-content"><div class="pc"><p>And this time, the contract isn't just to activate.</p><p>It's to integrate.</p><h3 class="ph">Part 2 The Starseed Mirror</h3><p>Reflections from the Edge</p><p>There are moments when you feel like a stranger here.</p><p>Not just in society, but in the entire way this planet works.</p><p>It's not because you're broken.</p><p>It's because you remember something older.</p><p>A way of living that honored life, not productivity.</p><p>A rhythm that wasn't manufactured, but felt.</p></div></div>
       <div class="page-num">5</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><h3 class="ph">Part 3 Keys To Your Galactic Assignment</h3><p>You Came With Codes</p><p>You didn't arrive blank.</p><p>You carry imprints that activate through experience.</p><p>Some of them are buried.</p><p>Some are just starting to stir.</p><p>The confusion you've faced?</p><p>It's part of the awakening.</p><p>Your clarity is encoded in the struggle.</p><p>Your purpose isn't handed to you.</p><p>It reveals itself as you show up for what's in front of you.</p><p>What to Listen For</p><p>◇ Recurring dreams or symbols</p><p>◇ Activations from certain constellations or planetary transits</p><p>◇ Moments of full-body resonance when hearing ancient languages or tones</p></div></div>
+      <div class="page-content"><div class="pc"><p>That homesickness you carry?</p><p>It's not nostalgia.</p><p>It's recognition.</p><p>Signals and Symptoms</p><p>You've always been more sensitive.</p><p>To sounds, to lies, to energy.</p><p>You spot inconsistencies before others even notice.</p><p>You feel tension that no one else names.</p><p>It's not anxiety.</p><p>It's antennae.</p><p>Tuned to frequencies most ignore.</p><p>And you've likely been told to turn it off.</p></div></div>
       <div class="page-num">6</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Sudden knowing that bypasses logic but lands like truth</p><p>◇ Unexplainable grief or love when visiting certain places</p><p>These are breadcrumbs.</p><p>Not distractions, not fantasies-</p><p>reminders of where you come from,</p><p>and what you agreed to carry forward.</p><p>Your Mission Is Not a Role</p><p>It's not a title.</p><p>It's not a job description.</p><p>It's a frequency you hold.</p><p>You may fulfill it through parenting.</p><p>Or through building tech.</p><p>Or through walking away from patterns that no longer match who you are.</p><p>What matters is how aligned you stay</p><p>as you move.</p><p>That's what activates others.</p><p>Not your resume.</p><p>Not your content.</p><p>Your presence.</p></div></div>
+      <div class="page-content"><div class="pc"><p>To conform.</p><p>To quiet your radar.</p><p>But that system was never meant to hold your clarity.</p><p>Why You Incarnated Now</p><p>Because Earth is reaching a turning point.</p><p>And evolution doesn't wait.</p><p>It moves through those ready to feel what others avoid.</p><p>You didn't come here to escape.</p><p>You came to guide.</p><p>By embodying integrity,</p><p>by living in rhythm,</p></div></div>
       <div class="page-num">7</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>by remembering what's real when everything else feels fake.</p><p>You're not here to be saved.</p><p>You're here to activate the blueprint.</p><p>In yourself,</p><p>and in others who forgot they came with one.</p><h3 class="ph">Part 3 Keys To Your Galactic Assignment</h3><p>You Came With Codes</p><p>You didn't arrive blank.</p><p>You carry imprints that activate through experience.</p><p>Some of them are buried.</p></div></div>
+      <div class="page-num">8</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>Some are just starting to stir.</p><p>The confusion you've faced?</p><p>It's part of the awakening.</p><p>Your clarity is encoded in the struggle.</p><p>Your purpose isn't handed to you.</p><p>It reveals itself as you show up for what's in front of you.</p><p>What to Listen For</p><p>◇ Recurring dreams or symbols</p><p>◇ Activations from certain constellations or planetary transits</p><p>◇ Moments of full-body resonance when hearing ancient languages or tones</p><p>◇ Sudden knowing that bypasses logic but lands like truth</p></div></div>
+      <div class="page-num">9</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>◇ Unexplainable grief or love when visiting certain places</p><p>These are breadcrumbs.</p><p>Not distractions, not fantasies-</p><p>reminders of where you come from,</p><p>and what you agreed to carry forward.</p><p>Your Mission Is Not a Role</p><p>It's not a title.</p><p>It's not a job description.</p><p>It's a frequency you hold.</p><p>You may fulfill it through parenting.</p><p>Or through building tech.</p></div></div>
+      <div class="page-num">10</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>Or through walking away from patterns that no longer match who you are.</p><p>What matters is how aligned you stay</p><p>as you move.</p><p>That's what activates others.</p><p>Not your resume.</p><p>Not your content.</p><p>Your presence.</p></div></div>
+      <div class="page-num">11</div>
     </div>
     </div></div>
     <div id="footer-cta"><a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="cta-btn cta-primary">Get the full audiobook — $22</a><a href="https://rickbroider.substack.com" class="cta-btn cta-secondary">All chapters on Substack &rarr;</a></div>
   </div>
   <div id="nav-controls">
     <button class="nav-btn" id="btn-prev">&#8592; Prev</button>
-    <span id="page-counter">1 / 7</span>
+    <span id="page-counter">1 / 11</span>
     <button class="nav-btn" id="btn-next">Next &#8594;</button>
   </div>
   <div id="nav-hint">Swipe &nbsp;&middot;&nbsp; Arrow keys &nbsp;&middot;&nbsp; Tap corners</div>
@@ -170,11 +140,10 @@ html, body {
     var ctxH = ctx ? ctx.offsetHeight : 0;
     var topH  = 46 + ctxH;
     var botH  = 54;
-    var gap   = 28;
+    var gap   = 24;
     var availH = vh - topH - botH - gap;
     var mobile = vw < 680;
     var pageH, pageW;
-
     if (mobile) {
       pageW = Math.min(vw - 14, 370);
       pageH = Math.min(Math.round(pageW * 1.52), availH);
@@ -192,18 +161,16 @@ html, body {
 
   var dims = calcDims();
   var containerW = dims.mobile ? dims.pageW : dims.pageW * 2;
-
   var ctx   = document.getElementById('chapter-context');
   var ctxH  = ctx ? ctx.offsetHeight : 0;
-  var topOffset = 46 + ctxH + 14;
-
+  var topOffset = 46 + ctxH + 12;
   var wrapper = document.getElementById('flipbook-wrapper');
-  wrapper.style.width  = containerW + 'px';
-  wrapper.style.height = dims.pageH + 'px';
+  wrapper.style.width    = containerW + 'px';
+  wrapper.style.height   = dims.pageH + 'px';
   wrapper.style.marginTop = topOffset + 'px';
 
-  /* Bigger font formula: fills the page properly */
-  var fs = Math.max(13, Math.min(16, Math.round(dims.pageW * 0.043)));
+  /* Font: capped at 14px so larger screens don't balloon */
+  var fs = Math.max(12, Math.min(14, Math.round(dims.pageW * 0.040)));
   document.querySelectorAll('.page-content').forEach(function(el) {
     el.style.fontSize = fs + 'px';
   });
@@ -230,25 +197,22 @@ html, body {
   var counter = document.getElementById('page-counter');
   var btnPrev = document.getElementById('btn-prev');
   var btnNext = document.getElementById('btn-next');
-
   function tick() {
     var cur = book.getCurrentPageIndex();
     var perView = dims.mobile ? 1 : 2;
-    counter.textContent = (cur + 1) + ' / ' + total;
+    counter.textContent = (cur + 1) + '\u2009/\u2009' + total;
     btnPrev.disabled = (cur === 0);
     btnNext.disabled = (cur >= total - perView);
   }
   book.on('flip', tick);
   book.on('changeState', tick);
   tick();
-
   btnPrev.addEventListener('click', function() { book.flipPrev(); });
   btnNext.addEventListener('click', function() { book.flipNext(); });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    book.flipPrev();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   book.flipPrev();
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  book.flipNext();
   });
-
   var hint = document.getElementById('nav-hint');
   if (hint) {
     setTimeout(function() { hint.classList.add('gone'); }, 3500);

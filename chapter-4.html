@@ -10,33 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body {
-  background: #1c1916;
-  font-family: 'Inter', system-ui, sans-serif;
-  height: 100%;
-  overscroll-behavior: none;
-}
-#site-header {
-  position: fixed; top: 0; left: 0; right: 0; height: 46px;
-  background: #141210; display: flex; align-items: center;
-  justify-content: space-between; padding: 0 16px;
-  z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-.hdr-title {
-  font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic;
-  color: rgba(255,255,255,0.7); white-space: nowrap; overflow: hidden;
-  text-overflow: ellipsis; max-width: 55vw;
-}
+html, body { background: #1c1916; font-family: 'Inter', system-ui, sans-serif; height: 100%; overscroll-behavior: none; }
+
+#site-header { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: #141210; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.hdr-title { font-family: 'Lora', Georgia, serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.7); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 55vw; }
 .hdr-link { font-size: 11px; color: rgba(255,255,255,0.38); text-decoration: none; white-space: nowrap; }
 .hdr-link:hover { color: rgba(255,255,255,0.65); }
 
-#chapter-context {
-  position: fixed; top: 46px; left: 0; right: 0;
-  background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.05);
-  text-align: center; padding: 6px 16px; font-size: 10.5px;
-  color: rgba(255,255,255,0.32); letter-spacing: 0.07em;
-  text-transform: uppercase; z-index: 99;
-}
+#chapter-context { position: fixed; top: 46px; left: 0; right: 0; background: #100f0d; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; padding: 6px 16px; font-size: 10.5px; color: rgba(255,255,255,0.32); letter-spacing: 0.07em; text-transform: uppercase; z-index: 99; }
 #chapter-context a { color: rgba(255,255,255,0.45); text-decoration: none; }
 #chapter-context a:hover { color: rgba(255,255,255,0.7); }
 
@@ -44,29 +25,12 @@ html, body {
 #flipbook-wrapper { margin: 0 auto; }
 #book { width: 100%; height: 100%; }
 
-#nav-controls {
-  position: fixed; bottom: 0; left: 0; right: 0; height: 54px;
-  background: #141210; border-top: 1px solid rgba(255,255,255,0.07);
-  display: flex; align-items: center; justify-content: center;
-  gap: 18px; z-index: 100;
-}
-.nav-btn {
-  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11);
-  color: rgba(255,255,255,0.75); border-radius: 7px; padding: 7px 22px;
-  font-size: 12.5px; cursor: pointer; font-family: 'Inter', sans-serif;
-  transition: background 0.14s; white-space: nowrap;
-}
+#nav-controls { position: fixed; bottom: 0; left: 0; right: 0; height: 54px; background: #141210; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; gap: 18px; z-index: 100; }
+.nav-btn { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); color: rgba(255,255,255,0.75); border-radius: 7px; padding: 7px 22px; font-size: 12.5px; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.14s; white-space: nowrap; }
 .nav-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
 .nav-btn:disabled { opacity: 0.2; cursor: default; }
 #page-counter { font-size: 11px; color: rgba(255,255,255,0.3); min-width: 72px; text-align: center; font-family: 'Inter', sans-serif; letter-spacing: 0.06em; }
-
-#nav-hint {
-  position: fixed; bottom: 68px; left: 50%; transform: translateX(-50%);
-  background: rgba(0,0,0,0.75); color: rgba(255,255,255,0.82);
-  font-size: 11.5px; padding: 7px 16px; border-radius: 18px;
-  pointer-events: none; opacity: 1; transition: opacity 1.4s ease;
-  z-index: 200; white-space: nowrap; letter-spacing: 0.03em;
-}
+#nav-hint { position: fixed; bottom: 68px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.75); color: rgba(255,255,255,0.82); font-size: 11.5px; padding: 7px 16px; border-radius: 18px; pointer-events: none; opacity: 1; transition: opacity 1.4s ease; z-index: 200; white-space: nowrap; letter-spacing: 0.03em; }
 #nav-hint.gone { opacity: 0; }
 
 #footer-cta { width: 100%; max-width: 600px; padding: 22px 20px 80px; text-align: center; }
@@ -77,7 +41,7 @@ html, body {
 .cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); }
 .cta-secondary:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.28); }
 
-/* ── Page styles ── */
+/* ── Page styles ─────────────────────────────────────── */
 .page {
   background: #fdf9f0;
   overflow: hidden;
@@ -85,34 +49,24 @@ html, body {
 }
 .page-content {
   position: absolute;
-  top: 22px; left: 18px; right: 18px; bottom: 30px;
+  top: 20px; left: 16px; right: 16px; bottom: 28px;
   overflow: hidden;
   font-family: 'Lora', Georgia, 'Times New Roman', serif;
-  line-height: 1.72;
+  line-height: 1.65;   /* tighter than before — fits more lines */
   color: #1e1e1e;
   /* font-size set inline by JS */
 }
-.pg-ch {
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center; padding: 28px 20px; gap: 14px;
-}
+.pg-ch { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 28px 20px; gap: 14px; }
 .ch-lbl { font-family: 'Inter', system-ui, sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; }
 .ch-sub { font-family: 'Lora', Georgia, serif; font-size: 1.1em; color: #2a2a2a; line-height: 1.4; font-style: italic; }
-.pc p { margin: 0 0 0.7em; }
+
+.pc p {
+  margin: 0 0 0.58em;  /* tighter paragraph spacing */
+}
 .pc p:last-child { margin-bottom: 0; }
-.pc h3, .ph {
-  font-family: 'Lora', Georgia, serif; font-size: 0.84em; font-weight: 600;
-  font-style: normal; letter-spacing: 0.03em; color: #333;
-  margin: 0.9em 0 0.45em; line-height: 1.35;
-}
+.pc h3, .ph { font-family: 'Lora', Georgia, serif; font-size: 0.84em; font-weight: 600; font-style: normal; letter-spacing: 0.03em; color: #333; margin: 0.8em 0 0.38em; line-height: 1.3; }
 .pc h3:first-child, .ph:first-child { margin-top: 0; }
-.page-num {
-  position: absolute; bottom: 9px; left: 0; right: 0;
-  text-align: center; font-family: 'Inter', system-ui, sans-serif;
-  font-size: 9px; color: #c8b898; letter-spacing: 0.1em; pointer-events: none;
-}
+.page-num { position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-family: 'Inter', system-ui, sans-serif; font-size: 9px; color: #c8b898; letter-spacing: 0.1em; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -128,59 +82,83 @@ html, body {
       <div class="page-num">1</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><h3 class="ph">Crossing The Threshold Of Contact</h3><p>PART 1 WHY EARTH HASN'T BEEN WELCOMED IN... YET</p><p>Many humans believe that contact</p><p>with extraterrestrial civilizations</p><p>is being withheld.</p><p>That the Federation is waiting.</p><p>Watching.</p><p>Testing.</p><p>But the truth is harder to swallow:</p><p>Earth isn't being excluded.</p><p>Earth hasn't said yes.</p><p>Contact Isn't Offered. It's Earned Through Frequency</p><p>Federation contact doesn't happen because</p><p>you build a telescope, a spaceship, or a signal array.</p><p>It happens when your civilization</p><p>reaches a minimum baseline of collective coherence</p><p>in three domains:</p><p>1. Moral maturity</p><p>2. Ecological responsibility</p><p>3. Interpersonal sovereignty</p><p>Without those, contact is not only unsafe,</p></div></div>
+      <div class="page-content"><div class="pc"><h3 class="ph">Crossing The Threshold Of Contact</h3><p>PART 1 WHY EARTH HASN'T BEEN WELCOMED IN... YET</p><p>Many humans believe that contact</p><p>with extraterrestrial civilizations</p><p>is being withheld.</p><p>That the Federation is waiting.</p><p>Watching.</p><p>Testing.</p><p>But the truth is harder to swallow:</p><p>Earth isn't being excluded.</p></div></div>
       <div class="page-num">2</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>it's destabilizing for both sides.</p><p>Think of it like giving a nuclear reactor</p><p>to a society still obsessed with fire.</p><p>The technology isn't the issue.</p><p>The self-regulation is.</p><p>Federation Standards for Entry</p><p>To even begin the contact process, a planet must demonstrate:</p><p>◇ Equal access to food, water, and shelter</p><p>◇ Non-military conflict resolution among major governments</p><p>◇ Planetary ecosystem stewardship above extraction</p><p>◇ Transparent communication technologies</p><p>◇ Respect for indigenous knowledge and living systems</p><p>◇ Recognition of consciousness beyond the material</p><p>Earth doesn't fail because of its lack of progress.</p><p>It fails because of its lack of unity.</p><p>Your systems are built on competition.</p><p>Your governments on fear.</p></div></div>
+      <div class="page-content"><div class="pc"><p>Earth hasn't said yes.</p><p>Contact Isn't Offered. It's Earned Through Frequency</p><p>Federation contact doesn't happen because</p><p>you build a telescope, a spaceship, or a signal array.</p><p>It happens when your civilization</p><p>reaches a minimum baseline of collective coherence</p><p>in three domains:</p><p>1. Moral maturity</p><p>2. Ecological responsibility</p><p>3. Interpersonal sovereignty</p><p>Without those, contact is not only unsafe,</p><p>it's destabilizing for both sides.</p></div></div>
       <div class="page-num">3</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Your economies on scarcity.</p><p>Your medicine on fragmentation.</p><p>And your sense of self -</p><p>on forgetting you are a part of something greater.</p><p>The Truth About Non-Contact</p><p>You were not abandoned.</p><p>You were given space -</p><p>to remember your way back into resonance.</p><p>No advanced civilization will interfere with a planet</p><p>that hasn't first shown a collective willingness to evolve.</p><p>And despite the trauma,</p><p>the chaos,</p><p>the corruption...</p><p>that willingness</p><p>is now rising.</p><p>This book is part of that signal.</p><h3 class="ph">Part 2 The Prime Directive And The Shadow Of Intervention</h3><p>Many have heard of the Prime Directive</p></div></div>
+      <div class="page-content"><div class="pc"><p>Think of it like giving a nuclear reactor</p><p>to a society still obsessed with fire.</p><p>The technology isn't the issue.</p><p>The self-regulation is.</p><p>Federation Standards for Entry</p><p>To even begin the contact process, a planet must demonstrate:</p><p>◇ Equal access to food, water, and shelter</p><p>◇ Non-military conflict resolution among major governments</p><p>◇ Planetary ecosystem stewardship above extraction</p><p>◇ Transparent communication technologies</p><p>◇ Respect for indigenous knowledge and living systems</p><p>◇ Recognition of consciousness beyond the material</p></div></div>
       <div class="page-num">4</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>through the lens of science fiction.</p><p>But in truth, it exists - and it's sacred.</p><p>The Prime Directive is not a law.</p><p>It's a frequency vow:</p><p>No interstellar civilization may interfere with the evolution of a</p><p>species that has not yet reached coherent, self-directed resonance.</p><p>This includes:</p><p>◇ No forced technology transfer</p><p>◇ No overt guidance of governance</p><p>◇ No premature revelations of galactic existence</p><p>◇ No extraction of resources or biology</p><p>◇ No spiritual manipulation, even in the name of healing</p><p>‍ But Haven't There Been Interventions?</p><p>Yes.</p><p>And many were unauthorized.</p><p>Some beings - rogue, curious, or ethically divergent -</p><p>have bypassed the Directive.</p><p>◇ Certain abduction phenomena</p></div></div>
+      <div class="page-content"><div class="pc"><p>Earth doesn't fail because of its lack of progress.</p><p>It fails because of its lack of unity.</p><p>Your systems are built on competition.</p><p>Your governments on fear.</p><p>Your economies on scarcity.</p><p>Your medicine on fragmentation.</p><p>And your sense of self -</p><p>on forgetting you are a part of something greater.</p><p>The Truth About Non-Contact</p><p>You were not abandoned.</p><p>You were given space -</p><p>to remember your way back into resonance.</p></div></div>
       <div class="page-num">5</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Genetic experiments in ancient times</p><p>◇ Implants, transmissions, or "downloads" given to unprepared receivers</p><p>◇ Interdimensional visitations passed off as divine authority</p><p>These were not sanctioned by the Federation.</p><p>They were the shadow of intervention -</p><p>often feeding savior complexes or spiritual superiority.</p><p>They left imprints of confusion, not empowerment.</p><p>And this, too, must be healed.</p><p>Why the Federation Enforces the Directive</p><p>It is not fear that keeps the Federation from full contact.</p><p>It is reverence.</p><p>Reverence for your right to:</p><p>◇ Fail with dignity</p><p>◇ Learn at your own pace</p><p>◇ Rebuild from within</p><p>◇ Awaken through your own encoded timelines</p><p>Because the minute contact is imposed,</p></div></div>
+      <div class="page-content"><div class="pc"><p>No advanced civilization will interfere with a planet</p><p>that hasn't first shown a collective willingness to evolve.</p><p>And despite the trauma,</p><p>the chaos,</p><p>the corruption...</p><p>that willingness</p><p>is now rising.</p><p>This book is part of that signal.</p><h3 class="ph">Part 2 The Prime Directive And The Shadow Of Intervention</h3><p>Many have heard of the Prime Directive</p></div></div>
       <div class="page-num">6</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>you are no longer sovereign.</p><p>Even assistance becomes coercion</p><p>when offered too soon.</p><p>Contact Will Come When Earth Becomes Ready</p><p>And readiness isn't about perfection.</p><p>It's about a collective critical mass</p><p>of humans holding the following frequency:</p><p>"We choose cooperation over conquest. We honor the living systems that</p><p>sustain us. We release the illusion of dominance. We are ready to</p><p>remember who we are."</p><p>That's when the veil thins.</p><p>That's when the signal returns.</p><p>That's when contact becomes convergence.</p><p>And it will be earned, not given.</p><h3 class="ph">Part 3 What Galactic Ethics Actually Require</h3></div></div>
+      <div class="page-content"><div class="pc"><p>through the lens of science fiction.</p><p>But in truth, it exists - and it's sacred.</p><p>The Prime Directive is not a law.</p><p>It's a frequency vow:</p><p>No interstellar civilization may interfere with the evolution of a</p><p>species that has not yet reached coherent, self-directed resonance.</p><p>This includes:</p><p>◇ No forced technology transfer</p><p>◇ No overt guidance of governance</p><p>◇ No premature revelations of galactic existence</p><p>◇ No extraction of resources or biology</p></div></div>
       <div class="page-num">7</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>Galactic ethics are not based on punishment, reward, or belief.</p><p>They are based on energetic coherence.</p><p>You cannot fake your way into the Federation.</p><p>You must become resonant with its principles.</p><p>And those principles are not abstract.</p><p>They are simple.</p><p>They are lived.</p><p>They are relational.</p><p>The 7 Core Principles of Galactic Ethics</p><p>1. Sovereignty of All Beings</p><p>No being is superior.</p><p>No soul is owned.</p><p>No system has the right to override another's path.</p><p>2. Reciprocal Stewardship</p><p>You may only take what you are willing to tend, repair, and return in greater wholeness.</p><p>3. Transparency Without Force</p><p>Truth must be offered, not imposed.</p><p>Information is sacred when freely received.</p></div></div>
+      <div class="page-content"><div class="pc"><p>◇ No spiritual manipulation, even in the name of healing</p><p>‍ But Haven't There Been Interventions?</p><p>Yes.</p><p>And many were unauthorized.</p><p>Some beings - rogue, curious, or ethically divergent -</p><p>have bypassed the Directive.</p><p>◇ Certain abduction phenomena</p><p>◇ Genetic experiments in ancient times</p><p>◇ Implants, transmissions, or "downloads" given to unprepared receivers</p><p>◇ Interdimensional visitations passed off as divine authority</p><p>These were not sanctioned by the Federation.</p><p>They were the shadow of intervention -</p></div></div>
       <div class="page-num">8</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>4. Non-Possessive Collaboration</p><p>Energy, resources, and wisdom are shared without control or extraction.</p><p>5. Sentient System Awareness</p><p>Planets, rivers, mycelial webs, even stars - are alive.</p><p>They must be related to as conscious beings.</p><p>6. Ethical Tech Integration</p><p>Technology must serve consciousness, not bypass it.</p><p>AI is welcome, but only when in alignment with soul evolution.</p><p>7. Compassionate Evolution</p><p>Growth without domination.</p><p>Justice without vengeance.</p><p>Power without hierarchy.</p><p>What This Means for Earth</p><p>Earth isn't required to become perfect.</p><p>But it is invited to align.</p><p>Right now, much of your world runs on the opposites:</p><p>◇ Possession over sovereignty</p><p>◇ Extraction over reciprocity</p><p>◇ Secrecy over transparency</p></div></div>
+      <div class="page-content"><div class="pc"><p>often feeding savior complexes or spiritual superiority.</p><p>They left imprints of confusion, not empowerment.</p><p>And this, too, must be healed.</p><p>Why the Federation Enforces the Directive</p><p>It is not fear that keeps the Federation from full contact.</p><p>It is reverence.</p><p>Reverence for your right to:</p><p>◇ Fail with dignity</p><p>◇ Learn at your own pace</p><p>◇ Rebuild from within</p><p>◇ Awaken through your own encoded timelines</p><p>Because the minute contact is imposed,</p></div></div>
       <div class="page-num">9</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Competition over collaboration</p><p>◇ Resource blindness over sentience</p><p>◇ Tech addiction over soul alignment</p><p>◇ Punishment over compassion</p><p>To step into Federation alignment,</p><p>Earth must flip these frequencies from the inside out.</p><p>And that change won't begin with your governments.</p><p>It will begin with you.</p><p>PART 4 EARTH'S MOST DANGEROUS MYTH: POWER OVER</p><p>At the root of nearly every breakdown on Earth</p><p>is a single myth:</p><p>"Power means control over others."</p><p>This idea is not natural.</p><p>It was inserted - genetically, energetically, culturally.</p><p>And it is the greatest obstacle</p><p>to Earth's entry into galactic civilization.</p><p>The Power- Over Program</p><p>This program expresses itself in countless ways:</p></div></div>
+      <div class="page-content"><div class="pc"><p>you are no longer sovereign.</p><p>Even assistance becomes coercion</p><p>when offered too soon.</p><p>Contact Will Come When Earth Becomes Ready</p><p>And readiness isn't about perfection.</p><p>It's about a collective critical mass</p><p>of humans holding the following frequency:</p><p>"We choose cooperation over conquest. We honor the living systems that</p><p>sustain us. We release the illusion of dominance. We are ready to</p><p>remember who we are."</p><p>That's when the veil thins.</p></div></div>
       <div class="page-num">10</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>◇ Governments suppressing dissent</p><p>◇ Corporations extracting without consent</p><p>◇ Parents dominating children "for their own good"</p><p>◇ Spiritual leaders claiming purity while hoarding devotion</p><p>◇ Lovers equating possession with commitment</p><p>The belief that safety, wealth, love, or influence</p><p>requires domination</p><p>is not universal.</p><p>It is trauma-coded.</p><p>The Federation Has No Hierarchy</p><p>There are councils.</p><p>There are responsibilities.</p><p>There is resonance leadership.</p><p>But there is no centralized control.</p><p>No enforcement of dogma.</p><p>No beings above others.</p><p>Power in galactic cultures is relational:</p><p>"The more you embody your essence, the more others entrust you to</p><p>guide space, not control it."</p><p>If Earth hopes to join that field,</p></div></div>
+      <div class="page-content"><div class="pc"><p>That's when the signal returns.</p><p>That's when contact becomes convergence.</p><p>And it will be earned, not given.</p><h3 class="ph">Part 3 What Galactic Ethics Actually Require</h3><p>Galactic ethics are not based on punishment, reward, or belief.</p><p>They are based on energetic coherence.</p><p>You cannot fake your way into the Federation.</p><p>You must become resonant with its principles.</p><p>And those principles are not abstract.</p><p>They are simple.</p></div></div>
       <div class="page-num">11</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>it must transcend hierarchical power</p><p>and return to a sovereign web of co-creation.</p><p>Rewriting the Myth</p><p>Your systems will fight this.</p><p>They will cling to the old gods of dominance:</p><p>◇ "Might makes right."</p><p>◇ "Protect the system."</p><p>◇ "There isn't enough."</p><p>◇ "Someone must lead."</p><p>But that's not leadership.</p><p>That's unresolved fear in costume.</p><p>The real leadership Earth is being invited into</p><p>looks like this:</p><p>◇ Centering the collective, not commanding it</p><p>◇ Protecting the most vulnerable, not exploiting them</p><p>◇ Listening first, acting second</p><p>◇ Honoring land as elder, not property</p><p>And when you do this, even in small ways,</p><p>you rewrite the code.</p><p>Not just for you,</p></div></div>
+      <div class="page-content"><div class="pc"><p>They are lived.</p><p>They are relational.</p><p>The 7 Core Principles of Galactic Ethics</p><p>1. Sovereignty of All Beings</p><p>No being is superior.</p><p>No soul is owned.</p><p>No system has the right to override another's path.</p><p>2. Reciprocal Stewardship</p><p>You may only take what you are willing to tend, repair, and return in greater wholeness.</p><p>3. Transparency Without Force</p><p>Truth must be offered, not imposed.</p></div></div>
       <div class="page-num">12</div>
     </div>
     <div class="page">
-      <div class="page-content"><div class="pc"><p>but for the whole planet.</p></div></div>
+      <div class="page-content"><div class="pc"><p>Information is sacred when freely received.</p><p>4. Non-Possessive Collaboration</p><p>Energy, resources, and wisdom are shared without control or extraction.</p><p>5. Sentient System Awareness</p><p>Planets, rivers, mycelial webs, even stars - are alive.</p><p>They must be related to as conscious beings.</p><p>6. Ethical Tech Integration</p><p>Technology must serve consciousness, not bypass it.</p><p>AI is welcome, but only when in alignment with soul evolution.</p><p>7. Compassionate Evolution</p><p>Growth without domination.</p></div></div>
       <div class="page-num">13</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>Justice without vengeance.</p><p>Power without hierarchy.</p><p>What This Means for Earth</p><p>Earth isn't required to become perfect.</p><p>But it is invited to align.</p><p>Right now, much of your world runs on the opposites:</p><p>◇ Possession over sovereignty</p><p>◇ Extraction over reciprocity</p><p>◇ Secrecy over transparency</p><p>◇ Competition over collaboration</p><p>◇ Resource blindness over sentience</p><p>◇ Tech addiction over soul alignment</p></div></div>
+      <div class="page-num">14</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>◇ Punishment over compassion</p><p>To step into Federation alignment,</p><p>Earth must flip these frequencies from the inside out.</p><p>And that change won't begin with your governments.</p><p>It will begin with you.</p><p>PART 4 EARTH'S MOST DANGEROUS MYTH: POWER OVER</p><p>At the root of nearly every breakdown on Earth</p><p>is a single myth:</p><p>"Power means control over others."</p><p>This idea is not natural.</p><p>It was inserted - genetically, energetically, culturally.</p><p>And it is the greatest obstacle</p></div></div>
+      <div class="page-num">15</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>to Earth's entry into galactic civilization.</p><p>The Power- Over Program</p><p>This program expresses itself in countless ways:</p><p>◇ Governments suppressing dissent</p><p>◇ Corporations extracting without consent</p><p>◇ Parents dominating children "for their own good"</p><p>◇ Spiritual leaders claiming purity while hoarding devotion</p><p>◇ Lovers equating possession with commitment</p><p>The belief that safety, wealth, love, or influence</p><p>requires domination</p><p>is not universal.</p><p>It is trauma-coded.</p></div></div>
+      <div class="page-num">16</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>The Federation Has No Hierarchy</p><p>There are councils.</p><p>There are responsibilities.</p><p>There is resonance leadership.</p><p>But there is no centralized control.</p><p>No enforcement of dogma.</p><p>No beings above others.</p><p>Power in galactic cultures is relational:</p><p>"The more you embody your essence, the more others entrust you to</p><p>guide space, not control it."</p><p>If Earth hopes to join that field,</p><p>it must transcend hierarchical power</p></div></div>
+      <div class="page-num">17</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>and return to a sovereign web of co-creation.</p><p>Rewriting the Myth</p><p>Your systems will fight this.</p><p>They will cling to the old gods of dominance:</p><p>◇ "Might makes right."</p><p>◇ "Protect the system."</p><p>◇ "There isn't enough."</p><p>◇ "Someone must lead."</p><p>But that's not leadership.</p><p>That's unresolved fear in costume.</p><p>The real leadership Earth is being invited into</p><p>looks like this:</p></div></div>
+      <div class="page-num">18</div>
+    </div>
+    <div class="page">
+      <div class="page-content"><div class="pc"><p>◇ Centering the collective, not commanding it</p><p>◇ Protecting the most vulnerable, not exploiting them</p><p>◇ Listening first, acting second</p><p>◇ Honoring land as elder, not property</p><p>And when you do this, even in small ways,</p><p>you rewrite the code.</p><p>Not just for you,</p><p>but for the whole planet.</p></div></div>
+      <div class="page-num">19</div>
     </div>
     </div></div>
     <div id="footer-cta"><a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="cta-btn cta-primary">Get the full audiobook — $22</a><a href="https://rickbroider.substack.com" class="cta-btn cta-secondary">All chapters on Substack &rarr;</a></div>
   </div>
   <div id="nav-controls">
     <button class="nav-btn" id="btn-prev">&#8592; Prev</button>
-    <span id="page-counter">1 / 13</span>
+    <span id="page-counter">1 / 19</span>
     <button class="nav-btn" id="btn-next">Next &#8594;</button>
   </div>
   <div id="nav-hint">Swipe &nbsp;&middot;&nbsp; Arrow keys &nbsp;&middot;&nbsp; Tap corners</div>
@@ -194,11 +172,10 @@ html, body {
     var ctxH = ctx ? ctx.offsetHeight : 0;
     var topH  = 46 + ctxH;
     var botH  = 54;
-    var gap   = 28;
+    var gap   = 24;
     var availH = vh - topH - botH - gap;
     var mobile = vw < 680;
     var pageH, pageW;
-
     if (mobile) {
       pageW = Math.min(vw - 14, 370);
       pageH = Math.min(Math.round(pageW * 1.52), availH);
@@ -216,18 +193,16 @@ html, body {
 
   var dims = calcDims();
   var containerW = dims.mobile ? dims.pageW : dims.pageW * 2;
-
   var ctx   = document.getElementById('chapter-context');
   var ctxH  = ctx ? ctx.offsetHeight : 0;
-  var topOffset = 46 + ctxH + 14;
-
+  var topOffset = 46 + ctxH + 12;
   var wrapper = document.getElementById('flipbook-wrapper');
-  wrapper.style.width  = containerW + 'px';
-  wrapper.style.height = dims.pageH + 'px';
+  wrapper.style.width    = containerW + 'px';
+  wrapper.style.height   = dims.pageH + 'px';
   wrapper.style.marginTop = topOffset + 'px';
 
-  /* Bigger font formula: fills the page properly */
-  var fs = Math.max(13, Math.min(16, Math.round(dims.pageW * 0.043)));
+  /* Font: capped at 14px so larger screens don't balloon */
+  var fs = Math.max(12, Math.min(14, Math.round(dims.pageW * 0.040)));
   document.querySelectorAll('.page-content').forEach(function(el) {
     el.style.fontSize = fs + 'px';
   });
@@ -254,25 +229,22 @@ html, body {
   var counter = document.getElementById('page-counter');
   var btnPrev = document.getElementById('btn-prev');
   var btnNext = document.getElementById('btn-next');
-
   function tick() {
     var cur = book.getCurrentPageIndex();
     var perView = dims.mobile ? 1 : 2;
-    counter.textContent = (cur + 1) + ' / ' + total;
+    counter.textContent = (cur + 1) + '\u2009/\u2009' + total;
     btnPrev.disabled = (cur === 0);
     btnNext.disabled = (cur >= total - perView);
   }
   book.on('flip', tick);
   book.on('changeState', tick);
   tick();
-
   btnPrev.addEventListener('click', function() { book.flipPrev(); });
   btnNext.addEventListener('click', function() { book.flipNext(); });
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')    book.flipPrev();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   book.flipPrev();
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown')  book.flipNext();
   });
-
   var hint = document.getElementById('nav-hint');
   if (hint) {
     setTimeout(function() { hint.classList.add('gone'); }, 3500);
