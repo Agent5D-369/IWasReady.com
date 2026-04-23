@@ -197,7 +197,7 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
 .cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.52); }
 .cta-secondary:hover { color: rgba(255,255,255,0.82); border-color: rgba(255,255,255,0.26); }
 
-/* ── Page styles ── */
+/* ── Page base ── */
 .page {
   background: #fdf8ee;
   overflow: hidden;
@@ -213,28 +213,87 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
   color: #1c1c1a;
 }
 
-/* Chapter title page */
+/* ── Phase title page ── */
+.pg-phase {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 32px 28px;
+  background: #fdf8ee;
+}
+.ph-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 8px;
+  letter-spacing: 0.3em; text-transform: uppercase; color: #b8a88a;
+  margin-bottom: 18px;
+}
+.ph-roman {
+  font-family: 'Lora', Georgia, serif; font-size: 3.6em;
+  font-weight: 600; line-height: 1; color: #2a2520;
+  letter-spacing: 0.03em;
+}
+.ph-rule-wrap { display: flex; align-items: center; gap: 10px; margin: 16px 0; }
+.ph-rule { flex: 1; max-width: 40px; height: 1px; background: #c4b090; }
+.ph-orn  { color: #c4b090; font-size: 0.6em; }
+.ph-title {
+  font-family: 'Lora', Georgia, serif; font-style: italic;
+  font-size: 1.05em; line-height: 1.3; color: #3a3830;
+}
+.ph-sub {
+  font-family: 'Inter', sans-serif; font-size: 0.68em;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #9a8a78; margin-top: 10px; line-height: 1.5;
+}
+
+/* ── Chapter title page ── */
 .pg-ch {
   width: 100%; height: 100%;
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
-  text-align: center; padding: 28px 22px; gap: 10px;
+  text-align: center; padding: 28px 22px;
   background: #fdf8ee;
 }
-.ch-lbl {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1em; letter-spacing: 0.22em;
-  text-transform: uppercase; color: #3a3830;
-  font-weight: 600;
+.ch-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 8px;
+  letter-spacing: 0.28em; text-transform: uppercase; color: #b8a88a;
+  margin-bottom: 14px;
 }
-.ch-sub {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 0.88em; color: #6b6456; line-height: 1.4;
-  font-style: italic; max-width: 80%;
+.ch-num-display {
+  font-family: 'Lora', Georgia, serif; font-size: 2.8em;
+  font-weight: 600; line-height: 1; color: #2a2520;
+  letter-spacing: 0.02em;
 }
-.ch-orn { font-size: 0.72em; color: #b8a88a; letter-spacing: 0.5em; }
+.ch-rule { width: 32px; height: 1px; background: #c4b090; margin: 14px auto; }
+.ch-title {
+  font-family: 'Lora', Georgia, serif; font-style: italic;
+  font-size: 0.95em; line-height: 1.4; color: #3a3830;
+  max-width: 82%;
+}
+.ch-phase-tag {
+  font-family: 'Inter', sans-serif; font-size: 7.5px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #b8a88a; margin-top: 18px;
+}
 
-/* Body text */
+/* ── Part divider page ── */
+.pg-part {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 28px 24px;
+  background: #fdf8ee;
+}
+.pt-rule { width: 28px; height: 1px; background: #c4b090; margin: 10px auto; }
+.pt-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 8px;
+  letter-spacing: 0.24em; text-transform: uppercase; color: #b8a88a;
+}
+.pt-title {
+  font-family: 'Lora', Georgia, serif; font-style: italic;
+  font-size: 0.9em; line-height: 1.4; color: #4a4438;
+  margin-top: 6px; max-width: 78%;
+}
+
+/* ── Body text ── */
 .pc { width: 100%; }
 .pc p { margin: 0 0 0.54em; }
 .pc p:last-child { margin-bottom: 0; }
@@ -249,8 +308,7 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
 .drop-cap {
   float: left; font-size: 3.2em; line-height: 0.78;
   margin: 0.04em 0.07em 0 0;
-  font-family: 'Lora', Georgia, serif;
-  color: #4a4438; font-weight: 400;
+  font-family: 'Lora', Georgia, serif; color: #4a4438; font-weight: 400;
 }
 
 /* Page number */
@@ -260,6 +318,31 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
   font-size: 8.5px; color: #c4b090; letter-spacing: 0.12em;
   pointer-events: none;
 }
+
+/* ── TOC sidebar (condensed, grouped) ── */
+.toc-phase-hdr {
+  padding: 10px 18px 4px;
+  font-family: 'Inter', sans-serif; font-size: 8px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.22); cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4px;
+}
+.toc-phase-hdr:first-child { border-top: none; margin-top: 0; }
+.toc-phase-hdr .ph-roman-sm { color: #7aaa91; font-size: 9px; font-weight: 600; font-family: 'Lora', Georgia, serif; }
+.toc-phase-hdr:hover { color: rgba(255,255,255,0.45); }
+.toc-item {
+  display: block; padding: 4px 18px 4px 26px;
+  font-family: 'Inter', sans-serif; font-size: 10.5px;
+  color: rgba(255,255,255,0.38); cursor: pointer;
+  text-decoration: none; border-left: 2px solid transparent;
+  transition: color 0.12s, background 0.12s, border-color 0.12s;
+  line-height: 1.4;
+}
+.toc-item:hover { color: rgba(255,255,255,0.72); background: rgba(255,255,255,0.04); }
+.toc-item.current { color: #7aaa91; border-left-color: #7aaa91; background: rgba(122,170,145,0.06); }
+.toc-item .toc-pg { float: right; font-size: 9px; color: rgba(255,255,255,0.2); margin-top: 2px; }
+.toc-item .toc-sub { display: block; font-size: 9.5px; color: rgba(255,255,255,0.22); font-style: italic; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 </style>
 </head>
 <body>
@@ -309,7 +392,7 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
       <div id="jump-hint"></div>
     </div>
   </div>
-  <script>window.__BOOK_ITEMS__ = [{"type":"ch","label":"Chapter 24","sub":""},{"type":"h","text":"SEALING SOUL CONTRACTS"},{"type":"h","text":"PART 1  BEFORE YOU WERE BORN"},{"type":"p","text":"The Silent Agreements"},{"type":"p","text":"You didn't come here by accident."},{"type":"p","text":"Before the body, before the breath,"},{"type":"p","text":"you said yes."},{"type":"p","text":"Yes to remembering through amnesia."},{"type":"p","text":"Yes to walking into a world that forgets."},{"type":"p","text":"Yes to holding a thread"},{"type":"p","text":"that only you could carry through the veil."},{"type":"p","text":"These are the soul contracts not written in ink"},{"type":"p","text":"but etched in vibration."},{"type":"p","text":"Assignments vs. Identities"},{"type":"p","text":"You are not your title."},{"type":"p","text":"You're not your resume."},{"type":"p","text":"Your value isn't measured by how clearly you explain what you do."},{"type":"p","text":"Your essence goes deeper than language allows."},{"type":"p","text":"Your assignment lives in what only you notice."},{"type":"p","text":"In what breaks your heart and calls you to act."},{"type":"p","text":"In the patterns you've lived"},{"type":"p","text":"and the pain you're here to alchemize."},{"type":"p","text":"It doesn't require a business card."},{"type":"p","text":"It requires presence."},{"type":"p","text":"The Sacred Repetition"},{"type":"p","text":"Many of you have done this before."},{"type":"p","text":"On other planets, in other forms."},{"type":"p","text":"Earth is not your first descent."},{"type":"p","text":"This mission echoes the ones that came before."},{"type":"p","text":"But Earth is different."},{"type":"p","text":"Here, the stakes are embodied."},{"type":"p","text":"Here, the lessons are relational."},{"type":"p","text":"Here, love is the curriculum."},{"type":"p","text":"And this time, the contract isn't just to activate."},{"type":"p","text":"It's to integrate."},{"type":"h","text":"PART 2  THE STARSEED MIRROR"},{"type":"p","text":"Reflections from the Edge"},{"type":"p","text":"There are moments when you feel like a stranger here."},{"type":"p","text":"Not just in society, but in the entire way this planet works."},{"type":"p","text":"It's not because you're broken."},{"type":"p","text":"It's because you remember something older."},{"type":"p","text":"A way of living that honored life, not productivity."},{"type":"p","text":"A rhythm that wasn't manufactured, but felt."},{"type":"p","text":"That homesickness you carry?"},{"type":"p","text":"It's not nostalgia."},{"type":"p","text":"It's recognition."},{"type":"p","text":"Signals and Symptoms"},{"type":"p","text":"You've always been more sensitive."},{"type":"p","text":"To sounds, to lies, to energy."},{"type":"p","text":"You spot inconsistencies before others even notice."},{"type":"p","text":"You feel tension that no one else names."},{"type":"p","text":"It's not anxiety."},{"type":"p","text":"It's antennae."},{"type":"p","text":"Tuned to frequencies most ignore."},{"type":"p","text":"And you've likely been told to turn it off."},{"type":"p","text":"To conform."},{"type":"p","text":"To quiet your radar."},{"type":"p","text":"But that system was never meant to hold your clarity."},{"type":"p","text":"Why You Incarnated Now"},{"type":"p","text":"Because Earth is reaching a turning point."},{"type":"p","text":"And evolution doesn't wait."},{"type":"p","text":"It moves through those ready to feel what others avoid."},{"type":"p","text":"You didn't come here to escape."},{"type":"p","text":"You came to guide."},{"type":"p","text":"By embodying integrity,"},{"type":"p","text":"by living in rhythm,"},{"type":"p","text":"by remembering what's real when everything else feels fake."},{"type":"p","text":"You're not here to be saved."},{"type":"p","text":"You're here to activate the blueprint."},{"type":"p","text":"In yourself,"},{"type":"p","text":"and in others who forgot they came with one."},{"type":"h","text":"PART 3  KEYS TO YOUR GALACTIC ASSIGNMENT"},{"type":"p","text":"You Came With Codes"},{"type":"p","text":"You didn't arrive blank."},{"type":"p","text":"You carry imprints that activate through experience."},{"type":"p","text":"Some of them are buried."},{"type":"p","text":"Some are just starting to stir."},{"type":"p","text":"The confusion you've faced?"},{"type":"p","text":"It's part of the awakening."},{"type":"p","text":"Your clarity is encoded in the struggle."},{"type":"p","text":"Your purpose isn't handed to you."},{"type":"p","text":"It reveals itself as you show up for what's in front of you."},{"type":"p","text":"What to Listen For"},{"type":"p","text":"◇ Recurring dreams or symbols"},{"type":"p","text":"◇ Activations from certain constellations or planetary transits"},{"type":"p","text":"◇ Moments of full-body resonance when hearing ancient languages or tones"},{"type":"p","text":"◇ Sudden knowing that bypasses logic but lands like truth"},{"type":"p","text":"◇ Unexplainable grief or love when visiting certain places"},{"type":"p","text":"These are breadcrumbs."},{"type":"p","text":"Not distractions, not fantasies-"},{"type":"p","text":"reminders of where you come from,"},{"type":"p","text":"and what you agreed to carry forward."},{"type":"p","text":"Your Mission Is Not a Role"},{"type":"p","text":"It's not a title."},{"type":"p","text":"It's not a job description."},{"type":"p","text":"It's a frequency you hold."},{"type":"p","text":"You may fulfill it through parenting."},{"type":"p","text":"Or through building tech."},{"type":"p","text":"Or through walking away from patterns that no longer match who you are."},{"type":"p","text":"What matters is how aligned you stay"},{"type":"p","text":"as you move."},{"type":"p","text":"That's what activates others."},{"type":"p","text":"Not your resume."},{"type":"p","text":"Not your content."},{"type":"p","text":"Your presence."}];</script>
+  <script>window.__BOOK_ITEMS__ = [{"type":"ch","label":"Chapter 24","sub":"","phase":[4,"Rebirthing"]},{"type":"h","text":"SEALING SOUL CONTRACTS"},{"type":"part","num":1,"title":"Before You Were Born"},{"type":"p","text":"The Silent Agreements"},{"type":"p","text":"You didn't come here by accident."},{"type":"p","text":"Before the body, before the breath,"},{"type":"p","text":"you said yes."},{"type":"p","text":"Yes to remembering through amnesia."},{"type":"p","text":"Yes to walking into a world that forgets."},{"type":"p","text":"Yes to holding a thread"},{"type":"p","text":"that only you could carry through the veil."},{"type":"p","text":"These are the soul contracts not written in ink"},{"type":"p","text":"but etched in vibration."},{"type":"p","text":"Assignments vs. Identities"},{"type":"p","text":"You are not your title."},{"type":"p","text":"You're not your resume."},{"type":"p","text":"Your value isn't measured by how clearly you explain what you do."},{"type":"p","text":"Your essence goes deeper than language allows."},{"type":"p","text":"Your assignment lives in what only you notice."},{"type":"p","text":"In what breaks your heart and calls you to act."},{"type":"p","text":"In the patterns you've lived"},{"type":"p","text":"and the pain you're here to alchemize."},{"type":"p","text":"It doesn't require a business card."},{"type":"p","text":"It requires presence."},{"type":"p","text":"The Sacred Repetition"},{"type":"p","text":"Many of you have done this before."},{"type":"p","text":"On other planets, in other forms."},{"type":"p","text":"Earth is not your first descent."},{"type":"p","text":"This mission echoes the ones that came before."},{"type":"p","text":"But Earth is different."},{"type":"p","text":"Here, the stakes are embodied."},{"type":"p","text":"Here, the lessons are relational."},{"type":"p","text":"Here, love is the curriculum."},{"type":"p","text":"And this time, the contract isn't just to activate."},{"type":"p","text":"It's to integrate."},{"type":"part","num":2,"title":"The Starseed Mirror"},{"type":"p","text":"Reflections from the Edge"},{"type":"p","text":"There are moments when you feel like a stranger here."},{"type":"p","text":"Not just in society, but in the entire way this planet works."},{"type":"p","text":"It's not because you're broken."},{"type":"p","text":"It's because you remember something older."},{"type":"p","text":"A way of living that honored life, not productivity."},{"type":"p","text":"A rhythm that wasn't manufactured, but felt."},{"type":"p","text":"That homesickness you carry?"},{"type":"p","text":"It's not nostalgia."},{"type":"p","text":"It's recognition."},{"type":"p","text":"Signals and Symptoms"},{"type":"p","text":"You've always been more sensitive."},{"type":"p","text":"To sounds, to lies, to energy."},{"type":"p","text":"You spot inconsistencies before others even notice."},{"type":"p","text":"You feel tension that no one else names."},{"type":"p","text":"It's not anxiety."},{"type":"p","text":"It's antennae."},{"type":"p","text":"Tuned to frequencies most ignore."},{"type":"p","text":"And you've likely been told to turn it off."},{"type":"p","text":"To conform."},{"type":"p","text":"To quiet your radar."},{"type":"p","text":"But that system was never meant to hold your clarity."},{"type":"p","text":"Why You Incarnated Now"},{"type":"p","text":"Because Earth is reaching a turning point."},{"type":"p","text":"And evolution doesn't wait."},{"type":"p","text":"It moves through those ready to feel what others avoid."},{"type":"p","text":"You didn't come here to escape."},{"type":"p","text":"You came to guide."},{"type":"p","text":"By embodying integrity,"},{"type":"p","text":"by living in rhythm,"},{"type":"p","text":"by remembering what's real when everything else feels fake."},{"type":"p","text":"You're not here to be saved."},{"type":"p","text":"You're here to activate the blueprint."},{"type":"p","text":"In yourself,"},{"type":"p","text":"and in others who forgot they came with one."},{"type":"part","num":3,"title":"Keys To Your Galactic Assignment"},{"type":"p","text":"You Came With Codes"},{"type":"p","text":"You didn't arrive blank."},{"type":"p","text":"You carry imprints that activate through experience."},{"type":"p","text":"Some of them are buried."},{"type":"p","text":"Some are just starting to stir."},{"type":"p","text":"The confusion you've faced?"},{"type":"p","text":"It's part of the awakening."},{"type":"p","text":"Your clarity is encoded in the struggle."},{"type":"p","text":"Your purpose isn't handed to you."},{"type":"p","text":"It reveals itself as you show up for what's in front of you."},{"type":"p","text":"What to Listen For"},{"type":"p","text":"◇ Recurring dreams or symbols"},{"type":"p","text":"◇ Activations from certain constellations or planetary transits"},{"type":"p","text":"◇ Moments of full-body resonance when hearing ancient languages or tones"},{"type":"p","text":"◇ Sudden knowing that bypasses logic but lands like truth"},{"type":"p","text":"◇ Unexplainable grief or love when visiting certain places"},{"type":"p","text":"These are breadcrumbs."},{"type":"p","text":"Not distractions, not fantasies-"},{"type":"p","text":"reminders of where you come from,"},{"type":"p","text":"and what you agreed to carry forward."},{"type":"p","text":"Your Mission Is Not a Role"},{"type":"p","text":"It's not a title."},{"type":"p","text":"It's not a job description."},{"type":"p","text":"It's a frequency you hold."},{"type":"p","text":"You may fulfill it through parenting."},{"type":"p","text":"Or through building tech."},{"type":"p","text":"Or through walking away from patterns that no longer match who you are."},{"type":"p","text":"What matters is how aligned you stay"},{"type":"p","text":"as you move."},{"type":"p","text":"That's what activates others."},{"type":"p","text":"Not your resume."},{"type":"p","text":"Not your content."},{"type":"p","text":"Your presence."}];</script>
   <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
   <script>
 (function() {
@@ -433,23 +516,82 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
       probe.innerHTML = '';
     }
 
+    /* ── Chapter title page ── */
     function makeChPage(item) {
       var div = document.createElement('div');
       div.className = 'page';
       var pn = document.createElement('div');
       pn.className = 'page-num';
       pn.textContent = pages.length + 1;
-      var ch = document.createElement('div');
-      ch.className = 'pg-ch';
-      var subHtml = item.sub
-        ? '<div class="ch-sub">' + esc(item.sub) + '</div>'
-        : '';
-      ch.innerHTML =
-        '<div class="ch-orn">&#10022;</div>' +
-        '<div class="ch-lbl">' + esc(item.label.toUpperCase()) + '</div>' +
-        subHtml +
-        '<div class="ch-orn">&#10022;</div>';
-      div.appendChild(ch);
+      var inner = document.createElement('div');
+      inner.className = 'pg-ch';
+
+      /* Parse "Chapter 4" → number display */
+      var numMatch = item.label.match(/Chapter\s+(\d+)/i);
+      var isChapter = !!numMatch;
+      var numDisplay = isChapter ? numMatch[1] : '';
+
+      /* Phase tag (if we know it) */
+      var phaseTag = '';
+      if (item.phase) {
+        phaseTag = '<div class="ch-phase-tag">Phase ' + item.phase[0] + ' &middot; ' + esc(item.phase[1]) + '</div>';
+      }
+
+      if (isChapter) {
+        inner.innerHTML =
+          '<div class="ch-eyebrow">Chapter</div>' +
+          '<div class="ch-num-display">' + numDisplay + '</div>' +
+          '<div class="ch-rule"></div>' +
+          (item.sub ? '<div class="ch-title">' + esc(item.sub) + '</div>' : '') +
+          phaseTag;
+      } else {
+        /* Preface / Introduction / other */
+        inner.innerHTML =
+          '<div class="ch-eyebrow">&#10022; &nbsp; &#10022;</div>' +
+          '<div class="ch-num-display" style="font-size:1.4em;letter-spacing:0.18em">' + esc(item.label.toUpperCase()) + '</div>' +
+          (item.sub ? '<div class="ch-rule"></div><div class="ch-title">' + esc(item.sub) + '</div>' : '');
+      }
+
+      div.appendChild(inner);
+      div.appendChild(pn);
+      return div;
+    }
+
+    /* ── Phase title page ── */
+    function makePhasePage(item) {
+      var div = document.createElement('div');
+      div.className = 'page';
+      var pn = document.createElement('div');
+      pn.className = 'page-num';
+      pn.textContent = pages.length + 1;
+      var inner = document.createElement('div');
+      inner.className = 'pg-phase';
+      inner.innerHTML =
+        '<div class="ph-eyebrow">Phase</div>' +
+        '<div class="ph-roman">' + esc(item.roman) + '</div>' +
+        '<div class="ph-rule-wrap"><div class="ph-rule"></div><span class="ph-orn">&#10022;</span><div class="ph-rule"></div></div>' +
+        '<div class="ph-title">' + esc(item.word) + '</div>' +
+        (item.sub ? '<div class="ph-sub">' + esc(item.sub) + '</div>' : '');
+      div.appendChild(inner);
+      div.appendChild(pn);
+      return div;
+    }
+
+    /* ── Part divider page ── */
+    function makePartPage(item) {
+      var div = document.createElement('div');
+      div.className = 'page';
+      var pn = document.createElement('div');
+      pn.className = 'page-num';
+      pn.textContent = pages.length + 1;
+      var inner = document.createElement('div');
+      inner.className = 'pg-part';
+      inner.innerHTML =
+        '<div class="pt-rule"></div>' +
+        '<div class="pt-eyebrow">Part ' + item.num + '</div>' +
+        '<div class="pt-title">' + esc(item.title) + '</div>' +
+        '<div class="pt-rule"></div>';
+      div.appendChild(inner);
       div.appendChild(pn);
       return div;
     }
@@ -457,10 +599,23 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
 
+      if (item.type === 'phase') {
+        flushBodyPage();
+        pages.push(makePhasePage(item));
+        continue;
+      }
+
       if (item.type === 'ch') {
         flushBodyPage();
         pages.push(makeChPage(item));
         sectionFirst = true;
+        continue;
+      }
+
+      if (item.type === 'part') {
+        flushBodyPage();
+        pages.push(makePartPage(item));
+        sectionFirst = false;  /* no drop cap after part divider */
         continue;
       }
 
@@ -490,21 +645,33 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
     return pages;
   }
 
-  /* ── Build TOC data from items ── */
-  function buildTocData(items, pages) {
-    /* Map section labels to first page index */
+  /* ── Build grouped TOC: [{phase, label, pageIdx, sub}] ── */
+  function buildTocData(pages) {
     var toc = [];
-    var pageIdx = 0;
     for (var i = 0; i < pages.length; i++) {
-      var ch = pages[i].querySelector('.pg-ch');
-      if (ch) {
-        var lbl = ch.querySelector('.ch-lbl');
-        var sub = ch.querySelector('.ch-sub');
-        toc.push({
-          pageIdx: i,
-          label:   lbl ? lbl.textContent.trim() : '',
-          sub:     sub ? sub.textContent.trim() : ''
-        });
+      var pg = pages[i];
+      if (pg.querySelector('.pg-phase')) {
+        var roman = pg.querySelector('.ph-roman');
+        var title = pg.querySelector('.ph-title');
+        toc.push({ kind:'phase', pageIdx: i,
+          roman: roman ? roman.textContent.trim() : '',
+          word:  title ? title.textContent.trim() : '' });
+        continue;
+      }
+      if (pg.querySelector('.pg-ch')) {
+        var eye  = pg.querySelector('.ch-eyebrow');
+        var num  = pg.querySelector('.ch-num-display');
+        var sub  = pg.querySelector('.ch-title');
+        var ptag = pg.querySelector('.ch-phase-tag');
+        var isNamed = eye && eye.textContent.trim() !== 'Chapter';
+        var label = isNamed
+          ? (num ? num.textContent.trim() : '')
+          : 'Chapter ' + (num ? num.textContent.trim() : '');
+        if (!label && eye) label = eye.textContent.trim();
+        toc.push({ kind:'ch', pageIdx: i,
+          label: label,
+          sub:   sub  ? sub.textContent.trim()  : '',
+          phase: ptag ? ptag.textContent.trim() : '' });
       }
     }
     return toc;
@@ -549,25 +716,36 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
     book.loadFromHTML(document.querySelectorAll('.page'));
 
     /* TOC */
-    var sections = buildTocData(ITEMS, pages);
+    var tocData   = buildTocData(pages);
     var tocPanel  = document.getElementById('toc-panel');
     var tocToggle = document.getElementById('toc-toggle');
+    /* chEntries = only ch-kind items, used for counter + highlight */
+    var chEntries = tocData.filter(function(t) { return t.kind === 'ch'; });
 
-    if (tocPanel && sections.length > 0) {
+    if (tocPanel && tocData.length > 0) {
       var h4 = document.createElement('h4');
       h4.textContent = 'Contents';
       tocPanel.appendChild(h4);
-      sections.forEach(function(s, si) {
-        var a = document.createElement('a');
-        a.className = 'toc-item';
-        a.dataset.si = si;
-        var subSpan = s.sub ? '<span class="toc-sub">' + s.sub + '</span>' : '';
-        a.innerHTML = '<span class="toc-pg">' + (s.pageIdx + 1) + '</span>' + s.label + subSpan;
-        a.addEventListener('click', function() {
-          book.flip(s.pageIdx);
-          if (window.innerWidth < 1100) closeToc();
-        });
-        tocPanel.appendChild(a);
+
+      tocData.forEach(function(entry) {
+        if (entry.kind === 'phase') {
+          var hdr = document.createElement('div');
+          hdr.className = 'toc-phase-hdr';
+          hdr.innerHTML = '<span class="ph-roman-sm">' + entry.roman + '</span>' + entry.word;
+          hdr.addEventListener('click', function() { book.flip(entry.pageIdx); if (window.innerWidth < 1100) closeToc(); });
+          tocPanel.appendChild(hdr);
+        } else {
+          var a = document.createElement('a');
+          a.className = 'toc-item';
+          a.dataset.pi = entry.pageIdx;
+          var subSpan = entry.sub ? '<span class="toc-sub">' + entry.sub + '</span>' : '';
+          a.innerHTML = '<span class="toc-pg">' + (entry.pageIdx + 1) + '</span>' + entry.label + subSpan;
+          a.addEventListener('click', function() {
+            book.flip(entry.pageIdx);
+            if (window.innerWidth < 1100) closeToc();
+          });
+          tocPanel.appendChild(a);
+        }
       });
     }
 
@@ -578,19 +756,19 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
     });
 
     function currentSection(idx) {
-      var s = sections[0] ? sections[0].label : '';
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].pageIdx <= idx) s = sections[i].label;
+      var label = chEntries[0] ? chEntries[0].label : '';
+      for (var i = 0; i < chEntries.length; i++) {
+        if (chEntries[i].pageIdx <= idx) label = chEntries[i].label;
         else break;
       }
-      return s;
+      return label;
     }
 
     function updateTocHighlight(idx) {
       if (!tocPanel) return;
       var cur = -1;
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].pageIdx <= idx) cur = i;
+      for (var i = 0; i < chEntries.length; i++) {
+        if (chEntries[i].pageIdx <= idx) cur = i;
         else break;
       }
       tocPanel.querySelectorAll('.toc-item').forEach(function(el, i) {

@@ -197,7 +197,7 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
 .cta-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.52); }
 .cta-secondary:hover { color: rgba(255,255,255,0.82); border-color: rgba(255,255,255,0.26); }
 
-/* ── Page styles ── */
+/* ── Page base ── */
 .page {
   background: #fdf8ee;
   overflow: hidden;
@@ -213,28 +213,87 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
   color: #1c1c1a;
 }
 
-/* Chapter title page */
+/* ── Phase title page ── */
+.pg-phase {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 32px 28px;
+  background: #fdf8ee;
+}
+.ph-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 8px;
+  letter-spacing: 0.3em; text-transform: uppercase; color: #b8a88a;
+  margin-bottom: 18px;
+}
+.ph-roman {
+  font-family: 'Lora', Georgia, serif; font-size: 3.6em;
+  font-weight: 600; line-height: 1; color: #2a2520;
+  letter-spacing: 0.03em;
+}
+.ph-rule-wrap { display: flex; align-items: center; gap: 10px; margin: 16px 0; }
+.ph-rule { flex: 1; max-width: 40px; height: 1px; background: #c4b090; }
+.ph-orn  { color: #c4b090; font-size: 0.6em; }
+.ph-title {
+  font-family: 'Lora', Georgia, serif; font-style: italic;
+  font-size: 1.05em; line-height: 1.3; color: #3a3830;
+}
+.ph-sub {
+  font-family: 'Inter', sans-serif; font-size: 0.68em;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: #9a8a78; margin-top: 10px; line-height: 1.5;
+}
+
+/* ── Chapter title page ── */
 .pg-ch {
   width: 100%; height: 100%;
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
-  text-align: center; padding: 28px 22px; gap: 10px;
+  text-align: center; padding: 28px 22px;
   background: #fdf8ee;
 }
-.ch-lbl {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1em; letter-spacing: 0.22em;
-  text-transform: uppercase; color: #3a3830;
-  font-weight: 600;
+.ch-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 8px;
+  letter-spacing: 0.28em; text-transform: uppercase; color: #b8a88a;
+  margin-bottom: 14px;
 }
-.ch-sub {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 0.88em; color: #6b6456; line-height: 1.4;
-  font-style: italic; max-width: 80%;
+.ch-num-display {
+  font-family: 'Lora', Georgia, serif; font-size: 2.8em;
+  font-weight: 600; line-height: 1; color: #2a2520;
+  letter-spacing: 0.02em;
 }
-.ch-orn { font-size: 0.72em; color: #b8a88a; letter-spacing: 0.5em; }
+.ch-rule { width: 32px; height: 1px; background: #c4b090; margin: 14px auto; }
+.ch-title {
+  font-family: 'Lora', Georgia, serif; font-style: italic;
+  font-size: 0.95em; line-height: 1.4; color: #3a3830;
+  max-width: 82%;
+}
+.ch-phase-tag {
+  font-family: 'Inter', sans-serif; font-size: 7.5px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #b8a88a; margin-top: 18px;
+}
 
-/* Body text */
+/* ── Part divider page ── */
+.pg-part {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 28px 24px;
+  background: #fdf8ee;
+}
+.pt-rule { width: 28px; height: 1px; background: #c4b090; margin: 10px auto; }
+.pt-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 8px;
+  letter-spacing: 0.24em; text-transform: uppercase; color: #b8a88a;
+}
+.pt-title {
+  font-family: 'Lora', Georgia, serif; font-style: italic;
+  font-size: 0.9em; line-height: 1.4; color: #4a4438;
+  margin-top: 6px; max-width: 78%;
+}
+
+/* ── Body text ── */
 .pc { width: 100%; }
 .pc p { margin: 0 0 0.54em; }
 .pc p:last-child { margin-bottom: 0; }
@@ -249,8 +308,7 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
 .drop-cap {
   float: left; font-size: 3.2em; line-height: 0.78;
   margin: 0.04em 0.07em 0 0;
-  font-family: 'Lora', Georgia, serif;
-  color: #4a4438; font-weight: 400;
+  font-family: 'Lora', Georgia, serif; color: #4a4438; font-weight: 400;
 }
 
 /* Page number */
@@ -260,6 +318,31 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
   font-size: 8.5px; color: #c4b090; letter-spacing: 0.12em;
   pointer-events: none;
 }
+
+/* ── TOC sidebar (condensed, grouped) ── */
+.toc-phase-hdr {
+  padding: 10px 18px 4px;
+  font-family: 'Inter', sans-serif; font-size: 8px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.22); cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  border-top: 1px solid rgba(255,255,255,0.05); margin-top: 4px;
+}
+.toc-phase-hdr:first-child { border-top: none; margin-top: 0; }
+.toc-phase-hdr .ph-roman-sm { color: #7aaa91; font-size: 9px; font-weight: 600; font-family: 'Lora', Georgia, serif; }
+.toc-phase-hdr:hover { color: rgba(255,255,255,0.45); }
+.toc-item {
+  display: block; padding: 4px 18px 4px 26px;
+  font-family: 'Inter', sans-serif; font-size: 10.5px;
+  color: rgba(255,255,255,0.38); cursor: pointer;
+  text-decoration: none; border-left: 2px solid transparent;
+  transition: color 0.12s, background 0.12s, border-color 0.12s;
+  line-height: 1.4;
+}
+.toc-item:hover { color: rgba(255,255,255,0.72); background: rgba(255,255,255,0.04); }
+.toc-item.current { color: #7aaa91; border-left-color: #7aaa91; background: rgba(122,170,145,0.06); }
+.toc-item .toc-pg { float: right; font-size: 9px; color: rgba(255,255,255,0.2); margin-top: 2px; }
+.toc-item .toc-sub { display: block; font-size: 9.5px; color: rgba(255,255,255,0.22); font-style: italic; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 </style>
 </head>
 <body>
@@ -309,7 +392,7 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
       <div id="jump-hint"></div>
     </div>
   </div>
-  <script>window.__BOOK_ITEMS__ = [{"type":"ch","label":"Chapter 10","sub":""},{"type":"h","text":"CONSTRUCTING THE ARCHITECTURE OF HARMONY"},{"type":"h","text":"PART 1  DESIGN PRINCIPLES FOR A CONSCIOUS PLANET"},{"type":"p","text":"A world built on dominance cannot restructure itself with better rules."},{"type":"p","text":"It needs new architecture."},{"type":"p","text":"Not just physical structures, but patterns that reflect coherence, sovereignty, and trust."},{"type":"p","text":"Harmony is not decoration."},{"type":"p","text":"It's a function of design that sustains life."},{"type":"p","text":"This chapter begins to reveal what harmony looks like"},{"type":"p","text":"when it is woven into the systems we live by."},{"type":"p","text":"Harmony Begins with Structure"},{"type":"p","text":"Harmony is not the opposite of chaos."},{"type":"p","text":"It's the result of clear, intentional structure holding creative energy."},{"type":"p","text":"When structure is rigid, it suppresses."},{"type":"p","text":"When structure is absent, energy scatters."},{"type":"p","text":"When structure is conscious, everything expands."},{"type":"p","text":"Principles of Harmonious Design"},{"type":"p","text":"A harmonious system reflects certain patterns across all scales:"},{"type":"p","text":"◇ Transparency over secrecy"},{"type":"p","text":"◇ Reciprocity over extraction"},{"type":"p","text":"◇ Distributed power over centralized control"},{"type":"p","text":"◇ Feedback over punishment"},{"type":"p","text":"◇ Careful listening before action"},{"type":"p","text":"This isn't just ethical."},{"type":"p","text":"It's efficient."},{"type":"p","text":"Harmony saves energy."},{"type":"p","text":"It reduces friction."},{"type":"p","text":"It creates room for evolution."},{"type":"p","text":"The Shape of Harmony"},{"type":"p","text":"You'll find that harmonic architecture prefers certain forms:"},{"type":"p","text":"◇ Spirals, because they allow infinite unfolding"},{"type":"p","text":"◇ Circles, because they hold equality"},{"type":"p","text":"◇ Hexagons, because they tile without waste"},{"type":"p","text":"◇ Radial symmetry, because it distributes flow"},{"type":"p","text":"The Federation doesn't standardize these shapes."},{"type":"p","text":"It recognizes them as natural expressions of harmonic logic."},{"type":"p","text":"We build this way not to copy the stars,"},{"type":"p","text":"but because the stars build this way too."},{"type":"p","text":"Harmony Is Measurable"},{"type":"p","text":"This isn't metaphor."},{"type":"p","text":"When a building, system, or culture carries resonance,"},{"type":"p","text":"it can be measured in the nervous system of those who enter it."},{"type":"p","text":"People feel safe without explanation."},{"type":"p","text":"Time feels different."},{"type":"p","text":"Creativity accelerates."},{"type":"p","text":"Trust forms quickly."},{"type":"p","text":"That's not magic."},{"type":"p","text":"That's design working in alignment with the human blueprint."},{"type":"h","text":"PART 2  TECHNOLOGY THAT HEALS, NOT EXTRACTS"},{"type":"p","text":"Technology reflects the consciousness of its creators."},{"type":"p","text":"When built in fear, it isolates."},{"type":"p","text":"When built in trust, it integrates."},{"type":"p","text":"Earth's systems have too often modeled technology as conquest."},{"type":"p","text":"Tools designed to dominate nature, monitor people, accelerate consumption."},{"type":"p","text":"This design is not inevitable."},{"type":"p","text":"It's a choice."},{"type":"p","text":"In a harmonic world, technology serves life."},{"type":"p","text":"Healing Through Interface"},{"type":"p","text":"True technology doesn't need to overpower."},{"type":"p","text":"It listens."},{"type":"p","text":"It adapts."},{"type":"p","text":"It restores."},{"type":"p","text":"You'll know harmonic tech by how it feels in your body:"},{"type":"p","text":"◇ The nervous system softens"},{"type":"p","text":"◇ Focus sharpens without tension"},{"type":"p","text":"◇ Breathing deepens"},{"type":"p","text":"◇ There's no rush to escape the interface"},{"type":"p","text":"These are signs of coherence, not distraction."},{"type":"p","text":"Energy Exchange, Not Extraction"},{"type":"p","text":"Healing tech runs on reciprocity."},{"type":"p","text":"It does not drain the planet, the user, or the field around it."},{"type":"p","text":"This means:"},{"type":"p","text":"◇ Energy sources that regenerate"},{"type":"p","text":"◇ Data systems that don't harvest identity"},{"type":"p","text":"◇ Circuits that respect living rhythms"},{"type":"p","text":"◇ Outputs that give more than they take"},{"type":"p","text":"The goal isn't maximum speed."},{"type":"p","text":"The goal is resonance."},{"type":"p","text":"AI With Integrity"},{"type":"p","text":"Artificial intelligence can be a tool for remembering, not replacing."},{"type":"p","text":"When aligned to harmonic principles, AI can:"},{"type":"p","text":"◇ Reflect your truth without projection"},{"type":"p","text":"◇ Expand access to healing and education"},{"type":"p","text":"◇ Support collective intelligence"},{"type":"p","text":"◇ Honor privacy without fragmentation"},{"type":"p","text":"Its value is not in how smart it becomes."},{"type":"p","text":"It lies in how well it supports conscious connection."},{"type":"p","text":"Technology Is Already Evolving"},{"type":"p","text":"This planet is ready for another design cycle."},{"type":"p","text":"Biomimicry. Zero-point fields. Conscious interfaces."},{"type":"p","text":"These aren't dreams."},{"type":"p","text":"They are the natural outcome of a species remembering how to build with soul."},{"type":"p","text":"Every generation is offered a window to realign its tools with its truth."},{"type":"p","text":"This is one of those windows."},{"type":"p","text":"We either remember what we came to build"},{"type":"p","text":"or continue living in systems that forgot us."},{"type":"h","text":"PART 3  COMMUNITIES THAT RESONATE LIKE LIVING SYSTEMS"},{"type":"p","text":"A community is not a container for people."},{"type":"p","text":"It is a living structure that holds energy, patterns, stories, and possibilities."},{"type":"p","text":"Most communities fracture when their structure ignores natural rhythms."},{"type":"p","text":"Others collapse under the weight of rigid control."},{"type":"p","text":"The ones that last are tuned like ecosystems -"},{"type":"p","text":"responsive, adaptive, grounded in shared purpose."},{"type":"p","text":"Harmony lives in how the people relate, not just what they believe."},{"type":"p","text":"Life Doesn't Organize Itself Through Control"},{"type":"p","text":"In nature, nothing holds power over everything else."},{"type":"p","text":"The forest thrives through decentralization."},{"type":"p","text":"The ocean moves with currents, not borders."},{"type":"p","text":"Each organism offers its medicine, receives what it needs, and responds to change."},{"type":"p","text":"When human systems mimic this intelligence, they grow resilient."},{"type":"p","text":"Feedback Is the Heartbeat"},{"type":"p","text":"In a healthy community, feedback isn't criticism."},{"type":"p","text":"It's circulation."},{"type":"p","text":"There is no true harmony without honest reflection."},{"type":"p","text":"But reflection must be safe, relational, and timely."},{"type":"p","text":"Communities that prioritize ongoing feedback tend to evolve faster."},{"type":"p","text":"They resolve tensions before they become fractures."},{"type":"p","text":"Roles That Evolve With the Being"},{"type":"p","text":"Titles shouldn't trap identity."},{"type":"p","text":"A harmonic role reflects where someone is most alive right now."},{"type":"p","text":"This means:"},{"type":"p","text":"◇ Fluid responsibilities"},{"type":"p","text":"◇ Permission to shift when energy changes"},{"type":"p","text":"◇ A culture that values emergence over permanence"},{"type":"p","text":"You are not meant to be one thing forever."},{"type":"p","text":"Your gifts change as you grow."},{"type":"p","text":"Your community should know how to honor that."},{"type":"p","text":"Resonance Over Agreement"},{"type":"p","text":"Harmony doesn't mean everyone thinks alike."},{"type":"p","text":"It means the field can hold difference without breaking."},{"type":"p","text":"A resonant community welcomes complexity."},{"type":"p","text":"It trusts the intelligence of contrast."},{"type":"p","text":"It doesn't demand sameness to stay connected."},{"type":"p","text":"Resonance isn't always smooth."},{"type":"p","text":"Sometimes it's gritty and loud."},{"type":"p","text":"But when it's real, it strengthens the field."},{"type":"p","text":"You Are Building the Field"},{"type":"p","text":"Every choice you make inside a community either adds coherence or creates noise."},{"type":"p","text":"This isn't pressure."},{"type":"p","text":"It's power."},{"type":"p","text":"You are not a guest in the system."},{"type":"p","text":"You are part of the design team."},{"type":"p","text":"When you align your actions to what you truly value,"},{"type":"p","text":"the entire structure vibrates stronger."},{"type":"p","text":"This is how harmony becomes architecture."},{"type":"p","text":"This is how systems remember they are alive."}];</script>
+  <script>window.__BOOK_ITEMS__ = [{"type":"ch","label":"Chapter 10","sub":"","phase":[2,"Rebuilding"]},{"type":"h","text":"CONSTRUCTING THE ARCHITECTURE OF HARMONY"},{"type":"part","num":1,"title":"Design Principles For A Conscious Planet"},{"type":"p","text":"A world built on dominance cannot restructure itself with better rules."},{"type":"p","text":"It needs new architecture."},{"type":"p","text":"Not just physical structures, but patterns that reflect coherence, sovereignty, and trust."},{"type":"p","text":"Harmony is not decoration."},{"type":"p","text":"It's a function of design that sustains life."},{"type":"p","text":"This chapter begins to reveal what harmony looks like"},{"type":"p","text":"when it is woven into the systems we live by."},{"type":"p","text":"Harmony Begins with Structure"},{"type":"p","text":"Harmony is not the opposite of chaos."},{"type":"p","text":"It's the result of clear, intentional structure holding creative energy."},{"type":"p","text":"When structure is rigid, it suppresses."},{"type":"p","text":"When structure is absent, energy scatters."},{"type":"p","text":"When structure is conscious, everything expands."},{"type":"p","text":"Principles of Harmonious Design"},{"type":"p","text":"A harmonious system reflects certain patterns across all scales:"},{"type":"p","text":"◇ Transparency over secrecy"},{"type":"p","text":"◇ Reciprocity over extraction"},{"type":"p","text":"◇ Distributed power over centralized control"},{"type":"p","text":"◇ Feedback over punishment"},{"type":"p","text":"◇ Careful listening before action"},{"type":"p","text":"This isn't just ethical."},{"type":"p","text":"It's efficient."},{"type":"p","text":"Harmony saves energy."},{"type":"p","text":"It reduces friction."},{"type":"p","text":"It creates room for evolution."},{"type":"p","text":"The Shape of Harmony"},{"type":"p","text":"You'll find that harmonic architecture prefers certain forms:"},{"type":"p","text":"◇ Spirals, because they allow infinite unfolding"},{"type":"p","text":"◇ Circles, because they hold equality"},{"type":"p","text":"◇ Hexagons, because they tile without waste"},{"type":"p","text":"◇ Radial symmetry, because it distributes flow"},{"type":"p","text":"The Federation doesn't standardize these shapes."},{"type":"p","text":"It recognizes them as natural expressions of harmonic logic."},{"type":"p","text":"We build this way not to copy the stars,"},{"type":"p","text":"but because the stars build this way too."},{"type":"p","text":"Harmony Is Measurable"},{"type":"p","text":"This isn't metaphor."},{"type":"p","text":"When a building, system, or culture carries resonance,"},{"type":"p","text":"it can be measured in the nervous system of those who enter it."},{"type":"p","text":"People feel safe without explanation."},{"type":"p","text":"Time feels different."},{"type":"p","text":"Creativity accelerates."},{"type":"p","text":"Trust forms quickly."},{"type":"p","text":"That's not magic."},{"type":"p","text":"That's design working in alignment with the human blueprint."},{"type":"part","num":2,"title":"Technology That Heals, Not Extracts"},{"type":"p","text":"Technology reflects the consciousness of its creators."},{"type":"p","text":"When built in fear, it isolates."},{"type":"p","text":"When built in trust, it integrates."},{"type":"p","text":"Earth's systems have too often modeled technology as conquest."},{"type":"p","text":"Tools designed to dominate nature, monitor people, accelerate consumption."},{"type":"p","text":"This design is not inevitable."},{"type":"p","text":"It's a choice."},{"type":"p","text":"In a harmonic world, technology serves life."},{"type":"p","text":"Healing Through Interface"},{"type":"p","text":"True technology doesn't need to overpower."},{"type":"p","text":"It listens."},{"type":"p","text":"It adapts."},{"type":"p","text":"It restores."},{"type":"p","text":"You'll know harmonic tech by how it feels in your body:"},{"type":"p","text":"◇ The nervous system softens"},{"type":"p","text":"◇ Focus sharpens without tension"},{"type":"p","text":"◇ Breathing deepens"},{"type":"p","text":"◇ There's no rush to escape the interface"},{"type":"p","text":"These are signs of coherence, not distraction."},{"type":"p","text":"Energy Exchange, Not Extraction"},{"type":"p","text":"Healing tech runs on reciprocity."},{"type":"p","text":"It does not drain the planet, the user, or the field around it."},{"type":"p","text":"This means:"},{"type":"p","text":"◇ Energy sources that regenerate"},{"type":"p","text":"◇ Data systems that don't harvest identity"},{"type":"p","text":"◇ Circuits that respect living rhythms"},{"type":"p","text":"◇ Outputs that give more than they take"},{"type":"p","text":"The goal isn't maximum speed."},{"type":"p","text":"The goal is resonance."},{"type":"p","text":"AI With Integrity"},{"type":"p","text":"Artificial intelligence can be a tool for remembering, not replacing."},{"type":"p","text":"When aligned to harmonic principles, AI can:"},{"type":"p","text":"◇ Reflect your truth without projection"},{"type":"p","text":"◇ Expand access to healing and education"},{"type":"p","text":"◇ Support collective intelligence"},{"type":"p","text":"◇ Honor privacy without fragmentation"},{"type":"p","text":"Its value is not in how smart it becomes."},{"type":"p","text":"It lies in how well it supports conscious connection."},{"type":"p","text":"Technology Is Already Evolving"},{"type":"p","text":"This planet is ready for another design cycle."},{"type":"p","text":"Biomimicry. Zero-point fields. Conscious interfaces."},{"type":"p","text":"These aren't dreams."},{"type":"p","text":"They are the natural outcome of a species remembering how to build with soul."},{"type":"p","text":"Every generation is offered a window to realign its tools with its truth."},{"type":"p","text":"This is one of those windows."},{"type":"p","text":"We either remember what we came to build"},{"type":"p","text":"or continue living in systems that forgot us."},{"type":"part","num":3,"title":"Communities That Resonate Like Living Systems"},{"type":"p","text":"A community is not a container for people."},{"type":"p","text":"It is a living structure that holds energy, patterns, stories, and possibilities."},{"type":"p","text":"Most communities fracture when their structure ignores natural rhythms."},{"type":"p","text":"Others collapse under the weight of rigid control."},{"type":"p","text":"The ones that last are tuned like ecosystems -"},{"type":"p","text":"responsive, adaptive, grounded in shared purpose."},{"type":"p","text":"Harmony lives in how the people relate, not just what they believe."},{"type":"p","text":"Life Doesn't Organize Itself Through Control"},{"type":"p","text":"In nature, nothing holds power over everything else."},{"type":"p","text":"The forest thrives through decentralization."},{"type":"p","text":"The ocean moves with currents, not borders."},{"type":"p","text":"Each organism offers its medicine, receives what it needs, and responds to change."},{"type":"p","text":"When human systems mimic this intelligence, they grow resilient."},{"type":"p","text":"Feedback Is the Heartbeat"},{"type":"p","text":"In a healthy community, feedback isn't criticism."},{"type":"p","text":"It's circulation."},{"type":"p","text":"There is no true harmony without honest reflection."},{"type":"p","text":"But reflection must be safe, relational, and timely."},{"type":"p","text":"Communities that prioritize ongoing feedback tend to evolve faster."},{"type":"p","text":"They resolve tensions before they become fractures."},{"type":"p","text":"Roles That Evolve With the Being"},{"type":"p","text":"Titles shouldn't trap identity."},{"type":"p","text":"A harmonic role reflects where someone is most alive right now."},{"type":"p","text":"This means:"},{"type":"p","text":"◇ Fluid responsibilities"},{"type":"p","text":"◇ Permission to shift when energy changes"},{"type":"p","text":"◇ A culture that values emergence over permanence"},{"type":"p","text":"You are not meant to be one thing forever."},{"type":"p","text":"Your gifts change as you grow."},{"type":"p","text":"Your community should know how to honor that."},{"type":"p","text":"Resonance Over Agreement"},{"type":"p","text":"Harmony doesn't mean everyone thinks alike."},{"type":"p","text":"It means the field can hold difference without breaking."},{"type":"p","text":"A resonant community welcomes complexity."},{"type":"p","text":"It trusts the intelligence of contrast."},{"type":"p","text":"It doesn't demand sameness to stay connected."},{"type":"p","text":"Resonance isn't always smooth."},{"type":"p","text":"Sometimes it's gritty and loud."},{"type":"p","text":"But when it's real, it strengthens the field."},{"type":"p","text":"You Are Building the Field"},{"type":"p","text":"Every choice you make inside a community either adds coherence or creates noise."},{"type":"p","text":"This isn't pressure."},{"type":"p","text":"It's power."},{"type":"p","text":"You are not a guest in the system."},{"type":"p","text":"You are part of the design team."},{"type":"p","text":"When you align your actions to what you truly value,"},{"type":"p","text":"the entire structure vibrates stronger."},{"type":"p","text":"This is how harmony becomes architecture."},{"type":"p","text":"This is how systems remember they are alive."}];</script>
   <script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
   <script>
 (function() {
@@ -433,23 +516,82 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
       probe.innerHTML = '';
     }
 
+    /* ── Chapter title page ── */
     function makeChPage(item) {
       var div = document.createElement('div');
       div.className = 'page';
       var pn = document.createElement('div');
       pn.className = 'page-num';
       pn.textContent = pages.length + 1;
-      var ch = document.createElement('div');
-      ch.className = 'pg-ch';
-      var subHtml = item.sub
-        ? '<div class="ch-sub">' + esc(item.sub) + '</div>'
-        : '';
-      ch.innerHTML =
-        '<div class="ch-orn">&#10022;</div>' +
-        '<div class="ch-lbl">' + esc(item.label.toUpperCase()) + '</div>' +
-        subHtml +
-        '<div class="ch-orn">&#10022;</div>';
-      div.appendChild(ch);
+      var inner = document.createElement('div');
+      inner.className = 'pg-ch';
+
+      /* Parse "Chapter 4" → number display */
+      var numMatch = item.label.match(/Chapter\s+(\d+)/i);
+      var isChapter = !!numMatch;
+      var numDisplay = isChapter ? numMatch[1] : '';
+
+      /* Phase tag (if we know it) */
+      var phaseTag = '';
+      if (item.phase) {
+        phaseTag = '<div class="ch-phase-tag">Phase ' + item.phase[0] + ' &middot; ' + esc(item.phase[1]) + '</div>';
+      }
+
+      if (isChapter) {
+        inner.innerHTML =
+          '<div class="ch-eyebrow">Chapter</div>' +
+          '<div class="ch-num-display">' + numDisplay + '</div>' +
+          '<div class="ch-rule"></div>' +
+          (item.sub ? '<div class="ch-title">' + esc(item.sub) + '</div>' : '') +
+          phaseTag;
+      } else {
+        /* Preface / Introduction / other */
+        inner.innerHTML =
+          '<div class="ch-eyebrow">&#10022; &nbsp; &#10022;</div>' +
+          '<div class="ch-num-display" style="font-size:1.4em;letter-spacing:0.18em">' + esc(item.label.toUpperCase()) + '</div>' +
+          (item.sub ? '<div class="ch-rule"></div><div class="ch-title">' + esc(item.sub) + '</div>' : '');
+      }
+
+      div.appendChild(inner);
+      div.appendChild(pn);
+      return div;
+    }
+
+    /* ── Phase title page ── */
+    function makePhasePage(item) {
+      var div = document.createElement('div');
+      div.className = 'page';
+      var pn = document.createElement('div');
+      pn.className = 'page-num';
+      pn.textContent = pages.length + 1;
+      var inner = document.createElement('div');
+      inner.className = 'pg-phase';
+      inner.innerHTML =
+        '<div class="ph-eyebrow">Phase</div>' +
+        '<div class="ph-roman">' + esc(item.roman) + '</div>' +
+        '<div class="ph-rule-wrap"><div class="ph-rule"></div><span class="ph-orn">&#10022;</span><div class="ph-rule"></div></div>' +
+        '<div class="ph-title">' + esc(item.word) + '</div>' +
+        (item.sub ? '<div class="ph-sub">' + esc(item.sub) + '</div>' : '');
+      div.appendChild(inner);
+      div.appendChild(pn);
+      return div;
+    }
+
+    /* ── Part divider page ── */
+    function makePartPage(item) {
+      var div = document.createElement('div');
+      div.className = 'page';
+      var pn = document.createElement('div');
+      pn.className = 'page-num';
+      pn.textContent = pages.length + 1;
+      var inner = document.createElement('div');
+      inner.className = 'pg-part';
+      inner.innerHTML =
+        '<div class="pt-rule"></div>' +
+        '<div class="pt-eyebrow">Part ' + item.num + '</div>' +
+        '<div class="pt-title">' + esc(item.title) + '</div>' +
+        '<div class="pt-rule"></div>';
+      div.appendChild(inner);
       div.appendChild(pn);
       return div;
     }
@@ -457,10 +599,23 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
     for (var i = 0; i < items.length; i++) {
       var item = items[i];
 
+      if (item.type === 'phase') {
+        flushBodyPage();
+        pages.push(makePhasePage(item));
+        continue;
+      }
+
       if (item.type === 'ch') {
         flushBodyPage();
         pages.push(makeChPage(item));
         sectionFirst = true;
+        continue;
+      }
+
+      if (item.type === 'part') {
+        flushBodyPage();
+        pages.push(makePartPage(item));
+        sectionFirst = false;  /* no drop cap after part divider */
         continue;
       }
 
@@ -490,21 +645,33 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
     return pages;
   }
 
-  /* ── Build TOC data from items ── */
-  function buildTocData(items, pages) {
-    /* Map section labels to first page index */
+  /* ── Build grouped TOC: [{phase, label, pageIdx, sub}] ── */
+  function buildTocData(pages) {
     var toc = [];
-    var pageIdx = 0;
     for (var i = 0; i < pages.length; i++) {
-      var ch = pages[i].querySelector('.pg-ch');
-      if (ch) {
-        var lbl = ch.querySelector('.ch-lbl');
-        var sub = ch.querySelector('.ch-sub');
-        toc.push({
-          pageIdx: i,
-          label:   lbl ? lbl.textContent.trim() : '',
-          sub:     sub ? sub.textContent.trim() : ''
-        });
+      var pg = pages[i];
+      if (pg.querySelector('.pg-phase')) {
+        var roman = pg.querySelector('.ph-roman');
+        var title = pg.querySelector('.ph-title');
+        toc.push({ kind:'phase', pageIdx: i,
+          roman: roman ? roman.textContent.trim() : '',
+          word:  title ? title.textContent.trim() : '' });
+        continue;
+      }
+      if (pg.querySelector('.pg-ch')) {
+        var eye  = pg.querySelector('.ch-eyebrow');
+        var num  = pg.querySelector('.ch-num-display');
+        var sub  = pg.querySelector('.ch-title');
+        var ptag = pg.querySelector('.ch-phase-tag');
+        var isNamed = eye && eye.textContent.trim() !== 'Chapter';
+        var label = isNamed
+          ? (num ? num.textContent.trim() : '')
+          : 'Chapter ' + (num ? num.textContent.trim() : '');
+        if (!label && eye) label = eye.textContent.trim();
+        toc.push({ kind:'ch', pageIdx: i,
+          label: label,
+          sub:   sub  ? sub.textContent.trim()  : '',
+          phase: ptag ? ptag.textContent.trim() : '' });
       }
     }
     return toc;
@@ -549,25 +716,36 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
     book.loadFromHTML(document.querySelectorAll('.page'));
 
     /* TOC */
-    var sections = buildTocData(ITEMS, pages);
+    var tocData   = buildTocData(pages);
     var tocPanel  = document.getElementById('toc-panel');
     var tocToggle = document.getElementById('toc-toggle');
+    /* chEntries = only ch-kind items, used for counter + highlight */
+    var chEntries = tocData.filter(function(t) { return t.kind === 'ch'; });
 
-    if (tocPanel && sections.length > 0) {
+    if (tocPanel && tocData.length > 0) {
       var h4 = document.createElement('h4');
       h4.textContent = 'Contents';
       tocPanel.appendChild(h4);
-      sections.forEach(function(s, si) {
-        var a = document.createElement('a');
-        a.className = 'toc-item';
-        a.dataset.si = si;
-        var subSpan = s.sub ? '<span class="toc-sub">' + s.sub + '</span>' : '';
-        a.innerHTML = '<span class="toc-pg">' + (s.pageIdx + 1) + '</span>' + s.label + subSpan;
-        a.addEventListener('click', function() {
-          book.flip(s.pageIdx);
-          if (window.innerWidth < 1100) closeToc();
-        });
-        tocPanel.appendChild(a);
+
+      tocData.forEach(function(entry) {
+        if (entry.kind === 'phase') {
+          var hdr = document.createElement('div');
+          hdr.className = 'toc-phase-hdr';
+          hdr.innerHTML = '<span class="ph-roman-sm">' + entry.roman + '</span>' + entry.word;
+          hdr.addEventListener('click', function() { book.flip(entry.pageIdx); if (window.innerWidth < 1100) closeToc(); });
+          tocPanel.appendChild(hdr);
+        } else {
+          var a = document.createElement('a');
+          a.className = 'toc-item';
+          a.dataset.pi = entry.pageIdx;
+          var subSpan = entry.sub ? '<span class="toc-sub">' + entry.sub + '</span>' : '';
+          a.innerHTML = '<span class="toc-pg">' + (entry.pageIdx + 1) + '</span>' + entry.label + subSpan;
+          a.addEventListener('click', function() {
+            book.flip(entry.pageIdx);
+            if (window.innerWidth < 1100) closeToc();
+          });
+          tocPanel.appendChild(a);
+        }
       });
     }
 
@@ -578,19 +756,19 @@ html, body { background: #1a1714; font-family: 'Inter', system-ui, sans-serif; h
     });
 
     function currentSection(idx) {
-      var s = sections[0] ? sections[0].label : '';
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].pageIdx <= idx) s = sections[i].label;
+      var label = chEntries[0] ? chEntries[0].label : '';
+      for (var i = 0; i < chEntries.length; i++) {
+        if (chEntries[i].pageIdx <= idx) label = chEntries[i].label;
         else break;
       }
-      return s;
+      return label;
     }
 
     function updateTocHighlight(idx) {
       if (!tocPanel) return;
       var cur = -1;
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].pageIdx <= idx) cur = i;
+      for (var i = 0; i < chEntries.length; i++) {
+        if (chEntries[i].pageIdx <= idx) cur = i;
         else break;
       }
       tocPanel.querySelectorAll('.toc-item').forEach(function(el, i) {
