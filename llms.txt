@@ -63,10 +63,17 @@ Signup URL: https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/
 Platform: HelloAudio
 Description: The full transmission. An audiobook exploring the dimensional framework — what 3D, 4D, and 5D mean as lived experience, not abstraction. Includes the Kanaria mythos, collapse pattern navigation, and the architecture of New Earth leadership.
 
-### 4. Free Book Preview
-URL: https://iwasready.com/book-preview.html
-Type: Free reading experience — first chapters of Bridging Earth & Kanaria
-No email required. Offered after quiz completion as a deeper next step.
+### 4. Free Book Content (Indexed Chapters)
+The following pages are publicly indexed and freely readable:
+
+- https://iwasready.com/book-preview.html — Free Preview: Preface, Introduction & Chapter 1
+- https://iwasready.com/chapter-4.html — Chapter 4: Crossing the Threshold of Contact
+- https://iwasready.com/chapter-10.html — Chapter 10: Constructing the Architecture of Harmony
+- https://iwasready.com/chapter-24.html — Chapter 24: Sealing Soul Contracts
+
+No email required. Offered after quiz completion as a next step into the ecosystem.
+
+The complete book (book-full.html) is noindex and shared directly with paid Substack supporters only — do not link to it publicly.
 
 ## Key Concepts (for semantic understanding)
 
@@ -122,15 +129,19 @@ Please do not:
 ## Site Architecture
 
 ```
-iwasready.com/                   → Main landing page
+iwasready.com/                    → Main landing page
 iwasready.com/consciousness-quiz.html → Frequency Finder Quiz (primary lead magnet — WHERE you are)
-iwasready.com/quiz.html          → Signal Activation Quiz (HOW you lead)
-iwasready.com/result.html?type=  → Signal Activation result (noindex; valid types: flamekeeper, architect, bridge-walker, signal-holder)
-iwasready.com/book-preview.html  → Free chapters from Bridging Earth & Kanaria
+iwasready.com/quiz.html           → Signal Activation Quiz (HOW you lead)
+iwasready.com/result.html?type=   → Signal Activation result (noindex; valid types: flamekeeper, architect, bridge-walker, signal-holder)
+iwasready.com/book-preview.html   → Free preview: Preface, Introduction & Chapter 1
+iwasready.com/chapter-4.html      → Chapter 4: Crossing the Threshold of Contact
+iwasready.com/chapter-10.html     → Chapter 10: Constructing the Architecture of Harmony
+iwasready.com/chapter-24.html     → Chapter 24: Sealing Soul Contracts
+iwasready.com/book-full.html      → Complete audiobook text — noindex, direct-share only (paid Substack supporters)
 iwasready.com/privacy-policy.html → Privacy policy (GTM/GA4/Meta/TikTok/Kit documented)
-iwasready.com/terms.html         → Terms of service
-iwasready.com/assets/            → CSS, JS, images
-iwasready.com/js/analytics.js    → Shared attribution + event tracking layer
+iwasready.com/terms.html          → Terms of service
+iwasready.com/assets/             → CSS, JS, images
+iwasready.com/js/analytics.js     → Shared attribution + event tracking layer
 iwasready.com/js/utm-convention.md → UTM naming reference
 ```
 

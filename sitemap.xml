@@ -32,7 +32,28 @@
     <priority>0.75</priority>
   </url>
 
-  <!-- result.html is noindex — intentionally excluded from sitemap -->
+  <url>
+    <loc>https://iwasready.com/chapter-4.html</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://iwasready.com/chapter-10.html</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://iwasready.com/chapter-24.html</loc>
+    <lastmod>2026-04-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- result.html and book-full.html are noindex — intentionally excluded from sitemap -->
 
   <url>
     <loc>https://iwasready.com/privacy-policy.html</loc>

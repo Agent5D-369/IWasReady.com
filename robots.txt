@@ -6,12 +6,16 @@ Allow: /index.html
 Allow: /consciousness-quiz.html
 Allow: /quiz.html
 Allow: /book-preview.html
+Allow: /chapter-4.html
+Allow: /chapter-10.html
+Allow: /chapter-24.html
 
 # Assets and scripts
 Allow: /assets/
 Allow: /js/
 
-# Backup and draft files — do not index
+# Full book and backup files — do not index
+Disallow: /book-full.html
 Disallow: /quizBU.html
 
 Sitemap: https://iwasready.com/sitemap.xml
