@@ -268,6 +268,20 @@ function initQuiz() {
   const quizBody = document.getElementById('quiz-body');
   if (!quizBody) return;
 
+  // Apply paid-traffic mode if detected
+  if (typeof isPaidTrafficMode === 'function' && isPaidTrafficMode()) {
+    document.body.classList.add('paid-mode');
+  }
+
+  // Fire quiz_start on first question load
+  if (typeof trackEvent === 'function') {
+    trackEvent('quiz_start', {
+      quiz_name:    'signal_activation',
+      quiz_version: '1',
+      page_type:    'quiz'
+    });
+  }
+
   renderQuestion(quizState.currentIndex);
 }
 
@@ -277,14 +291,24 @@ function renderQuestion(index) {
   if (!quizBody) return;
 
   if (index >= QUIZ_QUESTIONS.length) {
-    // Done, show completing screen, then redirect
+    // Done — fire quiz_complete, show completing screen, then redirect
+    const finalResult = calculateResult();
+
+    if (typeof trackEvent === 'function') {
+      trackEvent('quiz_complete', {
+        quiz_name:    'signal_activation',
+        quiz_version: '1',
+        result_type:  finalResult,
+        page_type:    'quiz'
+      });
+    }
+
     quizBody.style.display = 'none';
     if (completingScreen) {
       completingScreen.classList.add('active');
     }
     setTimeout(() => {
-      const result = calculateResult();
-      window.location.href = `result.html?type=${result}`;
+      window.location.href = `result.html?type=${finalResult}`;
     }, 2200);
     return;
   }
@@ -292,6 +316,16 @@ function renderQuestion(index) {
   const q = QUIZ_QUESTIONS[index];
   const total = QUIZ_QUESTIONS.length;
   const progress = Math.round((index / total) * 100);
+
+  // Track question view
+  if (typeof trackEvent === 'function') {
+    trackEvent('quiz_question_view', {
+      quiz_name:   'signal_activation',
+      quiz_step:   index + 1,
+      question_id: q.id || `q${index + 1}`,
+      page_type:   'quiz'
+    });
+  }
 
   // Update progress bar
   const fill = document.getElementById('progress-fill');
@@ -362,6 +396,14 @@ function renderQuestion(index) {
   if (backBtn) {
     backBtn.addEventListener('click', () => {
       if (quizState.currentIndex > 0) {
+        // Track back navigation
+        if (typeof trackEvent === 'function') {
+          trackEvent('quiz_back_click', {
+            quiz_name: 'signal_activation',
+            quiz_step: quizState.currentIndex + 1,
+            page_type: 'quiz'
+          });
+        }
         // Un-score the previous answer
         const prevAnswer = quizState.answers[quizState.currentIndex - 1];
         if (prevAnswer && quizState.scores[prevAnswer] !== undefined) {
@@ -389,6 +431,17 @@ function handleAnswer(type, questionIndex) {
     quizState.scores[type]++;
   }
   quizState.answers[questionIndex] = type;
+
+  // Track answer selection
+  if (typeof trackEvent === 'function') {
+    trackEvent('quiz_answer_select', {
+      quiz_name:   'signal_activation',
+      quiz_step:   questionIndex + 1,
+      question_id: (QUIZ_QUESTIONS[questionIndex] && QUIZ_QUESTIONS[questionIndex].id) || `q${questionIndex + 1}`,
+      answer_id:   type,
+      page_type:   'quiz'
+    });
+  }
 
   // After first answer: collapse trust row and hero to reduce mobile scroll
   if (questionIndex === 0) {
@@ -457,6 +510,16 @@ function initResult() {
   renderResult(archetype, resultRoot);
   updatePageMeta(archetype);
   initShareButtons(archetype);
+
+  // Track result view
+  if (typeof trackEvent === 'function') {
+    trackEvent('view_result', {
+      quiz_name:    'signal_activation',
+      result_type:  typeSlug,
+      result_label: archetype.name,
+      page_type:    'result'
+    });
+  }
 }
 
 function renderResult(a, root) {
@@ -520,11 +583,35 @@ function renderResult(a, root) {
         </div>
       </div>
 
-      <!-- Next Steps -->
+      <!-- Email Capture — primary conversion action immediately after result content -->
+      <div class="result-optin animate-fade-up delay-3" style="max-width:480px;margin:40px auto 0;padding:28px 28px 24px;background:rgba(184,152,232,0.06);border:1px solid rgba(184,152,232,0.22);border-radius:16px;text-align:center;">
+        <p style="font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;">Your Signal · Your Inbox</p>
+        <p style="font-size:15px;font-weight:600;color:rgba(255,255,255,0.88);line-height:1.45;margin-bottom:6px;">Get the transmissions matched to your signal type.</p>
+        <p style="font-size:12px;color:rgba(255,255,255,0.38);margin-bottom:18px;line-height:1.5;">Occasional dispatches. No noise. Unsubscribe anytime.</p>
+        <form id="result-optin-form" style="display:flex;gap:8px;max-width:360px;margin:0 auto;" onsubmit="submitSignalOptin(event)">
+          <input id="signal-optin-email" type="email" placeholder="your@email.com" required autocomplete="email"
+            style="flex:1;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:8px;color:rgba(255,255,255,0.9);font-size:14px;padding:11px 14px;outline:none;" />
+          <button type="submit" data-cta="submit_optin"
+            style="background:rgba(184,152,232,0.18);border:1px solid rgba(184,152,232,0.38);color:#B898E8;font-size:13px;font-weight:600;padding:11px 18px;border-radius:8px;cursor:pointer;white-space:nowrap;">
+            Send it
+          </button>
+        </form>
+        <p id="signal-optin-privacy" style="font-size:11px;color:rgba(255,255,255,0.22);margin-top:10px;">No spam. Your signal, your inbox.</p>
+        <div id="signal-optin-success" style="display:none;padding:8px 0 4px;">
+          <p style="font-size:16px;font-weight:600;color:rgba(184,152,232,0.92);margin-bottom:10px;">You're in the signal.</p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:18px;line-height:1.6;">Watch your inbox for something worth opening.</p>
+          <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" target="_blank" rel="noopener" data-cta="audiobook"
+            style="display:inline-block;background:linear-gradient(135deg,rgba(201,168,76,0.25),rgba(201,168,76,0.12));border:1px solid rgba(201,168,76,0.55);color:#E4C46A;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:11px 22px;border-radius:50px;text-decoration:none;">
+            Hear the Audiobook →
+          </a>
+        </div>
+      </div>
+
+      <!-- Next Steps — after email capture -->
       <div class="result-next-steps animate-fade-up delay-3">
         <p class="next-steps-title">Where to go from here</p>
         <div class="next-steps-grid">
-          <a href="index.html#trailer" class="next-step-card">
+          <a href="index.html#trailer" class="next-step-card" data-cta="trailer">
             <span class="next-step-icon">🎧</span>
             <span class="next-step-label">Hear the Trailer</span>
             <span class="next-step-desc">Listen to the audio transmission that opens the world of Bridging Earth &amp; Kanaria</span>
@@ -532,12 +619,12 @@ function renderResult(a, root) {
           <a href="https://app.helloaudio.fm/feed/831d2db8-2d73-412e-a0a5-0fe58d744a10/signup" class="next-step-card" target="_blank" rel="noopener"
              title="Get the Audiobook | Bridging Earth and Kanaria"
              aria-label="Get the Audiobook on HelloAudio"
-             rel="noopener noreferrer">
+             data-cta="audiobook" data-pos="next_steps">
             <span class="next-step-icon">📖</span>
             <span class="next-step-label">Get the Audiobook</span>
             <span class="next-step-desc">The full transmission, every word received, every missing piece named</span>
           </a>
-          <a href="https://stopthecollapse.com" class="next-step-card" target="_blank" rel="noopener">
+          <a href="https://stopthecollapse.com" class="next-step-card" target="_blank" rel="noopener" data-cta="builders_path">
             <span class="next-step-icon">🛠️</span>
             <span class="next-step-label">The Builder's Path</span>
             <span class="next-step-desc">If you're building something real in this transition, this is where that work begins</span>
@@ -545,7 +632,7 @@ function renderResult(a, root) {
         </div>
       </div>
 
-      <!-- Audiobook CTA — sits at emotional peak, closest to the close -->
+      <!-- Audiobook CTA -->
       <div class="result-audiobook-cta animate-fade-up delay-3">
         <p class="audiobook-cta-eyebrow">The transmission that goes deeper</p>
         <h2 class="audiobook-cta-title">Bridging Earth &amp; Kanaria</h2>
@@ -555,11 +642,13 @@ function renderResult(a, root) {
           class="btn btn-primary btn-lg"
           target="_blank"
           rel="noopener"
+          data-cta="audiobook"
+          data-pos="result_audiobook_cta"
         >Hear the Full Transmission</a>
         <p class="audiobook-cta-meta">Narrated by Rick Broider &nbsp;·&nbsp; Available now</p>
       </div>
 
-            <!-- Share -->
+      <!-- Share -->
       <div class="share-section animate-fade-up delay-4">
         <p class="share-eyebrow">This is too accurate not to send</p>
         <h2 class="share-title">Forward this to someone in your field</h2>
@@ -568,19 +657,19 @@ function renderResult(a, root) {
           The conversation that follows tends to be the one that was missing.
         </p>
         <div class="share-btns">
-          <button class="share-btn share-btn--primary" id="copy-link-btn" aria-label="Copy result link">
+          <button class="share-btn share-btn--primary" id="copy-link-btn" aria-label="Copy result link" data-cta="share_result">
             🔗 Copy Link
           </button>
-          <a class="share-btn" id="share-twitter" href="#" target="_blank" rel="noopener" aria-label="Share on X / Twitter">
+          <a class="share-btn" id="share-twitter" href="#" target="_blank" rel="noopener" aria-label="Share on X / Twitter" data-cta="share_twitter">
             𝕏 Share on X
           </a>
-          <a class="share-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+          <a class="share-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener" aria-label="Share on WhatsApp" data-cta="share_whatsapp">
             💬 WhatsApp
           </a>
-          <a class="share-btn" id="share-facebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook">
+          <a class="share-btn" id="share-facebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook" data-cta="share_facebook">
             Share on Facebook
           </a>
-          <button class="share-btn" id="copy-result-btn" aria-label="Copy result text for Instagram">
+          <button class="share-btn" id="copy-result-btn" aria-label="Copy result text for Instagram" data-cta="share_instagram">
             📋 Copy for Instagram
           </button>
         </div>
@@ -589,7 +678,7 @@ function renderResult(a, root) {
         </p>
         <p style="margin-top:22px; font-size:14px; color:var(--text-secondary); line-height:1.6;">
           Did this land for you?
-          <a href="https://iwasready.com/#tsubmit-title" style="color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.35);">
+          <a href="https://iwasready.com/#tsubmit-title" style="color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.35);" data-cta="testimonial_submit">
             Share your experience →
           </a>
         </p>
@@ -923,4 +1012,119 @@ function initTestimonialForm() {
       btn.disabled = false;
     }
   });
+}
+
+/* ============================================================
+   SIGNAL ACTIVATION: RESULT PAGE EMAIL CAPTURE
+   Handles opt-in form on result.html (script.js result page)
+   Mirrors submitEmailCapture() from consciousness-quiz.html
+   ============================================================ */
+
+async function submitSignalOptin(e) {
+  e.preventDefault();
+
+  const emailInput = document.getElementById('signal-optin-email');
+  const form       = document.getElementById('result-optin-form');
+  const success    = document.getElementById('signal-optin-success');
+  const submitBtn  = form ? form.querySelector('[type="submit"]') : null;
+
+  if (!emailInput || !form) return;
+
+  const email = emailInput.value.trim();
+  if (!email) return;
+
+  // Fire form_start / form_submit events
+  if (typeof trackEvent === 'function') {
+    trackEvent('form_submit', {
+      form_id:       'signal_optin',
+      quiz_name:     'signal_activation',
+      result_type:   (new URLSearchParams(window.location.search).get('type') || 'unknown'),
+      page_type:     'result'
+    });
+  }
+
+  if (submitBtn) {
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+  }
+
+  // Build ConvertKit payload
+  // Form: 9354202 | Tag: 19053268 | Public API key: rHVnH9w-RQSRS8Fft38AeQ
+  const resultType = new URLSearchParams(window.location.search).get('type') || 'unknown';
+
+  let attribution = {};
+  if (typeof getFormAttribution === 'function') {
+    attribution = getFormAttribution({ result_type: resultType, quiz_name: 'signal_activation' });
+  }
+
+  const kitFields = {
+    result_type:     resultType,
+    quiz_name:       'signal_activation',
+    page_url:        window.location.href,
+    opt_in_source:   'result_page',
+    subscribed_at:   new Date().toISOString(),
+    orig_source:     attribution.orig_utm_source   || '',
+    orig_medium:     attribution.orig_utm_medium   || '',
+    orig_campaign:   attribution.orig_utm_campaign || '',
+    orig_content:    attribution.orig_utm_content  || '',
+    last_source:     attribution.last_utm_source   || '',
+    last_medium:     attribution.last_utm_medium   || '',
+    last_campaign:   attribution.last_utm_campaign || '',
+    last_content:    attribution.last_utm_content  || '',
+    landing_variant: attribution.landing_variant   || '',
+    fbclid:          attribution.fbclid            || '',
+    ttclid:          attribution.ttclid            || ''
+  };
+
+  try {
+    const res = await fetch(
+      'https://api.convertkit.com/v3/forms/9354202/subscribe',
+      {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          api_key: 'rHVnH9w-RQSRS8Fft38AeQ',
+          email,
+          tags:   [19053268],
+          fields: kitFields
+        })
+      }
+    );
+
+    if (res.ok) {
+      // Show success state
+      form.style.display  = 'none';
+      if (success) success.style.display = 'block';
+
+      // Update privacy note if present
+      const privacyNote = document.getElementById('signal-optin-privacy');
+      if (privacyNote) privacyNote.style.display = 'none';
+
+      // Fire generate_lead
+      if (typeof trackEvent === 'function') {
+        trackEvent('generate_lead', {
+          form_id:     'signal_optin',
+          quiz_name:   'signal_activation',
+          result_type: resultType,
+          page_type:   'result'
+        });
+      }
+    } else {
+      // Non-2xx: show soft error inline
+      if (submitBtn) {
+        submitBtn.textContent = 'Try again';
+        submitBtn.disabled = false;
+      }
+      const errMsg = document.createElement('p');
+      errMsg.textContent = 'Something went wrong. Please try again.';
+      errMsg.style.cssText = 'font-size:12px;color:rgba(255,80,80,0.8);margin-top:8px;';
+      form.appendChild(errMsg);
+    }
+  } catch (err) {
+    if (submitBtn) {
+      submitBtn.textContent = 'Try again';
+      submitBtn.disabled = false;
+    }
+    console.warn('Signal optin error:', err);
+  }
 }
