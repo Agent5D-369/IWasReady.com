@@ -233,8 +233,8 @@ body {
 #screen-intro {
   justify-content: center;
   text-align: center;
-  padding-top: 80px;
-  padding-bottom: 60px;
+  padding-top: clamp(32px, 5vh, 56px);
+  padding-bottom: clamp(32px, 5vh, 56px);
 }
 .intro-inner {
   max-width: 560px;
@@ -254,11 +254,11 @@ body {
 }
 .intro-title {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(36px, 8vw, 58px);
+  font-size: clamp(34px, 7vw, 54px);
   font-weight: 700;
   line-height: 1.12;
   color: rgba(255,255,255,0.95);
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   letter-spacing: -0.01em;
 }
 .intro-title em {
@@ -269,13 +269,13 @@ body {
   width: 60px;
   height: 1.5px;
   background: linear-gradient(to right, transparent, #C9A84C, transparent);
-  margin: 0 auto 28px;
+  margin: 0 auto 20px;
 }
 .intro-body {
   font-size: 17px;
-  line-height: 1.75;
+  line-height: 1.7;
   color: rgba(255,255,255,0.68);
-  margin-bottom: 20px;
+  margin-bottom: 14px;
   font-weight: 300;
 }
 .intro-body strong {
@@ -286,7 +286,7 @@ body {
   font-size: 13px;
   color: rgba(255,255,255,0.35);
   letter-spacing: 0.06em;
-  margin-bottom: 44px;
+  margin-bottom: 28px;
 }
 .btn-start {
   display: inline-flex;
@@ -325,7 +325,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 48px;
+  margin-top: 28px;
   flex-wrap: wrap;
 }
 .pill {
@@ -586,26 +586,60 @@ body {
 
 /* ── Cross-Quiz CTA ───────────────────────────────────────────────────────── */
 .cross-quiz-cta {
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: 40px;
+  padding: 28px 28px 24px;
+  border: 1px solid rgba(201,168,76,0.16);
+  border-radius: 14px;
+  background: rgba(201,168,76,0.03);
   text-align: center;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.cross-quiz-cta p {
-  font-size: 13px;
-  color: rgba(255,255,255,0.38);
+.cross-quiz-cta .cqc-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  opacity: 0.65;
+  margin-bottom: 12px;
+}
+.cross-quiz-cta .cqc-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.4;
   margin-bottom: 10px;
-  letter-spacing: 0.04em;
+}
+.cross-quiz-cta .cqc-body {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.65;
+  margin-bottom: 10px;
+  letter-spacing: 0;
+}
+.cross-quiz-cta .cqc-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
 }
 .cross-quiz-cta a {
-  font-size: 13px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: #C9A84C;
   text-decoration: none;
-  border-bottom: 1px solid rgba(201,168,76,0.3);
-  padding-bottom: 1px;
-  transition: opacity 0.2s;
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 50px;
+  padding: 10px 22px;
+  transition: all 0.2s;
 }
-.cross-quiz-cta a:hover { opacity: 0.75; }
+.cross-quiz-cta a:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.6); }
 
 /* ── Co-Diagnosis Block ───────────────────────────────────────────────────── */
 .co-diag-block {
@@ -1268,8 +1302,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <div class="cross-quiz-cta">
-        <p>Want to know your leadership signal type too?</p>
-        <a href="quiz.html" data-cta="signal_activation">Take the Signal Activation Quiz →</a>
+        <p class="cqc-eyebrow">There's a second quiz in this ecosystem</p>
+        <p class="cqc-headline">The Frequency Finder showed where you are.<br>This one shows how you lead from there.</p>
+        <p class="cqc-body">The Starseed Leadership Signal Activation is a different test. It doesn't measure frequency — it identifies your signal pattern: the specific way you show up, build, and move energy in a room. Four archetypes. One of them has been running in you for years.</p>
+        <p class="cqc-meta">10 questions &nbsp;·&nbsp; 4 minutes &nbsp;·&nbsp; No email required</p>
+        <a href="quiz.html" data-cta="signal_activation">Take the Signal Activation →</a>
       </div>
 
       <div class="result-retake">
